@@ -1,13 +1,6 @@
 import Logo from '@/components/Logo';
 
 export default function Home() {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <div className="min-h-screen">
       {/* Navigation */}
@@ -35,12 +28,12 @@ export default function Home() {
             </a>
           </li>
         </ul>
-        <button
-          onClick={() => scrollToSection('contact')}
+        <a
+          href="#contact"
           className="bg-[#e07b39] text-[#0a0f0a] px-8 py-[14px] rounded-lg font-semibold text-base hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[rgba(224,123,57,0.15)] border-none"
         >
           Let's Talk
-        </button>
+        </a>
       </nav>
 
       {/* Hero Section */}
@@ -55,12 +48,12 @@ export default function Home() {
           processes, implement agentic workflows, and train teams for the AI era.
           Grounded in business, powered by technology.
         </p>
-        <button
-          onClick={() => scrollToSection('contact')}
-          className="bg-[#e07b39] text-[#0a0f0a] px-8 py-[14px] rounded-lg font-semibold text-base hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[rgba(224,123,57,0.15)] border-none"
+        <a
+          href="#contact"
+          className="bg-[#e07b39] text-[#0a0f0a] px-8 py-[14px] rounded-lg font-semibold text-base hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[rgba(224,123,57,0.15)] border-none inline-block"
         >
           Let's Talk About Your Needs
-        </button>
+        </a>
 
         {/* Process Flow */}
         <div className="flex items-center justify-center gap-8 px-10 py-10 bg-[#111a11] rounded-2xl border border-[#2a3a2a] max-w-4xl mx-auto mt-10">
@@ -105,7 +98,7 @@ export default function Home() {
             </p>
             <p className="text-[#b8b3ab] mb-6">
               Our approach is grounded in practical challenges we've lived through, not just
-              theoretical concepts. We know what works in the real world.
+              theoretical concepts. We know what works in real world.
             </p>
             <ul className="flex flex-col gap-4">
               <li className="flex items-center gap-4">
