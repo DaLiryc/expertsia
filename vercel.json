@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "buildCommand": "mkdir -p .vercel/output && cp index.html .vercel/output/index.html",
+  "outputDirectory": ".vercel/output"
+}
