@@ -1,6 +1,3 @@
 {
-  "version": 2,
-  "outputDirectory": ".",
-  "buildCommand": "cp index.html .vercel/output/index.html",
   "cleanUrls": true
 }
