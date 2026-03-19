@@ -1,0 +1,17 @@
+Vercel CLI 50.15.1
+Retrieving project…
+Deploying dalirycs-projects/expertsia-clean
+Uploading [--------------------] (0.0B/212B)
+Uploading [===========---------] (127.0B/212B)
+Uploading [====================] (212.0B/212B)
+Inspect: https://vercel.com/dalirycs-projects/expertsia-clean/95tgXNqNK1eK6ssXudF3sTVpuiMW [2s]
+Production: https://expertsia-clean-n3644oo6d-dalirycs-projects.vercel.app [2s]
+https://expertsia-clean-n3644oo6d-dalirycs-projects.vercel.appBuilding...
+Building...
+Building: Running build in Washington, D.C., USA (East) – iad1
+Building: Build machine configuration: 2 cores, 8 GB
+Building: Retrieving list of deployment files...
+Building: Previous build caches not available.
+Building: Downloading 14 deployment files...
+Building: Running "vercel build"
+Error: No Next.js version detected. Make sure your package.json has "next" in either "dependencies" or "devDependencies". Also check your Root Directory setting matches the directory of your package.json file.

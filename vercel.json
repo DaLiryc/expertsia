@@ -1,5 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "mkdir -p .vercel/output && cp index.html .vercel/output/index.html",
-  "outputDirectory": ".vercel/output"
+  "outputDirectory": ".",
+  "buildCommand": "cp index.html .vercel/output/index.html",
+  "cleanUrls": true
 }
