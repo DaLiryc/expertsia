@@ -116,9 +116,9 @@ export const dictionaries = {
       p1: "Contrairement aux agences tech classiques, nous apportons une véritable expérience de scale-up. Nous comprenons le business d'abord, la technologie ensuite.",
       p2: "Notre approche est ancrée dans des défis concrets que nous avons traversés, pas seulement des concepts théoriques. Nous savons ce qui marche dans le monde réel.",
       features: [
-        "Perspective business d'abord, pas tech d'abord",
+        "Perspective business d'abord",
         "Gestion de projet axée sur le ROI",
-        "Expérience scale-up terrain",
+        "Expérience terrain en start-up/scale-up et PME",
         "Accompagnement de bout en bout, de la stratégie à l'exécution",
         "Solutions pratiques et implémentables",
       ],
