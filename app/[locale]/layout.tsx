@@ -54,6 +54,48 @@ export default async function LocaleLayout({
   const { locale } = await params;
   const dict = dictionaries[locale as Locale] || dictionaries.en;
 
+  // Schema.org structured data
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'ExpertsIA',
+    url: BASE_URL,
+    logo: `${BASE_URL}/logo.png`,
+    description: dict.meta.description,
+    founder: {
+      '@type': 'Person',
+      name: 'Cyril Marchand',
+      jobTitle: 'AI Consultant & Founder',
+      url: 'https://www.linkedin.com/in/marchandcyril/',
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'France',
+    },
+    knowsAbout: [
+      'Artificial Intelligence',
+      'Business Process Automation',
+      'Machine Learning',
+      'Data Science',
+      'AI Training',
+      'RAG Systems',
+      'Process Optimization',
+    ],
+    offers: dict.services.items.map((s) => ({
+      '@type': 'Service',
+      name: s.title,
+      description: s.description,
+    })),
+  };
+
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'ExpertsIA',
+    url: BASE_URL,
+    inLanguage: locale,
+  };
+
   return (
     <html lang={locale}>
       <head>
@@ -62,6 +104,15 @@ export default async function LocaleLayout({
         <link rel="alternate" hrefLang="fr" href={`${BASE_URL}/fr`} />
         <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}/en`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
       </head>
       <body>{children}</body>
     </html>

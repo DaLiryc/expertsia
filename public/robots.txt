@@ -1,13 +1,5 @@
-# Robots.txt for ExpertsIA
-# Allow all crawlers
-
 User-agent: *
 Allow: /
 
-# Disallow internal paths if any
-Disallow: /api/
-Disallow: /admin/
-Disallow: /private/
-
-# Sitemap location
-Sitemap: https://expertsia.dev/sitemap.xml
+# Sitemap
+Sitemap: https://www.expertsia.dev/sitemap.xml

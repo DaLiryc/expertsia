@@ -87,9 +87,9 @@ export const dictionaries = {
 
   fr: {
     meta: {
-      title: "ExpertsIA - Transformation IA de votre Entreprise",
-      description: "Transformation par l'IA pour startups et grandes entreprises. Nous aidons les organisations à optimiser leurs processus, implémenter des workflows agentic, et former leurs équipes pour l'ère de l'IA.",
-      keywords: "transformation IA entreprise, conseil IA, stratégie IA, workflows agentic, systèmes RAG, formation IA, data science, IA corporate, IA startup, agence IA France",
+      title: "ExpertsIA — Automatisation IA & Conseil pour PME",
+      description: "ExpertsIA aide les PME françaises à automatiser leurs processus et déployer l'intelligence artificielle. Audit, automatisation, formation. Éligible aides BPI et Osez l'IA.",
+      keywords: "automatisation ia entreprise, agence ia france, conseil ia pme, audit ia gratuit, formation ia entreprise, agents ia, automatisation processus, aide ia bpi, osez l'ia",
     },
     nav: {
       approach: "Approche",
@@ -101,9 +101,9 @@ export const dictionaries = {
       languageSwitchHref: "/en",
     },
     hero: {
-      title: "Transformez votre Entreprise avec l'IA et la Data",
-      subtitle: "Nous accompagnons toutes les organisations, des startups aux grandes entreprises, pour optimiser leurs processus, implémenter des workflows agentic et former leurs équipes à l'ère de l'IA. Orienté business, propulsé par la technologie.",
-      cta: "Discutons de vos besoins",
+      title: "Automatisez votre Entreprise avec l'IA",
+      subtitle: "Nous aidons les PME à gagner du temps et réduire leurs coûts grâce à l'automatisation intelligente et l'IA. Concret, mesurable, déployé en semaines — pas en mois. Éligible aides BPI et programme Osez l'IA.",
+      cta: "Audit Gratuit",
     },
     process: {
       step1: "Audit & Découverte",
@@ -132,16 +132,16 @@ export const dictionaries = {
     },
     services: {
       title: "Ce Que Nous Faisons",
-      subtitle: "Solutions IA et data complètes, adaptées à vos besoins business",
+      subtitle: "Des solutions concrètes pour automatiser, optimiser et rentabiliser votre activité",
       items: [
-        { icon: "⚡", title: "Stratégie & Roadmap IA", description: "Évaluer vos capacités actuelles, identifier les opportunités et créer un plan d'adoption de l'IA personnalisé, aligné sur vos objectifs business." },
-        { icon: "🔄", title: "Optimisation des Processus", description: "Exploiter l'IA et la data pour fluidifier les opérations, réduire les inefficiences et créer des workflows automatisés avec des outils comme n8n." },
-        { icon: "🤖", title: "Workflows Agentic", description: "Construire des agents IA intelligents et des systèmes RAG qui automatisent les tâches complexes, améliorent la prise de décision et boostent la productivité." },
-        { icon: "📊", title: "Projets Data Science", description: "Modèles prédictifs, algorithmes de clustering, moteurs de recommandation et analytics personnalisés pour un impact business mesurable." },
-        { icon: "🎓", title: "Formation & Activation IA", description: "Monter en compétences vos équipes sur les LLM, le prompt engineering et les bonnes pratiques IA via des ateliers et formations pratiques." },
-        { icon: "📈", title: "Conduite du Changement", description: "Accompagner votre organisation dans l'adoption de l'IA avec une conduite du changement structurée, l'alignement des parties prenantes et l'amélioration continue." },
-        { icon: "🔍", title: "Audit & Évaluation IA", description: "Évaluer les initiatives IA existantes, identifier les lacunes et formuler des recommandations pour l'optimisation et la gouvernance." },
-        { icon: "🛠️", title: "Infrastructure Data", description: "Concevoir et implémenter des pipelines data, des entrepôts et des processus ETL qui alimentent vos initiatives IA et analytics." },
+        { icon: "⚡", title: "Audit & Stratégie IA", description: "Évaluer votre maturité IA, identifier les automatisations à fort ROI et construire une roadmap claire, alignée sur vos objectifs business." },
+        { icon: "🔄", title: "Automatisation des Processus", description: "Éliminer les tâches répétitives avec des outils comme n8n, Make ou des scripts sur mesure. Vos équipes se concentrent sur ce qui compte vraiment." },
+        { icon: "🤖", title: "Assistants IA sur Mesure", description: "Des chatbots et assistants qui répondent à vos clients, traitent vos documents et prennent des décisions — formés sur VOS données, pas des hallucinations." },
+        { icon: "📊", title: "Data Science & Analytics", description: "Modèles prédictifs, segmentation client, tableaux de bord intelligents. Transformez vos données en décisions actionnables." },
+        { icon: "🎓", title: "Formation IA", description: "Ateliers pratiques pour vos équipes : prompt engineering, ChatGPT/Claude avancé, bonnes pratiques. Certifié et éligible OPCO." },
+        { icon: "📈", title: "Conduite du Changement", description: "Accompagner vos équipes dans l'adoption de l'IA : ateliers, support, mesure d'impact. L'outil ne sert à rien si personne ne l'utilise." },
+        { icon: "🔍", title: "Conformité & Gouvernance IA", description: "RGPD, IA Act, sécurité des données. On vous garantit un déploiement IA conforme et maîtrisé." },
+        { icon: "🛠️", title: "Infrastructure Data", description: "Pipelines, bases de données, API. Les fondations techniques qui alimentent vos projets IA et analytics." },
       ],
     },
     industries: {
@@ -159,8 +159,8 @@ export const dictionaries = {
       ],
     },
     contact: {
-      title: "Discutons de vos besoins",
-      subtitle: "Prêt à transformer votre entreprise avec l'IA ? Contactez-nous pour une consultation gratuite.",
+      title: "Discutons de votre projet",
+      subtitle: "Première consultation gratuite. Réponse sous 24h ouvrées.",
       namePlaceholder: "Votre Nom",
       emailPlaceholder: "Votre Email",
       companyPlaceholder: "Entreprise (Optionnel)",
@@ -168,7 +168,7 @@ export const dictionaries = {
       submit: "Envoyer",
       linkedin: "Connectons-nous sur LinkedIn",
     },
-    footer: "© 2026 ExpertsIA. Transformation IA pour Startups et Grandes Entreprises.",
+    footer: "© 2026 ExpertsIA. Automatisation IA pour PME et grandes entreprises. Éligible aides BPI et Osez l'IA.",
   },
 } as const;
 
