@@ -1,9 +1,34 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Disable Turbopack for builds — it doesn't generate the middleware manifest
-  // correctly in Next.js 16, causing 404s on Vercel.
-  // Webpack (the default before Turbopack) handles middleware/proxy correctly.
+  async redirects() {
+    return [
+      {
+        source: '/',
+        has: [
+          {
+            type: 'header',
+            key: 'x-vercel-ip-country',
+            value: '(FR|BE|CH|LU|MC|CA)',
+          },
+        ],
+        destination: '/fr',
+        permanent: false,
+      },
+      {
+        source: '/',
+        has: [
+          {
+            type: 'header',
+            key: 'x-vercel-ip-country',
+            value: '(?!FR|BE|CH|LU|MC|CA).*',
+          },
+        ],
+        destination: '/en',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
