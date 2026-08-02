@@ -86,8 +86,8 @@ export default function ContactForm({ locale, labels }: ContactFormProps) {
         aria-hidden="true"
       />
 
-      <div className="flex flex-col gap-6">
-        <div className="grid grid-cols-2 gap-6">
+      <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-2 gap-4">
           <div>
             <label htmlFor="name" className="block text-xs text-[#b8b3ab] mb-2 font-medium tracking-wide">
               {labels.namePlaceholder}
