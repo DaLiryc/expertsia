@@ -28,7 +28,7 @@ export default function ContactForm({ locale, labels }: ContactFormProps) {
       email: formData.get('email'),
       company: formData.get('company'),
       message: formData.get('message'),
-      website: formData.get('website'), // honeypot
+      website: formData.get('website'),
       locale,
     };
 
@@ -48,73 +48,110 @@ export default function ContactForm({ locale, labels }: ContactFormProps) {
       (e.target as HTMLFormElement).reset();
     } catch {
       setStatus('error');
-      setErrorMsg('Something went wrong. Please email cyril@expertsia.dev directly.');
+      setErrorMsg(locale === 'fr'
+        ? 'Erreur. Écrivez-nous directement à cyril@expertsia.dev'
+        : 'Error. Email us directly at cyril@expertsia.dev');
     }
   }
 
   if (status === 'success') {
     return (
-      <div className="flex flex-col gap-4 max-w-md mx-auto items-center py-10">
-        <div className="w-16 h-16 bg-gradient-to-br from-[#e07b39] to-[#d4a574] rounded-full flex items-center justify-center text-3xl">
-          ✓
+      <div className="max-w-md mx-auto text-center py-10">
+        <div className="w-14 h-14 rounded-full bg-[#e07b39]/10 border border-[#e07b39]/30 flex items-center justify-center mx-auto mb-6">
+          <svg className="w-7 h-7 text-[#e07b39]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
         </div>
-        <p className="text-[#f5f0e8] text-lg font-semibold text-center">
+        <p className="text-[#f5f0e8] text-lg font-semibold mb-2">
+          {locale === 'fr' ? 'Message envoyé !' : 'Message sent!'}
+        </p>
+        <p className="text-[#b8b3ab] text-sm font-light">
           {locale === 'fr'
-            ? 'Merci ! Votre message a été envoyé. Nous vous répondrons sous 24h.'
-            : 'Thank you! Your message has been sent. We\'ll get back to you within 24h.'}
+            ? 'Nous vous répondrons sous 24h ouvrées.'
+            : "We'll get back to you within 24 business hours."}
         </p>
       </div>
     );
   }
 
   return (
-    <form className="flex flex-col gap-4 max-w-md mx-auto" onSubmit={handleSubmit}>
-      {/* Honeypot — hidden from humans */}
+    <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
+      {/* Honeypot */}
       <input
         type="text"
         name="website"
         tabIndex={-1}
         autoComplete="off"
-        className="absolute left-[-9999px]"
+        className="absolute left-[-9999px] opacity-0"
         aria-hidden="true"
       />
-      <input
-        type="text"
-        name="name"
-        placeholder={labels.namePlaceholder}
-        required
-        className="px-4 py-[15px] bg-[#1a261a] border border-[#2a3a2a] rounded-lg text-[#f5f0e8] text-base focus:outline-none focus:border-[#e07b39] w-full font-sans"
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder={labels.emailPlaceholder}
-        required
-        className="px-4 py-[15px] bg-[#1a261a] border border-[#2a3a2a] rounded-lg text-[#f5f0e8] text-base focus:outline-none focus:border-[#e07b39] w-full font-sans"
-      />
-      <input
-        type="text"
-        name="company"
-        placeholder={labels.companyPlaceholder}
-        className="px-4 py-[15px] bg-[#1a261a] border border-[#2a3a2a] rounded-lg text-[#f5f0e8] text-base focus:outline-none focus:border-[#e07b39] w-full font-sans"
-      />
-      <textarea
-        name="message"
-        placeholder={labels.messagePlaceholder}
-        required
-        className="px-4 py-[15px] bg-[#1a261a] border border-[#2a3a2a] rounded-lg text-[#f5f0e8] text-base focus:outline-none focus:border-[#e07b39] w-full font-sans min-h-[150px] resize-y"
-      />
-      <button
-        type="submit"
-        disabled={status === 'submitting'}
-        className="bg-[#e07b39] text-[#0a0f0a] px-8 py-[14px] rounded-lg font-semibold text-base hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[rgba(224,123,57,0.15)] border-none self-center disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {status === 'submitting'
-          ? '...'
-          : labels.submit}
-      </button>
+
+      <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="name" className="block text-xs text-[#b8b3ab] mb-2 font-medium tracking-wide">
+              {labels.namePlaceholder}
+            </label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              required
+              className="form-input"
+            />
+          </div>
+          <div>
+            <label htmlFor="company" className="block text-xs text-[#b8b3ab] mb-2 font-medium tracking-wide">
+              {labels.companyPlaceholder}
+            </label>
+            <input
+              id="company"
+              type="text"
+              name="company"
+              className="form-input"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="email" className="block text-xs text-[#b8b3ab] mb-2 font-medium tracking-wide">
+            {labels.emailPlaceholder}
+          </label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            required
+            className="form-input"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="message" className="block text-xs text-[#b8b3ab] mb-2 font-medium tracking-wide">
+            {labels.messagePlaceholder}
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            rows={5}
+            className="form-input resize-y min-h-[120px]"
+          />
+        </div>
+
+        <button
+          type="submit"
+          disabled={status === 'submitting'}
+          className="btn-primary w-full justify-center mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {status === 'submitting'
+            ? '...'
+            : labels.submit}
+        </button>
+      </div>
+
       {status === 'error' && (
-        <p className="text-red-400 text-sm text-center">{errorMsg}</p>
+        <p className="text-red-400 text-sm text-center mt-4">{errorMsg}</p>
       )}
     </form>
   );
