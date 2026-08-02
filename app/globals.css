@@ -14,3 +14,104 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
+/* Blog MDX prose styles */
+.prose-custom {
+  line-height: 1.75;
+  font-size: 1.0625rem;
+  color: #d4cfc7;
+}
+.prose-custom h1,
+.prose-custom h2,
+.prose-custom h3,
+.prose-custom h4 {
+  color: #f5f0e8;
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+  scroll-margin-top: 80px;
+}
+.prose-custom h2 {
+  font-size: 1.5rem;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #2a3a2a;
+}
+.prose-custom h3 {
+  font-size: 1.25rem;
+}
+.prose-custom p {
+  margin-bottom: 1.25em;
+}
+.prose-custom a {
+  color: #e07b39;
+  text-decoration: none;
+}
+.prose-custom a:hover {
+  text-decoration: underline;
+}
+.prose-custom ul,
+.prose-custom ol {
+  margin-bottom: 1.25em;
+  padding-left: 1.5em;
+}
+.prose-custom li {
+  margin-bottom: 0.5em;
+}
+.prose-custom code {
+  background: #1a261a;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: #d4a574;
+}
+.prose-custom pre {
+  background: #111a11 !important;
+  border: 1px solid #2a3a2a;
+  border-radius: 8px;
+  padding: 1em;
+  overflow-x: auto;
+  margin-bottom: 1.5em;
+}
+.prose-custom pre code {
+  background: transparent;
+  padding: 0;
+  color: #d4cfc7;
+}
+.prose-custom blockquote {
+  border-left: 3px solid #e07b39;
+  padding-left: 1em;
+  margin: 1.5em 0;
+  color: #b8b3ab;
+  font-style: italic;
+}
+.prose-custom table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5em;
+  font-size: 0.95em;
+}
+.prose-custom th,
+.prose-custom td {
+  border: 1px solid #2a3a2a;
+  padding: 0.6em 0.8em;
+  text-align: left;
+}
+.prose-custom th {
+  background: #111a11;
+  color: #f5f0e8;
+  font-weight: 600;
+}
+.prose-custom tr:nth-child(even) {
+  background: rgba(17, 26, 17, 0.5);
+}
+.prose-custom hr {
+  border: none;
+  border-top: 1px solid #2a3a2a;
+  margin: 2em 0;
+}
+.prose-custom img {
+  border-radius: 8px;
+  margin: 1.5em 0;
+  max-width: 100%;
+}

@@ -32,6 +32,11 @@ export default async function Home({
             </a>
           </li>
           <li>
+            <a href={`/${locale}/blog`} className="text-[#b8b3ab] font-medium text-base hover:text-[#e07b39]">
+              {locale === 'fr' ? 'Blog' : 'Blog'}
+            </a>
+          </li>
+          <li>
             <a href="#contact" className="text-[#b8b3ab] font-medium text-base hover:text-[#e07b39]">
               {t.nav.contact}
             </a>
