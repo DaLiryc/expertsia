@@ -1,4 +1,5 @@
 import './globals.css';
+import { PostHogWrapper } from '@/components/PostHogProvider';
 
 // Root layout — middleware handles locale detection and redirect.
 export default function RootLayout({
@@ -6,5 +7,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <PostHogWrapper>{children}</PostHogWrapper>;
 }

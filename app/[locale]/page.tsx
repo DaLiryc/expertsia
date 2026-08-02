@@ -1,5 +1,6 @@
 import Logo from '@/components/Logo';
 import ContactForm from '@/components/ContactForm';
+import NewsletterCapture from '@/components/NewsletterCapture';
 import { dictionaries, type Locale } from '@/lib/dictionaries';
 
 export default async function Home({
@@ -211,8 +212,19 @@ export default async function Home({
       </section>
 
       {/* Footer */}
-      <footer className="px-10 py-10 text-center border-t border-[#2a3a2a] text-[#b8b3ab] text-sm">
-        <p>{t.footer}</p>
+      <footer className="px-10 py-12 text-center border-t border-[#2a3a2a] text-[#b8b3ab]">
+        <div className="max-w-md mx-auto mb-8">
+          <h3 className="text-[#f5f0e8] font-bold text-lg mb-2">
+            {locale === 'fr' ? 'La Veille IA Décideurs' : 'The AI Briefing'}
+          </h3>
+          <p className="text-sm mb-4">
+            {locale === 'fr'
+              ? '1 email par semaine. Actualité IA, outils et retours d\'expérience. Sans spam.'
+              : '1 email per week. AI news, tools and case studies. No spam.'}
+          </p>
+          <NewsletterCapture locale={locale} />
+        </div>
+        <p className="text-sm">{t.footer}</p>
       </footer>
     </div>
   );
