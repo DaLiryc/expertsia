@@ -52,7 +52,7 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Match all paths except static assets
-    '/((?!_next|api|.*\\..*).*)',
+    // Match everything except static files, Next internals, and API routes
+    '/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|api).*)',
   ],
 };
