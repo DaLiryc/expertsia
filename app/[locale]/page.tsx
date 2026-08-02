@@ -53,7 +53,7 @@ export default async function Home({
       </nav>
 
       {/* Hero */}
-      <section className="relative px-6 md:px-10 py-24 md:py-36 max-w-5xl mx-auto text-center overflow-hidden">
+      <section className="relative px-6 md:px-10 pt-32 pb-40 md:pt-44 md:pb-52 max-w-4xl mx-auto text-center overflow-hidden">
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] pointer-events-none"
           style={{ background: 'radial-gradient(ellipse at center, rgba(224,123,57,0.12) 0%, rgba(224,123,57,0.04) 30%, transparent 70%)', filter: 'blur(60px)' }}
@@ -70,7 +70,7 @@ export default async function Home({
             {t.hero.title}
           </h1>
 
-          <p className="text-lg md:text-xl text-[#b8b3ab] max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+          <p className="text-lg md:text-xl text-[#b8b3ab] max-w-2xl mx-auto mb-14 leading-relaxed font-light">
             {t.hero.subtitle}
           </p>
 
@@ -86,7 +86,7 @@ export default async function Home({
           </div>
 
           {/* Trust badges row */}
-          <div className="flex flex-wrap justify-center gap-6 md:gap-10 mt-16">
+          <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 mt-20">
             {trustBadges.map((badge, i) => {
               const BadgeIcon = badge.icon;
               return (
@@ -103,7 +103,7 @@ export default async function Home({
       <div className="section-divider" aria-hidden="true" />
 
       {/* Why + Process */}
-      <section id="approach" className="py-24 md:py-32 bg-[#0d130d]/60 relative">
+      <section id="approach" className="py-32 md:py-44 bg-[#0d130d]/60 relative">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             {/* Left: Why */}
@@ -158,7 +158,7 @@ export default async function Home({
       <div className="section-divider" aria-hidden="true" />
 
       {/* Services */}
-      <section id="services" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
+      <section id="services" className="py-32 md:py-44 px-6 md:px-10 max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="heading-2 mb-4">{t.services.title}</h2>
           <p className="text-[#b8b3ab] max-w-xl mx-auto font-light">{t.services.subtitle}</p>
@@ -192,7 +192,7 @@ export default async function Home({
       <div className="section-divider" aria-hidden="true" />
 
       {/* Industries */}
-      <section id="industries" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
+      <section id="industries" className="py-32 md:py-44 px-6 md:px-10 max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="heading-2 mb-4">{t.industries.title}</h2>
           <p className="text-[#b8b3ab] max-w-xl mx-auto font-light">{t.industries.subtitle}</p>
@@ -213,15 +213,15 @@ export default async function Home({
       <div className="section-divider" aria-hidden="true" />
 
       {/* Contact */}
-      <section id="contact" className="py-24 md:py-32 bg-[#0d130d]/60 relative">
+      <section id="contact" className="py-32 md:py-44 bg-[#0d130d]/60 relative">
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"
           style={{ background: 'radial-gradient(ellipse at center, rgba(224,123,57,0.08) 0%, transparent 70%)', filter: 'blur(40px)' }}
           aria-hidden="true"
         />
         <div className="max-w-2xl mx-auto px-6 md:px-10 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="heading-2 mb-4">{t.contact.title}</h2>
+          <div className="text-center mb-16">
+            <h2 className="heading-2 mb-6">{t.contact.title}</h2>
             <p className="text-[#b8b3ab] font-light">{t.contact.subtitle}</p>
           </div>
           <ContactForm locale={locale} labels={{
