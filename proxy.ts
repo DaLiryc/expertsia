@@ -11,7 +11,7 @@ const FRENCH_SPEAKING_COUNTRIES = [
 const SUPPORTED_LOCALES = ['en', 'fr'];
 const DEFAULT_LOCALE = 'en';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Skip static assets and API routes
