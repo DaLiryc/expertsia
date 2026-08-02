@@ -1,4 +1,5 @@
 import Logo from '@/components/Logo';
+import ContactForm from '@/components/ContactForm';
 import { dictionaries, type Locale } from '@/lib/dictionaries';
 
 export default async function Home({
@@ -185,40 +186,13 @@ export default async function Home({
         <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-5">{t.contact.title}</h2>
           <p className="text-[#b8b3ab] mb-10">{t.contact.subtitle}</p>
-          <form
-            className="flex flex-col gap-4 max-w-md mx-auto"
-            action="mailto:cyril@expertsia.dev"
-            method="post"
-            encType="text/plain"
-          >
-            <input
-              type="text"
-              placeholder={t.contact.namePlaceholder}
-              required
-              className="px-4 py-[15px] bg-[#1a261a] border border-[#2a3a2a] rounded-lg text-[#f5f0e8] text-base focus:outline-none focus:border-[#e07b39] w-full font-sans"
-            />
-            <input
-              type="email"
-              placeholder={t.contact.emailPlaceholder}
-              required
-              className="px-4 py-[15px] bg-[#1a261a] border border-[#2a3a2a] rounded-lg text-[#f5f0e8] text-base focus:outline-none focus:border-[#e07b39] w-full font-sans"
-            />
-            <input
-              type="text"
-              placeholder={t.contact.companyPlaceholder}
-              className="px-4 py-[15px] bg-[#1a261a] border border-[#2a3a2a] rounded-lg text-[#f5f0e8] text-base focus:outline-none focus:border-[#e07b39] w-full font-sans"
-            />
-            <textarea
-              placeholder={t.contact.messagePlaceholder}
-              className="px-4 py-[15px] bg-[#1a261a] border border-[#2a3a2a] rounded-lg text-[#f5f0e8] text-base focus:outline-none focus:border-[#e07b39] w-full font-sans min-h-[150px] resize-y"
-            />
-            <button
-              type="submit"
-              className="bg-[#e07b39] text-[#0a0f0a] px-8 py-[14px] rounded-lg font-semibold text-base hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[rgba(224,123,57,0.15)] border-none self-center"
-            >
-              {t.contact.submit}
-            </button>
-          </form>
+          <ContactForm locale={locale} labels={{
+            namePlaceholder: t.contact.namePlaceholder,
+            emailPlaceholder: t.contact.emailPlaceholder,
+            companyPlaceholder: t.contact.companyPlaceholder,
+            messagePlaceholder: t.contact.messagePlaceholder,
+            submit: t.contact.submit,
+          }} />
           <a
             href="https://www.linkedin.com/in/marchandcyril/"
             target="_blank"
