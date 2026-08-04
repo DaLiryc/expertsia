@@ -29,6 +29,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // Funding page (high-value SEO target for French government aid keywords)
+  const fundingRoutes = locales.map((locale) => ({
+    url: `${BASE_URL}/${locale}/financer-son-projet-ia`,
+    lastModified,
+    changeFrequency: 'monthly' as const,
+    priority: 0.9,
+  }));
+
   // Blog posts
   const allPosts = getAllPosts();
   const blogPostRoutes = allPosts.map((post) => ({
@@ -38,5 +46,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...blogHubRoutes, ...blogPostRoutes];
+  return [...staticRoutes, ...fundingRoutes, ...blogHubRoutes, ...blogPostRoutes];
 }
