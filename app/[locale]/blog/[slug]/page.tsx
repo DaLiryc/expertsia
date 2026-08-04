@@ -24,16 +24,31 @@ export async function generateMetadata({
   const post = getPost(slug);
   if (!post) return {};
 
+  const BASE_URL = 'https://www.expertsia.dev';
+  const url = `${BASE_URL}/${post.locale}/blog/${slug}`;
+
   return {
     title: post.title,
     description: post.description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: post.title,
       description: post.description,
+      url,
       type: 'article',
       publishedTime: post.date,
       authors: [post.author],
+      siteName: 'ExpertsIA',
+      locale: post.locale === 'fr' ? 'fr_FR' : 'en_US',
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+    },
+    robots: 'index, follow',
   };
 }
 
@@ -50,8 +65,32 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      '@type': 'Person',
+      name: post.author,
+      url: 'https://www.expertsia.dev',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ExpertsIA',
+      url: 'https://www.expertsia.dev',
+    },
+    inLanguage: locale,
+  };
+
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <nav className="sticky top-0 z-50 flex justify-between items-center px-[60px] py-[25px] bg-[rgba(10,15,10,0.9)] backdrop-blur-[10px] border-b border-[#2a3a2a]">
         <Link href={`/${locale}/blog`}>
           <span className="text-[#f5f0e8] font-bold text-xl">← Blog</span>

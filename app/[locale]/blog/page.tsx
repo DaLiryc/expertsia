@@ -1,6 +1,38 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { getAllPosts, getCategories } from '@/lib/blog';
 import { dictionaries, type Locale } from '@/lib/dictionaries';
+
+const BASE_URL = 'https://www.expertsia.dev';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isFr = locale === 'fr';
+
+  return {
+    title: isFr ? 'Blog IA & Automatisation | ExpertsIA' : 'AI & Automation Blog | ExpertsIA',
+    description: isFr
+      ? "Conseils, guides et retours d'expérience sur l'IA et l'automatisation pour les PME françaises."
+      : 'Insights, guides and case studies on AI and automation for businesses.',
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/blog`,
+    },
+    openGraph: {
+      title: isFr ? 'Blog IA & Automatisation | ExpertsIA' : 'AI & Automation Blog | ExpertsIA',
+      description: isFr
+        ? "Conseils, guides et retours d'expérience sur l'IA et l'automatisation."
+        : 'Insights, guides and case studies on AI and automation.',
+      url: `${BASE_URL}/${locale}/blog`,
+      type: 'website',
+      siteName: 'ExpertsIA',
+    },
+    robots: 'index, follow',
+  };
+}
 
 export default async function BlogPage({
   params,

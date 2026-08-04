@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { getAllPosts } from '@/lib/blog';
 
 const BASE_URL = 'https://www.expertsia.dev';
 
@@ -6,7 +7,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const locales = ['fr', 'en'];
   const lastModified = new Date();
 
-  const routes = locales.map((locale) => ({
+  // Static pages
+  const staticRoutes = locales.map((locale) => ({
     url: `${BASE_URL}/${locale}`,
     lastModified,
     changeFrequency: 'monthly' as const,
@@ -19,5 +21,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   }));
 
-  return routes;
+  // Blog hub pages
+  const blogHubRoutes = locales.map((locale) => ({
+    url: `${BASE_URL}/${locale}/blog`,
+    lastModified,
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
+  // Blog posts
+  const allPosts = getAllPosts();
+  const blogPostRoutes = allPosts.map((post) => ({
+    url: `${BASE_URL}/${post.locale}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...blogHubRoutes, ...blogPostRoutes];
 }
