@@ -37,12 +37,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  // Book landing page (KDP book funnel)
   const bookRoutes = locales.map((locale) => ({
-    url: `${BASE_URL}/${locale}/book`,
+    url: `${BASE_URL}/${locale}/livre`,
     lastModified,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
+  }));
+
+  // Booking/audit landing page
+  const bookingRoutes = locales.map((locale) => ({
+    url: `${BASE_URL}/${locale}/book`,
+    lastModified,
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
   }));
 
   // Blog posts
@@ -54,5 +61,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...fundingRoutes, ...bookRoutes, ...blogHubRoutes, ...blogPostRoutes];
+  return [...staticRoutes, ...fundingRoutes, ...bookRoutes, ...bookingRoutes, ...blogHubRoutes, ...blogPostRoutes];
 }
