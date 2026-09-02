@@ -35,11 +35,13 @@ export async function generateMetadata({
       url: `${BASE_URL}/${locale}`,
       siteName: 'ExpertsIA',
       type: 'website',
+      images: [{ url: `${BASE_URL}/og-card.png`, width: 1200, height: 630, alt: 'ExpertsIA' }],
     },
     twitter: {
       card: 'summary_large_image',
       title: dict.meta.title,
       description: dict.meta.description,
+      images: [`${BASE_URL}/og-card.png`],
     },
   };
 }
@@ -99,10 +101,9 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <head>
-        {/* hreflang tags for SEO */}
-        <link rel="alternate" hrefLang="en" href={`${BASE_URL}/en`} />
-        <link rel="alternate" hrefLang="fr" href={`${BASE_URL}/fr`} />
-        <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}/en`} />
+        {/* hreflang: set ONCE via generateMetadata alternates.languages.
+            Manual <link> tags removed Sep 2 — they duplicated the metadata
+            ones (every hreflang appeared 2x per page, seo report finding). */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* Structured data */}
         <script
