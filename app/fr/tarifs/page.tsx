@@ -88,7 +88,7 @@ const PACKS = [
 const FAQ = [
   {
     q: 'Intervenez-vous uniquement sur Bordeaux ?',
-    a: 'Nous sommes basés à Bordeaux et intervenons en présentiel en Nouvelle-Aquitaine. Pour le reste de la France, nous travaillons en distanciel avec des ateliers sur site quand utile. 80% des missions se font très bien à distance.',
+    a: 'Nous sommes basés à Bordeaux et intervenons partout en France. 80% des missions se font très bien à distance, avec des ateliers sur site quand le projet le justifie (lancement, formation des équipes, contextes sensibles).',
   },
   {
     q: 'Par quoi commencer ?',
@@ -113,7 +113,7 @@ export default function TarifsPage() {
           Des missions à durée définie, des livrables clairs, des résultats mesurables.
         </h1>
         <p className="mt-4 text-lg text-slate-300 max-w-3xl">
-          Basés à Bordeaux, nous intervenons en Nouvelle-Aquitaine et partout en France. Chaque mission commence par un{' '}
+          Basés à Bordeaux, nous intervenons partout en France et à distance — le présentiel reste possible quand le projet le justifie. Chaque mission commence par un{' '}
           <a href="https://cal.com/expertsia/audit" className="text-cyan-400 underline underline-offset-4">
             diagnostic gratuit de 15 minutes
           </a>
