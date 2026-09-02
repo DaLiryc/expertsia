@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
           },
         ],
         destination: '/fr',
-        permanent: false,
+        permanent: true,
       },
       {
         source: '/',
@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
           },
         ],
         destination: '/en',
-        permanent: false,
+        permanent: true,
       },
       {
         source: '/book',
@@ -37,7 +37,7 @@ const nextConfig: NextConfig = {
           },
         ],
         destination: '/fr/book',
-        permanent: false,
+        permanent: true,
       },
       {
         source: '/book',
@@ -49,7 +49,7 @@ const nextConfig: NextConfig = {
           },
         ],
         destination: '/en/book',
-        permanent: false,
+        permanent: true,
       },
     ];
   },
