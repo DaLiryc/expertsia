@@ -33,6 +33,7 @@ export async function generateMetadata({
       url: `${BASE_URL}/${locale}/livre`,
       type: 'website',
       siteName: 'ExpertsIA',
+      images: [{ url: 'https://www.expertsia.dev/og-card.png', width: 1200, height: 630, alt: 'ExpertsIA' }],
     },
     robots: 'index, follow',
   };

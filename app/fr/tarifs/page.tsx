@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Tarifs et offres — Audit IA, automatisation, RAG, formation | ExpertsIA',
+  title: 'Tarifs — Audit IA, automatisation, RAG, formation | ExpertsIA',
   description:
     'Nos formules : audit IA d\'un processus (à partir de 1 200 € HT), automatisation clé en main, RAG sur vos connaissances, formation IA pour équipes. Livraison en 2 à 4 semaines. Bordeaux et toute la France.',
   alternates: {
@@ -11,6 +11,50 @@ export const metadata: Metadata = {
       'x-default': 'https://www.expertsia.dev/fr/tarifs',
     },
   },
+  openGraph: {
+    title: 'Tarifs ExpertsIA — Audit IA, automatisation, RAG, formation',
+    description:
+      'Audit IA dès 1 200 € HT, automatisation clé en main dès 2 500 € HT, RAG et formation. Livraison 2 à 4 semaines.',
+    url: 'https://www.expertsia.dev/fr/tarifs',
+    siteName: 'ExpertsIA',
+    type: 'website',
+    locale: 'fr_FR',
+    images: [{ url: 'https://www.expertsia.dev/og-card.png', width: 1200, height: 630, alt: 'ExpertsIA' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tarifs ExpertsIA — Audit IA, automatisation, RAG, formation',
+    description: 'Audit IA dès 1 200 € HT, automatisation dès 2 500 € HT. Livraison 2 à 4 semaines.',
+  },
+};
+
+// JSON-LD: les offres pricing en schema.org Offer (citable par les LLM)
+export const tarifsJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Offres ExpertsIA',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      item: {
+        '@type': 'Service',
+        name: 'Audit IA',
+        description: 'Cartographie des processus, faisabilité IA, plan d\'action chiffré avec ROI estimé.',
+        offers: { '@type': 'Offer', price: '1200', priceCurrency: 'EUR', priceSpecification: { '@type': 'PriceSpecification', minPrice: '1200', priceCurrency: 'EUR' } },
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      item: {
+        '@type': 'Service',
+        name: 'Automatisation Starter',
+        description: 'Audit d\'un processus cible + 1 automatisation clé en main déployée, documentation complète.',
+        offers: { '@type': 'Offer', price: '2500', priceCurrency: 'EUR' },
+      },
+    },
+  ],
 };
 
 const PACKS = [
@@ -106,6 +150,11 @@ const FAQ = [
 
 export default function TarifsPage() {
   return (
+    <>
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tarifsJsonLd) }}
+      />
     <div className="min-h-screen bg-slate-950 text-slate-100">
       <main className="mx-auto max-w-6xl px-6 py-20">
         <p className="text-cyan-400 font-semibold uppercase tracking-wide text-sm">⚡ Offres et tarifs</p>
@@ -180,5 +229,6 @@ export default function TarifsPage() {
         </section>
       </main>
     </div>
+    </>
   );
 }

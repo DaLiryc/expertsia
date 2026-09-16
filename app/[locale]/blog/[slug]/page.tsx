@@ -40,6 +40,7 @@ export async function generateMetadata({
       type: 'article',
       publishedTime: post.date,
       authors: [post.author],
+      images: [{ url: 'https://www.expertsia.dev/og-card.png', width: 1200, height: 630, alt: 'ExpertsIA' }],
       siteName: 'ExpertsIA',
       locale: post.locale === 'fr' ? 'fr_FR' : 'en_US',
     },

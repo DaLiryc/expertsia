@@ -284,6 +284,16 @@ export default async function Home({
                 </h4>
                 <ul className="flex flex-col gap-3 list-none">
                   <li><a href={`/${locale}/blog`} className="footer-link">Blog</a></li>
+                  {locale === 'fr' && (
+                    <>
+                      <li><a href={`/${locale}/tarifs`} className="footer-link">Tarifs</a></li>
+                      <li><a href={`/${locale}/financer-son-projet-ia`} className="footer-link">Financer son projet IA</a></li>
+                      <li><a href={`/${locale}/livre`} className="footer-link">Notre livre</a></li>
+                    </>
+                  )}
+                  {locale === 'en' && (
+                    <li><a href={`/${locale}/book`} className="footer-link">Book a free audit</a></li>
+                  )}
                   <li><a href="#contact" className="footer-link">{t.nav.cta}</a></li>
                   <li>
                     <a href={t.nav.languageSwitchHref} className="footer-link">{t.nav.languageSwitch}</a>
