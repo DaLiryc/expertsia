@@ -1,0 +1,31 @@
+# ExpertsIA
+
+> AI consulting agency for startups, SMEs and corporations. AI strategy, agentic
+> workflows, RAG systems, data science, training. Based in France, working remotely
+> and on-site. Founded by Cyril Marchand.
+
+## Services
+- AI Strategy & Roadmap — assess capabilities, build a custom AI adoption plan
+- Business Process Optimization — AI + data to streamline operations (n8n, automations)
+- Agentic Workflows — AI agents and RAG systems that automate complex tasks
+- Data Science Projects — prediction models, clustering, recommendation engines
+- AI Training & Enablement — LLMs, prompt engineering, hands-on workshops
+- Change Management — structured AI adoption with stakeholder alignment
+- AI Audit & Assessment — evaluate existing AI initiatives, gaps, governance
+- Data Infrastructure — pipelines, warehouses, ETL for AI and analytics
+
+## Pricing
+Transparent per-project pricing, quoted after a free consultation.
+Typical engagements: AI audit, agentic workflow builds, RAG systems, team training.
+
+## Contact
+- Website: https://www.expertsia.dev (FR: /fr, EN: /en)
+- Founder: Cyril Marchand — https://www.linkedin.com/in/marchandcyril/
+- Contact form: https://www.expertsia.dev/#contact
+- Response within 48h
+
+## Key pages
+- [Accueil FR](https://www.expertsia.dev/fr) — services, process, industries
+- [Home EN](https://www.expertsia.dev/en) — English version
+- [Blog FR](https://www.expertsia.dev/fr/blog) — AI guides and case studies
+- [Tarifs FR](https://www.expertsia.dev/fr/tarifs) — pricing page
