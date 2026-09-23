@@ -68,14 +68,14 @@ export default async function AboutPage({
         'PME et mid-market françaises (10 à 500 salariés) qui veulent adopter l’IA sans équipe data interne',
         'Dirigeants et comités de direction qui cherchent un avis d’expert avant d’investir',
         'Équipes métier (opérations, commerce, support) noyées dans des tâches répétitives',
-        'E-commerce, industrie, santé, logistique, fintech — tous secteurs où les processus sont digitalisés',
+        'E-commerce, industrie, santé, logistique, fintech : tous secteurs où les processus sont digitalisés',
         'Organisations éligibles aux aides BPI pour leurs projets IA',
       ]
     : [
         'SMBs and mid-market companies (10-500 employees) adopting AI without an in-house data team',
         'Executives seeking expert guidance before investing in AI',
         'Business teams (ops, sales, support) buried in repetitive tasks',
-        'E-commerce, manufacturing, healthcare, logistics, fintech — any digitized process',
+        'E-commerce, manufacturing, healthcare, logistics, fintech : any digitized process',
         'Organizations eligible for public AI funding programs',
       ];
 
@@ -85,14 +85,14 @@ export default async function AboutPage({
         { title: 'Prix fixes dès le départ', text: 'Audit IA dès 1 200 € HT, automatisation clé en main dès 2 500 € HT. Pas de régie illimitée, pas de surprise : le périmètre et le prix sont actés avant de commencer.' },
         { title: 'Livraison en 2 à 4 semaines', text: 'Un projet ExpertsIA se mesure en semaines, pas en mois. Chaque mission a un livrable concret et une date.' },
         { title: 'Du terrain, pas de la théorie', text: 'Fondé par un opérateur e-commerce, pas un consultant de slideware. Les recommandations viennent de projets réels livrés à de vraies entreprises.' },
-        { title: 'Formation incluse', text: 'Chaque livraison inclut la montée en compétences de vos équipes — vous n’êtes pas dépendant du cabinet pour faire évoluer vos propres outils.' },
+        { title: 'Formation incluse', text: 'Chaque livraison inclut la montée en compétences de vos équipes. Vous n’êtes pas dépendant du cabinet pour faire évoluer vos propres outils.' },
       ]
     : [
         { title: 'Your code, your data', text: 'Workflows and agents ship into YOUR infrastructure (n8n, cloud or on-premise). No vendor lock-in: you own everything built.' },
         { title: 'Fixed prices upfront', text: 'AI audits from €1,200, turnkey automation from €2,500. No open-ended billing: scope and price are agreed before work starts.' },
         { title: 'Delivery in 2 to 4 weeks', text: 'Projects are measured in weeks, not months. Every engagement has a concrete deliverable and a date.' },
         { title: 'Field experience, not slideware', text: 'Founded by an e-commerce operator, not a slide consultant. Recommendations come from real projects shipped to real companies.' },
-        { title: 'Training included', text: 'Every delivery includes team enablement — you never depend on the consultancy to evolve your own tools.' },
+        { title: 'Training included', text: 'Every delivery includes team enablement. You never depend on the consultancy to evolve your own tools.' },
       ];
 
   const faqs = isFr
@@ -101,14 +101,14 @@ export default async function AboutPage({
         ['Combien coûte une mission ExpertsIA ?', 'L’audit IA d’un processus démarre à 1 200 € HT, l’automatisation clé en main à 2 500 € HT. Prix fixe acté avant de commencer, livraison en 2 à 4 semaines.'],
         ['Comment se déroule un projet ?', 'Audit et cadrage (1 à 2 semaines), puis construction et livraison du workflow automatisé dans votre infrastructure, avec formation de vos équipes incluse.'],
         ['Quelle est la différence entre ExpertsIA et une grande ESN ?', 'Prix fixes et livraisons en semaines au lieu de régie en mois. Code et données livrés chez vous, pas dans un cloud propriétaire. Fondé par un opérateur e-commerce, pas un cabinet de conseil en slides.'],
-        ['Qui est derrière ExpertsIA ?', 'ExpertsIA a été fondé par Cyril Marchand, opérateur e-commerce et auteur du livre « Osez l’IA ». Le cabinet est basé à Bordeaux et intervient dans toute la France, en distanciel ou sur site.'],
+        ['Qui est derrière ExpertsIA ?', 'ExpertsIA a été fondé par Cyril Marchand, opérateur e-commerce et auteur du livre « L’IA pour Commerçants et Artisans ». Le cabinet est basé à Bordeaux et intervient dans toute la France, en distanciel ou sur site.'],
       ]
     : [
         ['What is ExpertsIA?', 'ExpertsIA is an AI consultancy founded by Cyril Marchand, focused on SMBs and mid-market. Services: AI audits, strategy, process automation, AI agents and RAG, data science, and training.'],
         ['How much does an ExpertsIA project cost?', 'AI audits start at €1,200, turnkey automation at €2,500. Fixed price agreed before work starts, delivery in 2 to 4 weeks.'],
         ['How does a project run?', 'Audit and scoping (1-2 weeks), then build and delivery of the automated workflow into your infrastructure, with team training included.'],
         ['How is ExpertsIA different from a large consulting firm?', 'Fixed prices and week-long deliveries instead of open-ended billing. Code and data ship to your infrastructure, not a proprietary cloud. Founded by an e-commerce operator, not a slideware consultancy.'],
-        ['Who is behind ExpertsIA?', 'ExpertsIA was founded by Cyril Marchand, an e-commerce operator and author of the book “Osez l’IA”. Based in Bordeaux, working across France remotely or on-site.'],
+        ['Who is behind ExpertsIA?', 'ExpertsIA was founded by Cyril Marchand, an e-commerce operator and author of “L’IA pour Commerçants et Artisans”. Based in Bordeaux, working across France remotely or on-site.'],
       ];
 
   const keyFacts: [string, string][] = isFr
@@ -124,7 +124,7 @@ export default async function AboutPage({
         ['Délais', 'Livraison en 2 à 4 semaines'],
         ['Secteurs', 'E-commerce, industrie, santé, logistique, fintech, startups, PME, grands comptes'],
         ['Communication', 'Formulaire contact sur le site, réponse sous 48h, 100% distanciel ou sur place'],
-        ['Auteur', 'Cyril Marchand, auteur du livre « Osez l’IA »'],
+        ['Auteur', 'Cyril Marchand, auteur du livre « L’IA pour Commerçants et Artisans »'],
       ]
     : [
         ['Company Name', 'ExpertsIA'],
@@ -138,7 +138,7 @@ export default async function AboutPage({
         ['Delivery Time', '2 to 4 weeks'],
         ['Industries', 'E-commerce, manufacturing, healthcare, logistics, fintech, startups, SMEs, enterprises'],
         ['Communication', 'Contact form on website, reply within 48h, fully remote or on-site'],
-        ['Author', 'Cyril Marchand, author of the book “Osez l’IA”'],
+        ['Author', 'Cyril Marchand, author of “L’IA pour Commerçants et Artisans”'],
       ];
 
   return (
@@ -163,8 +163,8 @@ export default async function AboutPage({
         </h1>
         <p className="mt-5 text-lg md:text-xl text-[#b8b3ab] leading-relaxed max-w-2xl mx-auto">
           {isFr
-            ? 'ExpertsIA est un cabinet d’expertise IA qui audite, automatise et forme les PME françaises — à prix fixe, livré en semaines, avec le code et les données chez vous.'
-            : 'ExpertsIA is an AI consultancy that audits, automates and trains SMBs — at fixed prices, delivered in weeks, with your code and data staying yours.'}
+            ? 'ExpertsIA est un cabinet d’expertise IA qui audite, automatise et forme les PME françaises. Prix fixes, livraison en semaines, code et données qui restent chez vous.'
+            : 'ExpertsIA is an AI consultancy that audits, automates and trains SMBs. Fixed prices, delivery in weeks, and your code and data stay yours.'}
         </p>
       </section>
 
@@ -223,8 +223,8 @@ export default async function AboutPage({
             <h3 className="font-semibold text-[#f0ede6]">Cyril Marchand — fondateur</h3>
             <p className="mt-1">
               {isFr
-                ? 'Opérateur e-commerce devenu expert IA. Cyril a construit et dirigé des boutiques en ligne avant d’automatiser ses propres opérations — puis de transformer ces systèmes en services pour d’autres entreprises. Il est l’auteur du livre « Osez l’IA » et partage ses apprentissages sur le blog ExpertsIA.'
-                : 'E-commerce operator turned AI expert. Cyril built and ran online stores before automating his own operations — then turned those systems into services for other companies. He is the author of the book “Osez l’IA” and shares his learnings on the ExpertsIA blog.'}
+                ? 'Opérateur e-commerce devenu expert IA. Cyril a construit et dirigé des boutiques en ligne avant d’automatiser ses propres opérations, puis de transformer ces systèmes en services pour d’autres entreprises. Il est l’auteur du livre « L’IA pour Commerçants et Artisans » et partage ses apprentissages sur le blog ExpertsIA.'
+                : 'E-commerce operator turned AI expert. Cyril built and ran online stores before automating his own operations — then turned those systems into services for other companies. He is the author of the book “L’IA pour Commerçants et Artisans” (AI for shopkeepers and tradespeople) and shares his learnings on the ExpertsIA blog.'}
             </p>
           </div>
           <div>
