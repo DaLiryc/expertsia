@@ -29,6 +29,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // About page (AI-search key facts)
+  const aboutRoutes = locales.map((locale) => ({
+    url: `${BASE_URL}/${locale}/about`,
+    lastModified,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
   // Funding page (high-value SEO target for French government aid keywords)
   const fundingRoutes = locales.map((locale) => ({
     url: `${BASE_URL}/${locale}/financer-son-projet-ia`,
@@ -61,5 +69,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...fundingRoutes, ...bookRoutes, ...bookingRoutes, ...blogHubRoutes, ...blogPostRoutes];
+  return [...staticRoutes, ...aboutRoutes, ...fundingRoutes, ...bookRoutes, ...bookingRoutes, ...blogHubRoutes, ...blogPostRoutes];
 }
