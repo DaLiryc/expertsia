@@ -209,7 +209,7 @@ export default function TarifsPage() {
           <div className="mt-6 space-y-4">
             {FAQ.map((f) => (
               <details key={f.q} className="rounded-xl border border-[#2a3a2a] bg-[#111a11]/60 p-6">
-                <summary className="cursor-pointer font-semibold text-[#f5f0e8] [&::-webkit-details-marker]:hidden">
+                <summary className="cursor-pointer font-semibold text-[#f5f0e8] list-none [&::-webkit-details-marker]:hidden">
                   <span className="text-[#e07b39] mr-2">→</span>{f.q}
                 </summary>
                 <p className="mt-3 text-[#b8b3ab]">{f.a}</p>
