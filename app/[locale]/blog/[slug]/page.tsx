@@ -86,6 +86,16 @@ export default async function BlogPostPage({
     inLanguage: locale,
   };
 
+  const relatedPosts = getAllPosts(locale)
+    .filter((p) => p.slug !== slug)
+    .sort((a, b) => {
+      const aScore = a.category === post.category ? 1 : 0;
+      const bScore = b.category === post.category ? 1 : 0;
+      if (aScore !== bScore) return bScore - aScore;
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    })
+    .slice(0, 3);
+
   return (
     <div className="min-h-screen">
       <script
@@ -137,6 +147,41 @@ export default async function BlogPostPage({
             }}
           />
         </div>
+
+        {/* Related posts — internal linking / mesh */}
+        {relatedPosts.length > 0 && (
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold mb-6">
+              {locale === 'fr' ? 'À lire ensuite' : 'Read next'}
+            </h2>
+            <div className="grid gap-4">
+              {relatedPosts.map((related) => (
+                <Link
+                  key={related.slug}
+                  href={`/${locale}/blog/${related.slug}`}
+                  className="block p-6 bg-[#111a11] border border-[#2a3a2a] rounded-xl hover:border-[#e07b39] transition-colors"
+                >
+                  <span className="text-[#e07b39] text-sm font-semibold">{related.category}</span>
+                  <p className="text-lg font-semibold mt-1">{related.title}</p>
+                  <p className="text-[#b8b3ab] text-sm mt-2">{related.description}</p>
+                </Link>
+              ))}
+              <Link
+                href="/fr/tarifs"
+                className="block p-6 bg-[#1a231a] border border-[#3a4a3a] rounded-xl hover:border-[#e07b39] transition-colors"
+              >
+                <span className="text-[#e07b39] text-sm font-semibold">
+                  {locale === 'fr' ? 'Tarifs' : 'Pricing'}
+                </span>
+                <p className="text-lg font-semibold mt-1">
+                  {locale === 'fr'
+                    ? 'Audit IA dès 1 200 € HT — voir les formules'
+                    : 'AI audits from €1,200 — see pricing'}
+                </p>
+              </Link>
+            </div>
+          </div>
+        )}
 
         {/* CTA at bottom */}
         <div className="mt-16 p-8 bg-[#111a11] border border-[#2a3a2a] rounded-2xl text-center">

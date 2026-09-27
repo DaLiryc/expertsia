@@ -60,6 +60,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // Pricing page (FR only — top commercial page, was missing from sitemap)
+  const pricingRoutes = [
+    {
+      url: `${BASE_URL}/fr/tarifs`,
+      lastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+    },
+  ];
+
   // Blog posts
   const allPosts = getAllPosts();
   const blogPostRoutes = allPosts.map((post) => ({
@@ -69,5 +79,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...aboutRoutes, ...fundingRoutes, ...bookRoutes, ...bookingRoutes, ...blogHubRoutes, ...blogPostRoutes];
+  return [...staticRoutes, ...aboutRoutes, ...fundingRoutes, ...bookRoutes, ...bookingRoutes, ...pricingRoutes, ...blogHubRoutes, ...blogPostRoutes];
 }

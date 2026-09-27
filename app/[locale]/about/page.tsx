@@ -28,6 +28,7 @@ export async function generateMetadata({
         : 'AI consultancy founded by Cyril Marchand. Audits, automation, agentic workflows and training.',
       url: `${BASE_URL}/${locale}/about`,
       type: 'website',
+      images: [{ url: 'https://www.expertsia.dev/og-card.png', width: 1200, height: 630, alt: 'ExpertsIA' }],
     },
   };
 }
