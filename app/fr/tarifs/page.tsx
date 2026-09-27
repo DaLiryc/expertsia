@@ -168,14 +168,14 @@ export default function TarifsPage() {
         </p>
 
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {PACKS.map((p) => (
+          {PACKS.map((p, idx) => (
             <div
               key={p.id}
               className={`flex flex-col rounded-2xl border p-8 ${
                 p.popular
                   ? 'border-[#e07b39] bg-[#111a11] shadow-lg shadow-[#e07b39]/10'
                   : 'border-[#2a3a2a] bg-[#111a11]/60'
-              }`}
+              } ${idx === 3 ? 'lg:col-start-1' : ''} ${idx === 4 ? 'lg:col-start-2' : ''} ${idx === 3 ? 'md:col-start-1' : ''}`}
             >
               {p.popular && (
                 <span className="mb-3 inline-block self-start rounded-full border border-[#e07b39]/40 px-3 py-1 text-xs font-semibold text-[#e07b39]">

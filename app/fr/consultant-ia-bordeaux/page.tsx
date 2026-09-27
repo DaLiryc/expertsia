@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import SiteNav from '@/components/SiteNav';
-import SiteFooter from '@/components/SiteFooter';
 
 export const metadata: Metadata = {
   title: 'Consultant IA à Bordeaux — PME et ETI | ExpertsIA',
@@ -238,7 +237,46 @@ export default function ConsultantIaBordeauxPage() {
           </div>
         </main>
       </div>
-      <SiteFooter locale="fr" />
+      <footer className="border-t border-[#1e2a1e]/60 bg-[#0a0f0a]">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-3">
+          <div>
+            <p className="text-[#f5f0e8] font-bold text-lg">
+              Experts<span className="text-[#e07b39]">IA</span>
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-[#b8b3ab]">
+              Conseil IA pour PME et ETI. Basés à Bordeaux, interventions dans toute la France.
+            </p>
+            <p className="mt-4 text-xs text-[#7a756d]">
+              Fondé par Cyril Marchand · Auteur de « L'IA pour Commerçants et Artisans »
+            </p>
+          </div>
+          <div>
+            <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#f5f0e8]">Contact</h3>
+            <ul className="flex list-none flex-col gap-3 text-sm">
+              <li>
+                <a href="mailto:cyril@expertsia.dev" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">cyril@expertsia.dev</a>
+              </li>
+              <li className="text-[#b8b3ab]">Bordeaux, Nouvelle-Aquitaine</li>
+              <li className="text-[#b8b3ab]">Interventions France entière</li>
+              <li>
+                <a href="https://www.linkedin.com/in/marchandcyril/" rel="me noopener" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">LinkedIn</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#f5f0e8]">Explorer</h3>
+            <ul className="flex list-none flex-col gap-3 text-sm">
+              <li><a href="/fr/tarifs" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">Tarifs</a></li>
+              <li><a href="/fr/blog" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">Blog</a></li>
+              <li><a href="/fr/financer-son-projet-ia" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">Financer son projet IA</a></li>
+              <li><a href="/fr/book" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">Audit gratuit</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="border-t border-[#1e2a1e]/50 px-6 py-5 text-center text-xs text-[#7a756d]">
+          © {new Date().getFullYear()} ExpertsIA · Bordeaux, France · <a href="mailto:cyril@expertsia.dev" className="hover:text-[#e07b39]">Mentions légales</a>
+        </div>
+      </footer>
     </>
   );
 }
