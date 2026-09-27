@@ -62,7 +62,6 @@ export const tarifsJsonLd = {
 const PACKS = [
   {
     id: 'audit',
-    emoji: '🔍',
     name: 'Audit IA',
     price: 'à partir de 1 200 € HT',
     delay: '1 journée terrain + rapport sous 1 semaine',
@@ -75,7 +74,6 @@ const PACKS = [
   },
   {
     id: 'starter',
-    emoji: '⚡',
     name: 'Automatisation Starter',
     price: 'à partir de 2 500 € HT',
     delay: 'Livraison en 2 semaines',
@@ -90,7 +88,6 @@ const PACKS = [
   },
   {
     id: 'growth',
-    emoji: '🚀',
     name: 'Pack Growth',
     price: 'à partir de 6 000 € HT',
     delay: 'Livraison en 4 semaines',
@@ -105,7 +102,6 @@ const PACKS = [
   },
   {
     id: 'formation',
-    emoji: '🎓',
     name: 'Formation IA',
     price: 'à partir de 1 500 € HT / jour',
     delay: 'Format 1 à 3 jours, sur site ou distanciel',
@@ -118,7 +114,6 @@ const PACKS = [
   },
   {
     id: 'retainer',
-    emoji: '🔄',
     name: 'Retainer',
     price: 'à partir de 1 200 € HT / mois',
     delay: 'Sans engagement minimum',
