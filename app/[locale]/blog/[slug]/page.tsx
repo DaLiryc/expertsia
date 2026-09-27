@@ -6,6 +6,8 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { getAllPosts, getPost } from '@/lib/blog';
 import { dictionaries, type Locale } from '@/lib/dictionaries';
+import SiteNav from '@/components/SiteNav';
+import SiteFooter from '@/components/SiteFooter';
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -97,22 +99,12 @@ export default async function BlogPostPage({
     .slice(0, 3);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#0a0f0a]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <nav className="sticky top-0 z-50 flex justify-between items-center px-[60px] py-[25px] bg-[rgba(10,15,10,0.9)] backdrop-blur-[10px] border-b border-[#2a3a2a]">
-        <Link href={`/${locale}/blog`}>
-          <span className="text-[#f5f0e8] font-bold text-xl">← Blog</span>
-        </Link>
-        <Link
-          href={`/${locale}`}
-          className="text-[#b8b3ab] hover:text-[#e07b39]"
-        >
-          {locale === 'fr' ? 'Accueil' : 'Home'}
-        </Link>
-      </nav>
+      <SiteNav locale={locale} />
 
       <article className="max-w-3xl mx-auto px-10 py-20">
         {/* Header */}
@@ -151,7 +143,7 @@ export default async function BlogPostPage({
         {/* Related posts — internal linking / mesh */}
         {relatedPosts.length > 0 && (
           <div className="mt-16">
-            <h2 className="text-2xl font-bold mb-6">
+            <h2 className="text-2xl font-bold mb-6 text-[#f5f0e8]">
               {locale === 'fr' ? 'À lire ensuite' : 'Read next'}
             </h2>
             <div className="grid gap-4">
@@ -159,21 +151,21 @@ export default async function BlogPostPage({
                 <Link
                   key={related.slug}
                   href={`/${locale}/blog/${related.slug}`}
-                  className="block p-6 bg-[#111a11] border border-[#2a3a2a] rounded-xl hover:border-[#e07b39] transition-colors"
+                  className="block p-6 bg-[#111a11]/60 border border-[#2a3a2a] rounded-xl hover:border-[#e07b39] transition-colors"
                 >
                   <span className="text-[#e07b39] text-sm font-semibold">{related.category}</span>
-                  <p className="text-lg font-semibold mt-1">{related.title}</p>
+                  <p className="text-lg font-semibold mt-1 text-[#f5f0e8]">{related.title}</p>
                   <p className="text-[#b8b3ab] text-sm mt-2">{related.description}</p>
                 </Link>
               ))}
               <Link
                 href="/fr/tarifs"
-                className="block p-6 bg-[#1a231a] border border-[#3a4a3a] rounded-xl hover:border-[#e07b39] transition-colors"
+                className="block p-6 bg-gradient-to-r from-[#e07b39]/10 to-transparent border border-[#e07b39]/30 rounded-xl hover:border-[#e07b39] transition-colors"
               >
                 <span className="text-[#e07b39] text-sm font-semibold">
                   {locale === 'fr' ? 'Tarifs' : 'Pricing'}
                 </span>
-                <p className="text-lg font-semibold mt-1">
+                <p className="text-lg font-semibold mt-1 text-[#f5f0e8]">
                   {locale === 'fr'
                     ? 'Audit IA dès 1 200 € HT — voir les formules'
                     : 'AI audits from €1,200 — see pricing'}
@@ -211,6 +203,7 @@ export default async function BlogPostPage({
           </Link>
         </div>
       </article>
+      <SiteFooter locale={locale} />
     </div>
   );
 }

@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import SiteNav from '@/components/SiteNav';
+import SiteFooter from '@/components/SiteFooter';
 
 export const metadata: Metadata = {
   title: 'Tarifs — Audit IA, automatisation, RAG, formation | ExpertsIA',
@@ -155,15 +157,16 @@ export default function TarifsPage() {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(tarifsJsonLd) }}
       />
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <SiteNav locale="fr" />
+    <div className="min-h-screen bg-[#0a0f0a] text-[#f5f0e8]">
       <main className="mx-auto max-w-6xl px-6 py-20">
-        <p className="text-cyan-400 font-semibold uppercase tracking-wide text-sm">⚡ Offres et tarifs</p>
+        <p className="text-[#e07b39] font-semibold uppercase tracking-wide text-sm">Offres et tarifs</p>
         <h1 className="mt-3 text-4xl md:text-5xl font-bold leading-tight">
           Des missions à durée définie, des livrables clairs, des résultats mesurables.
         </h1>
-        <p className="mt-4 text-lg text-slate-300 max-w-3xl">
+        <p className="mt-4 text-lg text-[#b8b3ab] max-w-3xl">
           Basés à Bordeaux, nous intervenons partout en France et à distance — le présentiel reste possible quand le projet le justifie. Chaque mission commence par un{' '}
-          <a href="https://cal.com/expertsia/audit" className="text-cyan-400 underline underline-offset-4">
+          <a href="https://cal.com/expertsia/audit" className="text-[#e07b39] underline underline-offset-4">
             diagnostic gratuit de 15 minutes
           </a>
           .
@@ -173,29 +176,32 @@ export default function TarifsPage() {
           {PACKS.map((p) => (
             <div
               key={p.id}
-              className={`rounded-2xl border p-8 flex flex-col ${
-                p.popular ? 'border-cyan-400 bg-slate-900 shadow-lg shadow-cyan-500/10' : 'border-slate-800 bg-slate-900/50'
+              className={`flex flex-col rounded-2xl border p-8 ${
+                p.popular
+                  ? 'border-[#e07b39] bg-[#111a11] shadow-lg shadow-[#e07b39]/10'
+                  : 'border-[#2a3a2a] bg-[#111a11]/60'
               }`}
             >
               {p.popular && (
-                <span className="mb-3 inline-block rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-300">
-                  ⭐ Le plus populaire
+                <span className="mb-3 inline-block self-start rounded-full border border-[#e07b39]/40 px-3 py-1 text-xs font-semibold text-[#e07b39]">
+                  Le plus demandé
                 </span>
               )}
-              <div className="text-3xl">{p.emoji}</div>
-              <h2 className="mt-3 text-xl font-bold">{p.name}</h2>
-              <p className="mt-2 text-2xl font-extrabold text-cyan-300">{p.price}</p>
-              <p className="mt-1 text-sm text-slate-400">{p.delay}</p>
-              <ul className="mt-5 flex-1 space-y-2 text-sm text-slate-300">
+              <h2 className="text-xl font-bold text-[#f5f0e8]">{p.name}</h2>
+              <p className="mt-2 bg-gradient-to-r from-[#e07b39] to-[#d4a574] bg-clip-text text-2xl font-extrabold text-transparent">
+                {p.price}
+              </p>
+              <p className="mt-1 text-sm text-[#b8b3ab]">{p.delay}</p>
+              <ul className="mt-5 flex-1 space-y-2 text-sm text-[#d8d3c8]">
                 {p.items.map((it) => (
                   <li key={it} className="flex gap-2">
-                    <span className="text-cyan-400">✓</span> {it}
+                    <span className="text-[#e07b39]">✓</span> {it}
                   </li>
                 ))}
               </ul>
               <a
                 href="https://cal.com/expertsia/audit"
-                className="mt-6 inline-block rounded-lg bg-cyan-500 px-5 py-3 text-center font-semibold text-slate-950 hover:bg-cyan-400 transition-colors"
+                className="mt-6 inline-block rounded-lg bg-[#e07b39] px-5 py-3 text-center font-semibold text-[#0a0f0a] hover:-translate-y-0.5 transition-transform"
               >
                 Réserver le diagnostic gratuit
               </a>
@@ -207,28 +213,31 @@ export default function TarifsPage() {
           <h2 className="text-2xl font-bold">Questions fréquentes</h2>
           <div className="mt-6 space-y-4">
             {FAQ.map((f) => (
-              <details key={f.q} className="rounded-xl border border-slate-800 bg-slate-900/50 p-6">
-                <summary className="cursor-pointer font-semibold text-slate-100">{f.q}</summary>
-                <p className="mt-3 text-slate-300">{f.a}</p>
+              <details key={f.q} className="rounded-xl border border-[#2a3a2a] bg-[#111a11]/60 p-6">
+                <summary className="cursor-pointer font-semibold text-[#f5f0e8] [&::-webkit-details-marker]:hidden">
+                  <span className="text-[#e07b39] mr-2">→</span>{f.q}
+                </summary>
+                <p className="mt-3 text-[#b8b3ab]">{f.a}</p>
               </details>
             ))}
           </div>
         </section>
 
-        <section className="mt-24 rounded-2xl bg-gradient-to-r from-cyan-500/10 to-transparent p-10">
+        <section className="mt-24 rounded-2xl border border-[#2a3a2a] bg-gradient-to-r from-[#e07b39]/10 to-transparent p-10">
           <h2 className="text-2xl font-bold">Prêt à identifier vos meilleures opportunités d&apos;automatisation ?</h2>
-          <p className="mt-2 text-slate-300">
+          <p className="mt-2 text-[#b8b3ab]">
             15 minutes, gratuit, sans jargon. Vous repartez avec 2-3 pistes concrètes, même si vous ne travaillez pas avec nous ensuite.
           </p>
           <a
             href="https://cal.com/expertsia/audit"
-            className="mt-6 inline-block rounded-lg bg-cyan-500 px-6 py-3 font-semibold text-slate-950 hover:bg-cyan-400 transition-colors"
+            className="mt-6 inline-block rounded-lg bg-[#e07b39] px-6 py-3 font-semibold text-[#0a0f0a] hover:-translate-y-0.5 transition-transform"
           >
             Réserver mon diagnostic gratuit
           </a>
         </section>
       </main>
     </div>
+    <SiteFooter locale="fr" />
     </>
   );
 }

@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import SiteNav from '@/components/SiteNav';
+import SiteFooter from '@/components/SiteFooter';
 
 export const metadata: Metadata = {
   title: 'Consultant IA à Bordeaux — PME et ETI | ExpertsIA',
@@ -142,23 +144,24 @@ export default function ConsultantIaBordeauxPage() {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <div className="min-h-screen bg-slate-950 text-slate-100">
+      <SiteNav locale="fr" />
+      <div className="min-h-screen bg-[#0a0f0a] text-[#f5f0e8]">
         <main className="mx-auto max-w-4xl px-6 py-20">
-          <p className="text-cyan-400 font-semibold uppercase tracking-wide text-sm">📍 Bordeaux · Nouvelle-Aquitaine</p>
+          <p className="text-[#e07b39] font-semibold uppercase tracking-wide text-sm">Bordeaux · Nouvelle-Aquitaine</p>
           <h1 className="mt-3 text-4xl md:text-5xl font-bold leading-tight">
             Consultant IA à Bordeaux pour PME et ETI
           </h1>
-          <p className="mt-5 text-lg text-slate-300">
+          <p className="mt-5 text-lg text-[#b8b3ab]">
             ExpertsIA accompagne les PME de Bordeaux et de Nouvelle-Aquitaine dans l'adoption concrète de l'IA : audit, automatisation de processus, agents IA et formation. Fondé par Cyril Marchand, data scientist et ancien opérateur e-commerce. Le premier pas coûte 15 minutes : un{' '}
-            <a href="https://cal.com/expertsia/audit" className="text-cyan-400 underline underline-offset-4">
+            <a href="https://cal.com/expertsia/audit" className="text-[#e07b39] underline underline-offset-4">
               diagnostic gratuit
             </a>{' '}
             pour identifier vos chantiers à plus fort impact.
           </p>
 
-          <div className="mt-10 rounded-xl border border-slate-800 bg-slate-900 p-6 text-slate-300">
+          <div className="mt-10 rounded-xl border border-[#2a3a2a] bg-[#111a11] p-6 text-[#d8d3c8]">
             <p>
-              <strong className="text-slate-100">Basés à Bordeaux, présents dans toute la France.</strong> Les missions bordelaises se font sur site, de la cartographie des processus à la formation des équipes. Partout ailleurs, nous travaillons à distance avec des ateliers présentiels au lancement.
+              <strong className="text-[#f5f0e8]">Basés à Bordeaux, présents dans toute la France.</strong> Les missions bordelaises se font sur site, de la cartographie des processus à la formation des équipes. Partout ailleurs, nous travaillons à distance avec des ateliers présentiels au lancement.
             </p>
           </div>
 
@@ -168,21 +171,21 @@ export default function ConsultantIaBordeauxPage() {
               <a
                 key={s.title}
                 href={s.href}
-                className="block rounded-xl border border-slate-800 bg-slate-900 p-6 transition-colors hover:border-cyan-500"
+                className="block rounded-xl border border-[#2a3a2a] bg-[#111a11]/60 p-6 transition-colors hover:border-[#e07b39]"
               >
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 className="text-lg font-semibold">{s.title}</h3>
-                  <span className="text-cyan-400 text-sm font-semibold whitespace-nowrap">{s.price}</span>
+                  <span className="bg-gradient-to-r from-[#e07b39] to-[#d4a574] bg-clip-text text-sm font-semibold text-transparent whitespace-nowrap">{s.price}</span>
                 </div>
-                <p className="mt-2 text-slate-400">{s.text}</p>
+                <p className="mt-2 text-[#b8b3ab]">{s.text}</p>
               </a>
             ))}
           </div>
 
           <h2 className="mt-16 text-2xl font-bold">Qui intervient</h2>
-          <div className="mt-6 rounded-xl border border-slate-800 bg-slate-900 p-6">
-            <p className="text-slate-300">
-              <strong className="text-slate-100">Cyril Marchand</strong>, fondateur. Data scientist de formation, il a piloté des opérations e-commerce avant de se consacrer au conseil IA. Auteur du livre « L'IA pour Commerçants et Artisans », formateur Le Wagon Bordeaux. Il conçoit et délivre chaque mission lui-même : pas d'intermédiaire, pas de junior envoyé sur votre projet.
+          <div className="mt-6 rounded-xl border border-[#2a3a2a] bg-[#111a11]/60 p-6">
+            <p className="text-[#d8d3c8]">
+              <strong className="text-[#f5f0e8]">Cyril Marchand</strong>, fondateur. Data scientist de formation, il a piloté des opérations e-commerce avant de se consacrer au conseil IA. Auteur du livre « L'IA pour Commerçants et Artisans », formateur Le Wagon Bordeaux. Il conçoit et délivre chaque mission lui-même : pas d'intermédiaire, pas de junior envoyé sur votre projet.
             </p>
           </div>
 
@@ -206,35 +209,36 @@ export default function ConsultantIaBordeauxPage() {
                 a: "L'audit livre un plan chiffré en une semaine. La première automatisation est en production en 2 à 4 semaines. Les gains sont mesurés et documentés dès le premier mois.",
               },
             ].map((f) => (
-              <div key={f.q} className="rounded-xl border border-slate-800 bg-slate-900 p-6">
-                <h3 className="font-semibold">{f.q}</h3>
-                <p className="mt-2 text-slate-400">{f.a}</p>
+              <div key={f.q} className="rounded-xl border border-[#2a3a2a] bg-[#111a11]/60 p-6">
+                <h3 className="font-semibold text-[#f5f0e8]">{f.q}</h3>
+                <p className="mt-2 text-[#b8b3ab]">{f.a}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-16 rounded-2xl border border-cyan-900 bg-slate-900 p-8 text-center">
+          <div className="mt-16 rounded-2xl border border-[#e07b39]/30 bg-gradient-to-r from-[#e07b39]/10 to-transparent p-8 text-center">
             <h2 className="text-2xl font-bold">Parlons de vos processus</h2>
-            <p className="mt-3 text-slate-300">
+            <p className="mt-3 text-[#b8b3ab]">
               15 minutes pour identifier vos automatisations à plus fort impact. Gratuit, sans engagement.
             </p>
             <a
               href="https://cal.com/expertsia/audit"
-              className="mt-6 inline-block bg-cyan-500 text-slate-950 px-8 py-3 rounded-lg font-semibold hover:bg-cyan-400 transition-colors"
+              className="mt-6 inline-block rounded-lg bg-[#e07b39] px-8 py-3 font-semibold text-[#0a0f0a] hover:-translate-y-0.5 transition-transform"
             >
               Réserver un diagnostic gratuit
             </a>
           </div>
 
-          <div className="mt-12 text-center text-sm text-slate-500">
-            <a href="/fr/tarifs" className="hover:text-cyan-400">Voir les tarifs détaillés</a>
+          <div className="mt-12 text-center text-sm text-[#7a756d]">
+            <a href="/fr/tarifs" className="hover:text-[#e07b39]">Voir les tarifs détaillés</a>
             {' · '}
-            <a href="/fr/blog/consultant-ia-bordeaux-2026" className="hover:text-cyan-400">Comment choisir un consultant IA à Bordeaux</a>
+            <a href="/fr/blog/consultant-ia-bordeaux-2026" className="hover:text-[#e07b39]">Comment choisir un consultant IA à Bordeaux</a>
             {' · '}
-            <a href="/fr/financer-son-projet-ia" className="hover:text-cyan-400">Financer son projet IA (BPI, Osez l'IA, OPCO)</a>
+            <a href="/fr/financer-son-projet-ia" className="hover:text-[#e07b39]">Financer son projet IA (BPI, Osez l'IA, OPCO)</a>
           </div>
         </main>
       </div>
+      <SiteFooter locale="fr" />
     </>
   );
 }

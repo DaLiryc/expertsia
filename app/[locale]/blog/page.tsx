@@ -2,6 +2,8 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getAllPosts, getCategories } from '@/lib/blog';
 import { dictionaries, type Locale } from '@/lib/dictionaries';
+import SiteNav from '@/components/SiteNav';
+import SiteFooter from '@/components/SiteFooter';
 
 const BASE_URL = 'https://www.expertsia.dev';
 
@@ -46,22 +48,14 @@ export default async function BlogPage({
   const categories = getCategories(locale);
 
   return (
-    <div className="min-h-screen">
-      {/* Simple nav */}
-      <nav className="sticky top-0 z-50 flex justify-between items-center px-[60px] py-[25px] bg-[rgba(10,15,10,0.9)] backdrop-blur-[10px] border-b border-[#2a3a2a]">
-        <Link href={`/${locale}`}>
-          <span className="text-[#f5f0e8] font-bold text-xl">ExpertsIA</span>
-        </Link>
-        <Link
-          href={`/${locale}`}
-          className="text-[#b8b3ab] hover:text-[#e07b39]"
-        >
-          ← {locale === 'fr' ? 'Retour au site' : 'Back to site'}
-        </Link>
-      </nav>
+    <div className="min-h-screen bg-[#0a0f0a]">
+      <SiteNav locale={locale} />
 
       <div className="max-w-4xl mx-auto px-10 py-20">
-        <h1 className="text-4xl font-bold mb-4">
+        <p className="text-[#e07b39] font-semibold uppercase tracking-wide text-sm mb-3">
+          {locale === 'fr' ? 'Ressources' : 'Resources'}
+        </p>
+        <h1 className="text-4xl font-bold mb-4 text-[#f5f0e8]">
           {locale === 'fr' ? 'Le Blog' : 'Blog'}
         </h1>
         <p className="text-[#b8b3ab] text-lg mb-10">
@@ -135,6 +129,7 @@ export default async function BlogPage({
           </div>
         )}
       </div>
+      <SiteFooter locale={locale} />
     </div>
   );
 }

@@ -40,6 +40,9 @@ export default async function Home({
           <li><a href="#industries" className="nav-link">{t.nav.industries}</a></li>
           <li><a href={`/${locale}/blog`} className="nav-link">{locale === 'fr' ? 'Blog' : 'Blog'}</a></li>
           {locale === 'fr' && (
+            <li><a href="/fr/tarifs" className="nav-link">Tarifs</a></li>
+          )}
+          {locale === 'fr' && (
             <li><a href="/fr/financer-son-projet-ia" className="nav-link text-[#e07b39]">Financement IA</a></li>
           )}
           <li><a href="#contact" className="nav-link">{t.nav.contact}</a></li>
