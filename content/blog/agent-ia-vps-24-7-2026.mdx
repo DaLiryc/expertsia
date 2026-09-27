@@ -1,0 +1,168 @@
+---
+title: "Un agent IA qui tourne 24/7 sur un VPS à 5 €/mois : l'installation complète"
+description: "Comment faire tourner un agent IA autonome 24/7 sur un petit VPS : sécurisation SSH, Tailscale, bot Telegram, notes vocales, sauvegardes. Le guide pas à pas avec les pièges que j'ai rencontrés."
+date: "2026-09-27"
+category: "Tutoriel"
+readingTime: "10 min"
+locale: "fr"
+author: "Cyril Marchand"
+---
+
+## L'agent ne dort jamais, le VPS coûte moins qu'un abonnement Netflix
+
+Mon agent IA tourne en ce moment sur un serveur à 5 € par mois. Il surveille mes produits, cherche des leads, écrit des rapports, répond à mes messages vocaux. Il a travaillé pendant que j'écrivais cet article, et il travaillera cette nuit.
+
+Ce n'est pas un abonnement à 200 €/mois chez un éditeur SaaS. C'est un petit VPS, un agent open source (Hermes Agent), un bot Telegram, et une après-midi d'installation. Cet article donne l'installation complète, étape par étape, avec les pièges que j'ai rencontrés et que je n'avais vus nulle part ailleurs.
+
+Si vous préférez faire appel à quelqu'un pour ce type de montage, c'est exactement le genre de mission qu'on fait chez [ExpertsIA](/fr/tarifs). Mais honnêtement, si vous lisez jusqu'au bout, vous saurez le faire vous-même.
+
+## Le principe : un serveur, deux canaux
+
+L'architecture tient en une phrase : un VPS qui tourne en permanence, un agent dessus, et deux façons de lui parler.
+
+- **Telegram** : je lui écris ou je lui envoie une note vocale depuis mon téléphone. Il me répond, il exécute, il m'alerte quand ses tâches planifiées trouvent quelque chose.
+- **SSH** : accès au serveur pour la maintenance. Mais pas n'importe quel SSH, on y revient.
+
+Côté sécurité, la règle est simple : le serveur n'expose aucun port public. Pas de port SSH ouvert au monde, pas de scanner de bots qui tente des mots de passe. Tout passe par un réseau privé virtuel (Tailscale, gratuit jusqu'à 100 appareils).
+
+## Étape 1 : le serveur et son durcissement
+
+Un VPS à 2 vCPU et 4 GB de RAM suffit largement. J'utilise Hetzner (environ 4 à 5 €/mois), mais n'importe quel hébergeur fait l'affaire. Ubuntu 24.04 LTS.
+
+Première connexion en root, puis durcissement :
+
+```bash
+apt update && apt upgrade -y
+apt install -y git curl tmux ufw fail2ban unattended-upgrades
+
+# Utilisateur dédié, pas de travail en root
+useradd -m -s /bin/bash monuser
+echo "monuser ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/monuser
+
+# SSH : clé uniquement, root interdit
+cat > /etc/ssh/sshd_config.d/hardening.conf << 'EOF'
+PermitRootLogin no
+PasswordAuthentication no
+MaxAuthTries 3
+AllowUsers monuser
+EOF
+systemctl restart ssh
+```
+
+Deux pièges à connaître dès maintenant :
+
+1. Sur Ubuntu 24.04, le service s'appelle `ssh`, pas `sshd`. `systemctl restart sshd` échoue sans message d'erreur utile.
+2. Le durcissement coupe root instantanément. Testez votre connexion `monuser` dans un autre terminal avant de fermer la session root, sinon vous êtes dehors.
+
+Ensuite le firewall et fail2ban :
+
+```bash
+ufw default deny incoming && ufw default allow outgoing
+ufw allow 22/tcp
+ufw --force enable
+```
+
+fail2ban bannit les IP qui échouent trois fois en dix minutes. Sur un serveur avec un port SSH public, les logs montrent des dizaines de tentatives par heure. Après l'étape suivante, ce trafic disparaît complètement parce que le port n'existe plus pour l'extérieur.
+
+Un swap de 4 GB complète le tableau (le disque sert de soupape si la RAM sature) :
+
+```bash
+fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile
+echo '/swapfile none swap sw 0 0' >> /etc/fstab
+```
+
+Détail qui coûte une heure de débogage si vous le ratez : après une mise à jour du kernel, l'hébergeur peut redémarrer la machine et le swap disparaît. `swapon --show` après chaque reboot.
+
+## Étape 2 : Tailscale, ou comment fermer le port SSH
+
+C'est l'étape qui change tout. Tailscale crée un réseau privé entre vos appareils (machine, téléphone, serveur) sans ouvrir de port sur le serveur.
+
+```bash
+# Sur le VPS
+curl -fsSL https://tailscale.com/install.sh | sh
+sudo tailscale up --ssh
+```
+
+Installez Tailscale sur votre ordinateur et votre téléphone AVANT de fermer le port public. Vérifiez que le VPS apparaît dans `tailscale status`. Ensuite seulement :
+
+```bash
+sudo ufw delete allow 22/tcp
+sudo ufw allow in on tailscale0 to any port 22
+sudo ufw reload
+```
+
+Résultat : un scan du port 22 depuis internet ne trouve rien. La connexion se fait par `tailscale ssh monuser@nom-du-serveur`, l'authentification passe par votre identité Tailscale, il n'y a même plus de clé SSH à gérer. Le plan B en cas de pépin est la console VNC de l'hébergeur.
+
+L'ordre des opérations est le seul vrai danger de cette install. Port fermé avant Tailscale actif côté client = serveur inaccessible. Je l'écris en gras dans mon guide interne.
+
+## Étape 3 : l'agent et son bot Telegram
+
+```bash
+pip install hermes-agent
+hermes    # l'assistant de configuration prend la main au premier lancement
+```
+
+Le wizard configure le fournisseur de modèle (les clés API vont dans `~/.hermes/.env`, jamais ailleurs) et le bot Telegram. Pour le bot : deux minutes avec @BotFather, il vous donne un token, vous le collez.
+
+Détail important : un seul processus peut écouter un token Telegram. Si vous voulez un agent sur votre machine locale ET sur le VPS, créez deux bots. Ils tournent côte à côte sans aucune coordination, chacun son canal.
+
+```bash
+chmod 600 ~/.hermes/.env
+
+# La gateway en service systemd : l'agent redémarre tout seul, tourne 24/7
+hermes gateway install
+hermes gateway start
+hermes gateway status
+```
+
+Envoyez `/start` à votre bot depuis Telegram. Sans ce message, le bot ne peut pas vous écrire et répond "chat not found". C'est le piège le plus fréquent.
+
+### Les notes vocales, sans GPU
+
+Le VPS n'a pas de GPU, la transcription vocale passe donc par l'API Groq (gratuite, modèle whisper-large-v3-turbo). Vous parlez, le serveur transcrit, l'agent traite, il peut répondre en voix synthétisée (Edge TTS, gratuit aussi). Sur mon serveur, une note vocale de 30 secondes est traitée en quelques secondes.
+
+## Étape 4 : ce que l'agent fait toute la journée
+
+C'est là que le montage prend son sens. Hermes embarque un planificateur de tâches (crons) : des instructions que l'agent exécute seul, à heure fixe.
+
+Sur mon serveur tournent par exemple : une surveillance de mes produits (alerte immédiate si quelque chose casse), une veille qui remonte des leads qualifiés, un article de blog par semaine rédigé et publié, des rappels personnels. Tout est parti d'un message Telegram que j'ai dicté en marchant.
+
+La règle de répartition : sur le VPS, uniquement des tâches légères (appels API, rédaction, veille). La génération d'images, de vidéos, tout ce qui demande du GPU, reste sur une machine locale. Un VPS à 5 € ne remplace pas une station de travail, il remplace l'assistant toujours réveillé.
+
+## Étape 5 : les sauvegardes
+
+```bash
+mkdir -p ~/backups
+cat > ~/backup.sh << 'EOF'
+#!/bin/bash
+DATE=$(date +%Y%m%d)
+tar czf ~/backups/hermes-backup-$DATE.tar.gz \
+  ~/.hermes/config.yaml ~/.hermes/.env ~/.hermes/cron/ \
+  ~/.hermes/memories/ ~/.hermes/skills/ 2>/dev/null
+find ~/backups -name "hermes-backup-*.tar.gz" -mtime +7 -delete
+EOF
+chmod +x ~/backup.sh
+crontab - << 'EOF'
+0 3 * * * /home/monuser/backup.sh
+EOF
+```
+
+Un tar quotidien à 3 h du matin, sept jours de rétention. La configuration, les mémoires de l'agent, ses tâches planifiées, ses compétences. Si le serveur meurt, on remonte tout sur un nouveau en une heure.
+
+## Le bilan : ce que ça coûte et ce que ça rapporte
+
+| Poste | Coût mensuel |
+|---|---|
+| VPS 2 vCPU / 4 GB | ~5 € |
+| Tailscale (jusqu'à 100 appareils) | 0 € |
+| Transcription Groq | 0 € |
+| Agent, gateway, crons | 0 € |
+| **Total** | **~5 €/mois** |
+
+Ce que j'y gagne concrètement : les alertes de monitoring arrivent avant que je remarque le problème, la veille tourne pendant que je code, les rapports sont rédigés quand je me lève. L'agent a rédigé une première version de cet article à partir de mon guide d'installation, ce qui donne une idée du temps gagné sur ce genre de tâche.
+
+La contrepartie : une demi-journée d'installation la première fois, et un peu de discipline sur la sécurité (les étapes 1 et 2 ne se sautent pas). Si vous bricolez l'étape 2 et exposez votre agent sans protection, vous offrez un serveur à internet. Suivez l'ordre.
+
+## Et maintenant ?
+
+Le guide d'installation complet, étape par étape avec les 15 pièges, est ici : [installer un agent IA sur un VPS, le guide complet](/fr/blog/installer-agent-ia-vps-guide-2026). Si vous voulez aller plus loin (agent connecté à vos outils métier, automatisation d'un processus complet chez vous), c'est le travail qu'on fait chez ExpertsIA, [regardez nos tarifs](/fr/tarifs) ou [réservez un audit](https://cal.com/expertsia/audit).

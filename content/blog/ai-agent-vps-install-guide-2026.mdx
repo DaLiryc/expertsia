@@ -1,0 +1,257 @@
+---
+title: "Set up an AI agent on a VPS: the complete guide (Hermes, Tailscale, Telegram)"
+description: "Step-by-step guide to running an autonomous AI agent on a VPS: SSH hardening, Tailscale private network, Hermes Agent, Telegram bot, voice notes, scheduled jobs, backups. With the 15 pitfalls I hit in production."
+date: "2026-09-27"
+category: "Tutorial"
+readingTime: "13 min"
+locale: "en"
+author: "Cyril Marchand"
+---
+
+## The guide I wish I had
+
+In [the previous article](/en/blog/ai-agent-vps-24-7-2026), I explained why I run an AI agent 24/7 on a $5 server and what it does for me day to day. Here I walk through the complete setup, command by command, including the pitfalls I hit and found documented nowhere else. The full guide is also available in French: [Installer un agent IA sur un VPS](/fr/blog/installer-agent-ia-vps-guide-2026).
+
+The whole setup runs on a 2 vCPU / 4 GB server. Total cost: about $6 a month. First-time installation: half a day.
+
+Table of contents:
+
+1. Create the server
+2. Harden it (user, SSH, firewall, fail2ban, swap)
+3. Close the public SSH port with Tailscale
+4. Install the agent and its Telegram bot
+5. Enable voice notes
+6. Schedule the agent's jobs
+7. Backups
+8. The 15 pitfalls
+9. Verification checklist
+
+## Step 1: create the server
+
+I use Hetzner Cloud, but any European host works (OVH, Scaleway, Netcup...). The configuration:
+
+- **Type**: 2 vCPU / 4 GB RAM / 40 GB disk (Hetzner's CX22 at ~4.15 euros a month is enough; the CX33 with 4 vCPU / 8 GB is comfortable for ~11 euros)
+- **OS**: Ubuntu 24.04 LTS
+- **Region**: closest to you (Germany = 5 to 10 ms from most of Europe)
+- **SSH key**: add your public key when creating the server, not after
+
+## Step 2: harden the server
+
+First login as root. Install the basics and create a dedicated user:
+
+```bash
+apt update && apt upgrade -y
+apt install -y git curl wget tmux ufw fail2ban jq htop unattended-upgrades
+
+useradd -m -s /bin/bash myuser
+echo "myuser ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/myuser
+
+# Copy the SSH key to the new user
+mkdir -p /home/myuser/.ssh
+cp ~/.ssh/authorized_keys /home/myuser/.ssh/
+chown -R myuser:myuser /home/myuser/.ssh
+chmod 700 /home/myuser/.ssh && chmod 600 /home/myuser/.ssh/authorized_keys
+```
+
+Then SSH hardening. Key required, passwords and root forbidden:
+
+```bash
+cat > /etc/ssh/sshd_config.d/hardening.conf << 'EOF'
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+MaxAuthTries 3
+ClientAliveInterval 300
+ClientAliveCountMax 2
+AllowUsers myuser
+EOF
+systemctl restart ssh
+```
+
+Two things to know before running this:
+
+- On Ubuntu 24.04 the service is called `ssh`. `systemctl restart sshd` fails with a misleading error.
+- Hardening cuts root access instantly. **Test `ssh myuser@IP` from another terminal before closing your root session.** If it fails, you just locked yourself out.
+
+fail2ban automatically bans IPs that fail three times:
+
+```bash
+cat > /etc/fail2ban/jail.local << 'EOF'
+[sshd]
+enabled = true
+maxretry = 3
+bantime = 3600
+findtime = 600
+EOF
+systemctl enable fail2ban && systemctl restart fail2ban
+```
+
+The firewall, deny by default:
+
+```bash
+ufw default deny incoming && ufw default allow outgoing
+ufw allow 22/tcp
+ufw --force enable
+```
+
+Automatic security updates, timezone and swap:
+
+```bash
+dpkg-reconfigure -f noninteractive unattended-upgrades
+timedatectl set-timezone Europe/Paris
+
+fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile
+echo '/swapfile none swap sw 0 0' >> /etc/fstab
+echo 'vm.swappiness=10' >> /etc/sysctl.conf && sysctl vm.swappiness=10
+```
+
+The swap acts as a safety valve when RAM spikes. On a 4 GB server, it prevents crashes during peaks.
+
+## Step 3: close the public SSH port with Tailscale
+
+This is the step that turns an exposed server into an invisible one. Tailscale creates a private network (a WireGuard VPN) between your devices. The server has no open port on the internet but stays reachable from your machines.
+
+```bash
+# On the VPS
+curl -fsSL https://tailscale.com/install.sh | sh
+sudo tailscale up --ssh
+```
+
+**Install Tailscale on your laptop and your phone BEFORE closing the public port.** Check that the VPS shows up in `tailscale status` on both sides. Only then:
+
+```bash
+sudo ufw delete allow 22/tcp
+sudo ufw allow in on tailscale0 to any port 22
+sudo ufw reload
+```
+
+From that point, a scan of port 22 from the internet finds nothing. The dozens of login attempts per hour in the logs disappear. You connect with:
+
+```bash
+tailscale ssh myuser@your-server
+```
+
+Authentication goes through your Tailscale identity, no keys to manage. For file transfers, use the server's Tailscale IP (100.x.x.x format). The fallback if something breaks: your host's VNC console, which reaches the machine independently of the network.
+
+## Step 4: the agent and its Telegram bot
+
+Hermes Agent installs with pip. On first launch, a setup wizard takes over:
+
+```bash
+pip install hermes-agent
+hermes --version
+hermes
+```
+
+During configuration:
+
+- **Model provider**: pick your API (keys go in `~/.hermes/.env`, mode 0600, never in a git repo).
+- **Telegram bot**: create one with @BotFather (two minutes), paste the token when the wizard asks.
+
+```bash
+chmod 600 ~/.hermes/.env
+
+# The gateway as a systemd service: restarts on its own, runs 24/7
+hermes gateway install
+hermes gateway start
+hermes gateway status
+```
+
+Then send `/start` to your bot from Telegram. Without that message, the bot does not know your conversation and answers "chat not found" every time. It is the most common trap in the whole setup.
+
+One architecture note: a single process can listen to a Telegram token. If you want an agent on your local machine AND one on the VPS, create two separate bots. They run independently, no coordination needed, each answering on its own channel. No failover scripts, no conflicts.
+
+## Step 5: voice notes, no GPU required
+
+The VPS has no GPU, so no local transcription. The solution: the Groq API, free tier, transcribing with the whisper-large-v3-turbo model. Replies can go out as synthesized speech through Edge TTS (also free).
+
+In `~/.hermes/.env`:
+
+```
+GROQ_API_KEY=your_key
+STT_GROQ_MODEL=whisper-large-v3-turbo
+```
+
+In `~/.hermes/config.yaml`:
+
+```yaml
+stt:
+  provider: groq
+```
+
+On my server, a 30-second voice note is processed in seconds. One network pitfall to know: the Groq API sits behind Cloudflare and can fail over HTTP/2 from some datacenters. If transcriptions fail, test `curl --http1.1 https://api.groq.com` to confirm the diagnosis.
+
+## Step 6: scheduled jobs
+
+Hermes ships with a scheduler: instructions in plain language that the agent executes on its own, on a fixed schedule. The configuration lives in `~/.hermes/cron/jobs.json`.
+
+Examples of what runs on my server:
+
+- Product monitoring, with an immediate Telegram alert if anything breaks
+- Research that surfaces qualified leads
+- Writing and publishing a weekly blog post
+- Personal reminders
+
+The rule of thumb if you also have a local machine: on the VPS, only light tasks (API calls, writing, research, reminders). Image generation, video, anything GPU-bound or dealing with large files stays local. If your local machine is off, its jobs resume at boot, nothing to do.
+
+## Step 7: backups
+
+```bash
+mkdir -p ~/backups
+cat > ~/backup.sh << 'EOF'
+#!/bin/bash
+DATE=$(date +%Y%m%d)
+tar czf ~/backups/hermes-backup-$DATE.tar.gz \
+  ~/.hermes/config.yaml ~/.hermes/.env ~/.hermes/cron/ \
+  ~/.hermes/memories/ ~/.hermes/skills/ 2>/dev/null
+find ~/backups -name "hermes-backup-*.tar.gz" -mtime +7 -delete
+EOF
+chmod +x ~/backup.sh
+echo "0 3 * * * /home/myuser/backup.sh" | crontab -
+```
+
+A daily tarball at 3 am, seven days of retention. The config, the keys, the agent's memories, its jobs, its skills. If the server dies, everything comes back up on a fresh machine within an hour. The extra option: the host's automatic backups (about 1 euro a month at Hetzner), covering the whole disk.
+
+## The 15 pitfalls I hit
+
+1. **Ubuntu 24.04**: the SSH service is called `ssh`, not `sshd`. `systemctl restart sshd` fails silently.
+2. **Root lockout**: SSH hardening cuts root instantly. Test the user login from a new terminal before closing the root session.
+3. **Tailscale before closing port 22**: if you close the public port before Tailscale runs on your devices, the server is unreachable. The host's VNC console is plan B.
+4. **`tailscale ssh` is not regular ssh**: once the port is closed, the Tailscale command is the one that works, with Tailscale's own authentication.
+5. **SSH keys with passphrases**: there is no SSH agent on the server to provide the passphrase. For GitHub, generate a dedicated keyless key (`ssh-keygen -t ed25519 -N ""`), add it to GitHub, and declare it in `~/.ssh/config` with `IdentitiesOnly yes`.
+6. **GitHub host key**: run `ssh-keyscan github.com >> ~/.ssh/known_hosts` before the first clone, or you get "Host key verification failed".
+7. **Telegram `/start`**: without that message, the bot answers "chat not found".
+8. **One token, one poller**: never two processes on the same Telegram token. Two agents = two bots.
+9. **No handoff between agents**: no failover scripts between local and VPS. Two independent bots is simpler and more reliable.
+10. **Python venvs**: never copy a venv between machines (platform-specific compiled binaries). Rebuild it on the target.
+11. **Swap lost after kernel upgrade**: `swapon --show` after every reboot, recreate if missing.
+12. **Empty crontab**: `crontab -l | grep ...` errors when the crontab is empty. For the first entry, use `echo "..." | crontab -`.
+13. **Groq over HTTP/2**: can fail from a datacenter. Diagnose with `curl --http1.1`.
+14. **Missing directories**: `rsync` fails if the target folder does not exist. Create it first (`ssh user@vps 'mkdir -p ~/my-project'`).
+15. **Services dying after logout**: a user systemd service dies at logout without `loginctl enable-linger $USER`. Run it once, at the end of the setup.
+
+## Verification checklist
+
+After the setup, and after every reboot:
+
+```bash
+hermes gateway status        # agent running?
+tailscale status             # private network connected?
+ss -tlnp                     # nothing listening on a public IP?
+swapon --show                # swap present?
+crontab -l                   # backup scheduled?
+```
+
+Then the functional tests: a Telegram message to the bot (it must reply), a voice note (it must be transcribed). If everything passes, you have a 24/7 agent.
+
+## The bottom line
+
+| Item | Monthly cost |
+|---|---|
+| VPS 2 vCPU / 4 GB | ~$6 |
+| Tailscale (up to 100 devices) | $0 |
+| Groq transcription | $0 |
+| Edge TTS | $0 |
+| **Total** | **~$6/mo** |
+
+Half a day of setup, $6 a month, and a teammate who never sleeps. The hard part is not the installation, it is deciding what to delegate to it. If you want help figuring out what AI can automate in your business, [check our pricing](/en/book) or [book an audit](https://cal.com/expertsia/audit).

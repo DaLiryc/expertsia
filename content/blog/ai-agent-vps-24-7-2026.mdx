@@ -1,0 +1,168 @@
+---
+title: "An AI agent that runs 24/7 on a $5 VPS: the full setup"
+description: "How to run an autonomous AI agent 24/7 on a small VPS: SSH hardening, Tailscale, Telegram bot, voice notes, backups. The step-by-step guide, including the pitfalls nobody warned me about."
+date: "2026-09-27"
+category: "Tutorial"
+readingTime: "9 min"
+locale: "en"
+author: "Cyril Marchand"
+---
+
+## The agent never sleeps, the server costs less than a streaming subscription
+
+My AI agent is running right now on a server that costs 5 euros a month. It monitors my products, researches leads, writes reports, answers my voice messages. It was working while I wrote this article, and it will work tonight.
+
+This is not a 200-euro-a-month SaaS subscription. It is a small VPS, an open source agent (Hermes Agent), a Telegram bot, and an afternoon of setup. This article walks through the complete installation, step by step, including the pitfalls I hit and found documented nowhere else.
+
+If you would rather have someone set this up for you, that is exactly the kind of work we do at [ExpertsIA](/en/book). But honestly, if you read to the end, you will be able to do it yourself.
+
+## The principle: one server, two channels
+
+The architecture fits in one sentence: a VPS that runs permanently, an agent on it, and two ways to talk to it.
+
+- **Telegram**: I text it or send a voice note from my phone. It replies, it executes, it alerts me when its scheduled jobs find something.
+- **SSH**: server access for maintenance. Not just any SSH though, more on that below.
+
+On security, the rule is simple: the server exposes no public port. No SSH port open to the world, no bots scanning for weak passwords. Everything goes through a private network (Tailscale, free for up to 100 devices).
+
+## Step 1: the server and its hardening
+
+A 2 vCPU / 4 GB VPS is enough. I use Hetzner (about 5 euros a month), but any host will do. Ubuntu 24.04 LTS.
+
+First login as root, then hardening:
+
+```bash
+apt update && apt upgrade -y
+apt install -y git curl tmux ufw fail2ban unattended-upgrades
+
+# Dedicated user, no working as root
+useradd -m -s /bin/bash myuser
+echo "myuser ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/myuser
+
+# SSH: key only, root forbidden
+cat > /etc/ssh/sshd_config.d/hardening.conf << 'EOF'
+PermitRootLogin no
+PasswordAuthentication no
+MaxAuthTries 3
+AllowUsers myuser
+EOF
+systemctl restart ssh
+```
+
+Two pitfalls to know right away:
+
+1. On Ubuntu 24.04 the service is called `ssh`, not `sshd`. `systemctl restart sshd` fails without a helpful error message.
+2. Hardening cuts root access instantly. Test your `myuser` login from another terminal before closing the root session, or you are locked out.
+
+Then the firewall and fail2ban:
+
+```bash
+ufw default deny incoming && ufw default allow outgoing
+ufw allow 22/tcp
+ufw --force enable
+```
+
+fail2ban bans IPs that fail three times in ten minutes. On a server with a public SSH port, the logs show dozens of attempts per hour. After the next step, that traffic disappears completely, because the port no longer exists from the outside.
+
+A 4 GB swap file completes the picture (the disk acts as a safety valve if RAM spikes):
+
+```bash
+fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile
+echo '/swapfile none swap sw 0 0' >> /etc/fstab
+```
+
+One detail that costs an hour of debugging if you miss it: after a kernel update, the host may reboot the machine and the swap disappears. Run `swapon --show` after every reboot.
+
+## Step 2: Tailscale, or how to close the SSH port
+
+This is the step that changes everything. Tailscale creates a private network between your devices (laptop, phone, server) without opening any port on the server.
+
+```bash
+# On the VPS
+curl -fsSL https://tailscale.com/install.sh | sh
+sudo tailscale up --ssh
+```
+
+Install Tailscale on your laptop and your phone BEFORE closing the public port. Check that the VPS shows up in `tailscale status`. Only then:
+
+```bash
+sudo ufw delete allow 22/tcp
+sudo ufw allow in on tailscale0 to any port 22
+sudo ufw reload
+```
+
+Result: a scan of port 22 from the internet finds nothing. You connect with `tailscale ssh myuser@your-server`, authentication goes through your Tailscale identity, and there is no SSH key to manage anymore. The fallback if something breaks is the host's VNC console.
+
+The order of operations is the only real danger in this setup. Port closed before Tailscale is running on your devices = unreachable server. It is written in bold in my internal guide.
+
+## Step 3: the agent and its Telegram bot
+
+```bash
+pip install hermes-agent
+hermes    # the setup wizard takes over on first launch
+```
+
+The wizard configures the model provider (API keys go in `~/.hermes/.env`, nowhere else) and the Telegram bot. For the bot: two minutes with @BotFather, it gives you a token, you paste it.
+
+One important detail: a single process can listen to a Telegram token. If you want an agent on your local machine AND on the VPS, create two bots. They run side by side with no coordination needed, each with its own channel.
+
+```bash
+chmod 600 ~/.hermes/.env
+
+# The gateway as a systemd service: the agent restarts on its own, runs 24/7
+hermes gateway install
+hermes gateway start
+hermes gateway status
+```
+
+Send `/start` to your bot from Telegram. Without that message, the bot cannot write to you and answers "chat not found". It is the most common trap in the whole setup.
+
+### Voice notes, no GPU required
+
+The VPS has no GPU, so voice transcription goes through the Groq API (free tier, whisper-large-v3-turbo model). You speak, the server transcribes, the agent processes, and it can reply with synthesized speech (Edge TTS, also free). On my server, a 30-second voice note is processed in seconds.
+
+## Step 4: what the agent does all day
+
+This is where the setup starts paying for itself. Hermes ships with a task scheduler (crons): instructions the agent executes on its own, on a fixed schedule.
+
+On my server, for example: monitoring for my products (immediate alert if anything breaks), research that surfaces qualified leads, a weekly blog post written and published, personal reminders. All of it started from a Telegram message I dictated while walking.
+
+The rule of thumb: on the VPS, only light tasks (API calls, writing, research). Image generation, video, anything GPU-bound stays on a local machine. A 5-euro VPS does not replace a workstation, it replaces the assistant who never sleeps.
+
+## Step 5: backups
+
+```bash
+mkdir -p ~/backups
+cat > ~/backup.sh << 'EOF'
+#!/bin/bash
+DATE=$(date +%Y%m%d)
+tar czf ~/backups/hermes-backup-$DATE.tar.gz \
+  ~/.hermes/config.yaml ~/.hermes/.env ~/.hermes/cron/ \
+  ~/.hermes/memories/ ~/.hermes/skills/ 2>/dev/null
+find ~/backups -name "hermes-backup-*.tar.gz" -mtime +7 -delete
+EOF
+chmod +x ~/backup.sh
+crontab - << 'EOF'
+0 3 * * * /home/myuser/backup.sh
+EOF
+```
+
+A daily tarball at 3 am, seven days of retention. The configuration, the agent's memories, its scheduled tasks, its skills. If the server dies, everything comes back up on a new one within an hour.
+
+## The bottom line: what it costs and what it returns
+
+| Item | Monthly cost |
+|---|---|
+| VPS 2 vCPU / 4 GB | ~$6 |
+| Tailscale (up to 100 devices) | $0 |
+| Groq transcription | $0 |
+| Agent, gateway, crons | $0 |
+| **Total** | **~$6/mo** |
+
+What I get out of it, concretely: monitoring alerts arrive before I notice the problem, research runs while I code, reports are written by the time I wake up. The agent drafted the first version of this article from my installation guide, which gives you an idea of the time saved on that kind of task.
+
+The trade-off: half a day of setup the first time, and some discipline on security (steps 1 and 2 are not optional). If you skip step 2 and expose your agent unprotected, you are donating a server to the internet. Follow the order.
+
+## What next?
+
+The complete step-by-step installation guide, with the 15 pitfalls, is here: [Set up an AI agent on a VPS: the complete guide](/en/blog/ai-agent-vps-install-guide-2026). If you want to go further (an agent connected to your business tools, a whole process automated end to end), that is the work we do at ExpertsIA. [Check our pricing](/en/book) or [book an audit](https://cal.com/expertsia/audit).
