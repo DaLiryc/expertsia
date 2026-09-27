@@ -287,6 +287,7 @@ export default async function Home({
                   {locale === 'fr' && (
                     <>
                       <li><a href={`/${locale}/tarifs`} className="footer-link">Tarifs</a></li>
+                      <li><a href="/fr/consultant-ia-bordeaux" className="footer-link">Consultant IA Bordeaux</a></li>
                       <li><a href={`/${locale}/financer-son-projet-ia`} className="footer-link">Financer son projet IA</a></li>
                       <li><a href={`/${locale}/livre`} className="footer-link">Notre livre</a></li>
                     </>

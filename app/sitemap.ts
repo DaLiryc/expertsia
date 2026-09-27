@@ -70,6 +70,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // Local landing page (Bordeaux — map pack + local keyword target)
+  const localRoutes = [
+    {
+      url: `${BASE_URL}/fr/consultant-ia-bordeaux`,
+      lastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+    },
+  ];
+
   // Blog posts
   const allPosts = getAllPosts();
   const blogPostRoutes = allPosts.map((post) => ({
@@ -79,5 +89,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...aboutRoutes, ...fundingRoutes, ...bookRoutes, ...bookingRoutes, ...pricingRoutes, ...blogHubRoutes, ...blogPostRoutes];
+  return [...staticRoutes, ...aboutRoutes, ...fundingRoutes, ...bookRoutes, ...bookingRoutes, ...pricingRoutes, ...localRoutes, ...blogHubRoutes, ...blogPostRoutes];
 }
