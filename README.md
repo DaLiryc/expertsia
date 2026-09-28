@@ -1,22 +1,33 @@
 # ExpertsIA
 
-Productized AI video production agency for French SMBs. Built and run by one person plus agents.
+AI and data agency. We help organizations optimize processes, implement agentic workflows, and train teams for the AI era.
+
+Live: [expertsia.dev](https://expertsia.dev)
 
 ![ExpertsIA](assets/site-home.png)
 
-## The idea
+## What the agency does
 
-French small businesses want video content (social clips, product demos, ads) but agencies charge €1-3k per video and freelancers are slow. AI generation tools exist but SMB owners don't want to learn ComfyUI.
+Eight service lines, one common thread: business first, technology second.
 
-ExpertsIA sells finished videos at a fixed price: the client sends a brief, the pipeline produces the video, a human checks it, delivered in 48h.
+- **AI strategy and roadmap**: capability assessment, opportunity mapping, adoption plan with ROI targets
+- **Business process optimization**: automated workflows with n8n and custom scripts
+- **Agentic workflows**: AI agents and RAG systems that automate complex tasks
+- **Data science**: prediction models, clustering, recommendation engines, custom analytics
+- **AI training and enablement**: LLM workshops and hands-on team upskilling
+- **Change management**: structured adoption support, stakeholder alignment
+- **AI audit**: evaluate existing initiatives, find the gaps, fix governance
+- **Data infrastructure**: pipelines, warehouses, ETL
 
-## How the production works
+Clients range from startups to corporations, across fintech, e-commerce, manufacturing, healthcare and logistics.
 
-The interesting part is not one model, it's the pipeline. Every video goes through:
+## The part I own: the production engine
+
+The agency's delivery capacity rests on an internal content and automation engine I built. This is the part most agencies don't have.
 
 ```mermaid
 graph LR
-    B[Brief client] --> S[Script generation]
+    B[Brief or trigger] --> S[Script generation]
     S --> V[Voiceover TTS]
     V --> G[Visual generation]
     G --> A[Assembly + captions]
@@ -24,33 +35,28 @@ graph LR
     H --> D[Delivery]
 ```
 
-- Script and structure: LLM generation from the client brief, with a per-vertical template library
-- Voiceover: neural TTS with French voice selection
-- Visuals: local FLUX image generation on a 4070 Ti, video synthesis for animated segments
-- Assembly: programmatic editing, captions burned in
-- Human QA: every video checked before delivery. The AI does the 90%, the human pass is what makes it shippable
+- **Video content pipeline**: from brief to finished video unattended. 10 videos per day capacity across multiple channels, running daily on local GPU hardware. Marginal cost per video close to zero.
+- **Agentic workflows in production**: the engine runs on cron orchestration with checkpoint/resume, GPU locking between jobs, and consolidated run reports. The same patterns I deploy for clients.
+- **Local-first generation**: FLUX image generation and TTS on a consumer GPU (4070 Ti), no per-video API spend. Clients get the output; the cost structure stays ours.
+
+The engine is what lets the agency quote 48h delivery against agency timelines measured in weeks.
 
 ## Stack
 
 | Layer | Tech |
 |---|---|
-| Site | Next.js 16 on Vercel |
+| Site | Next.js on Vercel |
 | Edge | Cloudflare Workers, D1, KV |
 | Production | ComfyUI, FLUX, TTS pipeline on local GPU |
-| Ops | Automated cron pipelines, 10+ videos/day capacity |
+| Automation | n8n, cron-driven batch systems |
+| Ops | Unattended daily runs, consolidated reporting |
 
 ## What I built
 
-- The whole production pipeline, running daily on local hardware (zero marginal GPU cost)
-- The agency site with lead capture on the Cloudflare edge stack
-- The cron-driven batch system that produces content for multiple channels unattended
-
-## Results
-
-- Pipeline runs daily, 10 videos per day capacity, unattended
-- Marginal cost per video close to zero (local generation, no per-video API spend)
-- 48h brief-to-delivery, competing against agency timelines of 2-3 weeks
+- The whole production engine: research-to-delivery video pipeline, running daily, unattended
+- The agency site and lead capture on the Cloudflare edge stack
+- The agentic workflow patterns we sell, proven on our own operations first. Every automation we deploy for a client ran here before it ran anywhere else.
 
 ---
 
-*This is a showcase repo: architecture and results only. The production pipeline source stays private.*
+*This is a showcase repo: architecture and results only. The production engine source stays private.*
