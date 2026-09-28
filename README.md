@@ -21,7 +21,7 @@ Eight service lines, one common thread: business first, technology second.
 
 Clients range from startups to corporations, across fintech, e-commerce, manufacturing, healthcare and logistics.
 
-## The part I own: the production engine
+## The part we own that matters: the production engine that can be applied to any process
 
 The agency's delivery capacity rests on an internal content and automation engine I built. This is the part most agencies don't have.
 
