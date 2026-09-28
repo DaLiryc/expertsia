@@ -188,6 +188,17 @@ export default function CommerceAgentiquePage() {
             <p className='text-xl text-[#b8b3ab] max-w-2xl leading-relaxed font-light'>
               Le 21 septembre 2026, Shopify a activé le paiement par agents IA (Meta Muse) par défaut. Le 22, Google a enrôlé les produits Shopify éligibles dans son checkout natif AI Mode et Gemini. Vous restez responsable des ventes, de la fraude et des chargebacks. On audite votre exposition en 5 jours.
             </p>
+            <div className='mt-8 flex flex-wrap items-center gap-6'>
+              <a
+                href='https://cal.com/expertsia/audit'
+                className='inline-block rounded-lg bg-[#e07b39] px-6 py-3 font-semibold text-[#0a0f0a] hover:-translate-y-0.5 transition-transform'
+              >
+                Réserver mon diagnostic →
+              </a>
+              <a href='#offres' className='text-sm text-[#b8b3ab] hover:text-[#e07b39] transition-colors'>
+                Voir les offres
+              </a>
+            </div>
           </header>
 
           {/* Timeline */}
@@ -218,14 +229,19 @@ export default function CommerceAgentiquePage() {
           </section>
 
           {/* Offers */}
-          <section className='mb-16'>
+          <section id='offres' className='mb-16'>
             <h2 className='text-3xl font-bold mb-8'>Nos offres gouvernance agentique</h2>
             <div className='flex flex-col gap-6'>
               {tiers.map((tier, i) => (
                 <div
                   key={i}
-                  className={`bg-[#111a11] border rounded-2xl p-8 ${tier.best ? 'border-[#e07b39]/40' : 'border-[#2a3a2a]'}`}
+                  className={`relative bg-[#111a11] border rounded-2xl p-8 ${tier.best ? 'border-[#e07b39]/60' : 'border-[#2a3a2a]'}`}
                 >
+                  {tier.best && (
+                    <span className='absolute -top-3 left-8 rounded-full border border-[#e07b39]/40 bg-[#0a0f0a] px-3 py-1 text-xs font-semibold text-[#e07b39]'>
+                      Recommandé
+                    </span>
+                  )}
                   <div className='flex items-start justify-between mb-6'>
                     <div>
                       <h3 className='text-2xl font-bold mb-1'>{tier.name}</h3>
