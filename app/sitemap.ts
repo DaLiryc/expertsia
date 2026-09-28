@@ -80,19 +80,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Agentic commerce governance landing page (FR+EN — new offer, high commercial priority)
-  const agenticRoutes = locales.map((locale) => ({
-    url: `${BASE_URL}/${locale}/commerce-agentique`,
-    lastModified,
-    changeFrequency: 'monthly' as const,
-    priority: 0.9,
-    alternates: {
-      languages: {
-        fr: `${BASE_URL}/fr/commerce-agentique`,
-        en: `${BASE_URL}/en/commerce-agentique`,
+  // Agentic commerce governance landing pages (separate slugs per locale, SEO-native)
+  const agenticRoutes = [
+    {
+      url: `${BASE_URL}/fr/commerce-agentique`,
+      lastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+      alternates: {
+        languages: {
+          fr: `${BASE_URL}/fr/commerce-agentique`,
+          en: `${BASE_URL}/en/agentic-commerce`,
+        },
       },
     },
-  }));
+    {
+      url: `${BASE_URL}/en/agentic-commerce`,
+      lastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+      alternates: {
+        languages: {
+          fr: `${BASE_URL}/fr/commerce-agentique`,
+          en: `${BASE_URL}/en/agentic-commerce`,
+        },
+      },
+    },
+  ];
 
   // Blog posts
   const allPosts = getAllPosts();
