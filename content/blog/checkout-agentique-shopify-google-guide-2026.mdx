@@ -1,0 +1,58 @@
+---
+title: "Checkout agentique Shopify et Google : votre boutique est-elle concernée ? (guide 2026)"
+description: "Shopify et Google ont activé le checkout par agents IA sur des centaines de milliers de boutiques, par défaut. Ce qui change concrètement, qui est responsable en cas de contestation, et les réglages à vérifier cette semaine."
+date: "2026-09-28"
+category: "E-commerce"
+readingTime: "7 min"
+locale: "fr"
+author: "Cyril Marchand"
+---
+
+## Un réglage a changé pendant que vous travailliez
+
+Le 21 septembre 2026, Shopify a activé le paiement par agents IA sur les boutiques éligibles. Concrètement : l'agent Meta Muse peut chercher un produit dans le catalogue Shopify, le proposer à son utilisateur, et finaliser l'achat via Shop Pay sans que celui-ci n'ouvre jamais votre site. Le réglage est actif par défaut. Pour le désactiver, il faut aller dans Shopify Admin, Sales channels, Agentic, et couper vous-même le canal.
+
+Trois jours plus tard, Google a fait la même chose de son côté. Les marchands concernés ont reçu un email Merchant Center le 22 septembre : les produits éligibles sont automatiquement inclus dans le checkout natif de Google, disponible dans AI Mode et Gemini. La phrase clé de cet email mérite d'être relue : « there's nothing for you to set up ». Google vous dit qu'il n'y a rien à configurer. C'est exactement le problème : la décision a été prise pour vous, et elle engage votre responsabilité.
+
+Si vous exploitez une boutique en ligne sur Shopify, [l'automatisation IA ne se limite plus au service client](/fr/blog/automatiser-entreprise-ia-2026) : elle touche maintenant le tunnel d'achat lui-même. Ce guide détaille ce qui change, qui paie quand ça tourne mal, et les vérifications à faire cette semaine.
+
+## Comment fonctionne concrètement le checkout agentique
+
+Le parcours ressemble à ça. Un utilisateur demande à son agent IA (Muse de Meta, Gemini de Google) de lui trouver un produit. L'agent interroge le catalogue marchand via un protocole standardisé (UCP côté Google, Shopify Catalog côté Shopify), compare les options, et présente une recommandation. Quand l'utilisateur valide, l'agent déclenche le paiement avec les identifiants stockés (Shop Pay, Google Pay). La commande arrive dans votre admin Shopify comme une commande classique, marquée du canal d'origine.
+
+Deux niveaux d'exposition existent, et il faut les distinguer :
+
+- **La découverte.** Vos produits apparaissent dans les réponses des agents IA. Le client est redirigé vers votre site pour acheter. Vous gardez la relation, l'up-sell, le tracking.
+- **Le checkout natif.** L'achat se termine dans l'interface de l'agent (Gemini, AI Mode, Muse). Le client ne voit jamais votre site. Vous perdez la session de navigation, mais vous restez le vendeur.
+
+La découverte est plutôt une opportunité : le trafic issu des recherches IA vers les boutiques Shopify a été multiplié par 8 sur un an, et les commandes issues de ces recherches par 13. Le checkout natif est une décision plus lourde, parce qu'il change qui détient l'expérience d'achat sans changer qui porte le risque.
+
+## Le point que personne ne traite : la contestation
+
+Quand un client humain achète et conteste ensuite le paiement, vous défendez le chargeback avec des preuves : historique de session, géolocalisation, empreinte d'appareil, échanges de mails. Dans un parcours agentique, ces preuves n'existent presque plus. L'appareil qui a passé la commande est le serveur de l'agent, pas le téléphone de votre client. Le parcours de navigation a eu lieu dans une conversation, pas sur votre site. Et l'autorisation de payer repose sur un prompt que le client a tapé plus tôt dans la journée, dont vous n'avez pas copie.
+
+Le cadre juridique n'a pas rattrapé. Une enquête de Darwinium auprès de 500 professionnels du risque et de la fraude aux États-Unis et au Royaume-Uni ne trouve aucun consensus sur qui doit payer quand un agent se trompe : 39% désignent le fournisseur de l'IA, 20% le client, 14% le marchand, 11% la banque. Aucun réseau bancaire n'avait publié de règle de contestation spécifique aux achats agentiques à la mi-2026. Le CFPB américain a confirmé en janvier que ces achats relèvent du régime de dispute existant, ce qui veut dire en clair : le marchand reste le vendeur de record, et le premier perdant d'un désaccord est lui.
+
+En Europe, le texte PSD3 a été voté mais renvoie explicitement les paiements agentiques à une révision ultérieure. Le vide durera. Les seules protections qui existent sont privées et partielles : Amex couvre les erreurs des agents enregistrés depuis avril, Visa et Mastercard construisent leurs frameworks de tokens. Bien pour les porteurs de carte américains, rien de contraignant pour le marchand.
+
+À cela s'ajoute un problème plus discret : la visibilité. Selon l'enquête PYMNTS/Visa auprès de 1 185 marchands, seuls 23% savent distinguer le trafic IA du trafic humain dans leurs analytics. Si un agent achète chez vous et que vous ne le savez pas, vous ne pouvez ni mesurer le canal, ni préparer la défense d'une contestation qui tombera avec des preuves différentes de celles que vos procédures attendent. Et seuls 11% des petits marchands sont aujourd'hui prêts pour ce canal, alors que 68% en attendent au moins 5% de leurs ventes d'ici deux ans.
+
+## Ce qu'il faut vérifier cette semaine
+
+Trois vérifications, dans l'ordre, prennent moins d'une heure.
+
+**1. Savoir où vous en êtes.** Dans Shopify Admin, ouvrez Sales channels puis Agentic. Regardez quels canaux sont actifs, et pour chacun si le checkout direct est activé ou seulement la découverte. Côté Google, cherchez dans votre boîte l'email Merchant Center du 22 septembre : il liste ce qui a été matché.
+
+**2. Décider canal par canal.** La question n'est pas « tout couper ou tout garder ». La découverte capte un trafic en forte croissance et redirige vers votre site : pour la plupart des boutiques, elle se garde. Le checkout natif demande que vos procédures de contestation, vos CGV et votre analytics sachent traiter une commande sans session de navigation. Tant qu'ils ne le savent pas, couper le checkout natif sur les canaux concernés est la position raisonnable, et la découverte reste active.
+
+**3. Préparer ce qui manque.** Trois chantiers rendent le checkout natif défendable : des clauses dans vos CGV qui encadrent l'achat par mandataire, un playbook de contestation adapté (quelles preuves demander à Shopify, à Google, au PSP, et sous quelle forme), et une ségrégation du trafic agent dans vos analytics pour distinguer ces commandes dès qu'elles arrivent.
+
+Si vous voulez aller plus vite, [notre audit de gouvernance agentique](/fr/commerce-agentique) couvre ces trois chantiers en 5 jours, avec un plan d'action canal par canal. La grille complète des interventions est sur [la page tarifs](/fr/tarifs), et le [diagnostic gratuit de 15 minutes](https://cal.com/expertsia/audit) permet de savoir si votre boutique est concernée avant d'engager quoi que ce soit.
+
+## Faut-il paniquer ? Non. Faut-il agir ? Oui.
+
+Le commerce agentique est une bonne nouvelle déguisée en problème administratif. Les marques qui structureront leur gouvernance maintenant capteront un canal de vente en croissance de 8 à 13× par an, avec des procédures prêtes quand les premières contestations arriveront. Les autres le feront après le premier chargeback perdu, dans l'urgence, quand les preuves manquent.
+
+Les grandes plateformes et les grands cabinets productiseront ce type d'audit dans les 6 à 18 mois. En attendant, c'est un chantier de gouvernance comme les autres : des réglages à vérifier, des procédures à écrire, un analytics à séparer. Une semaine de travail sérieux, et le sujet est clos pour de bon.
+
+*Cet article existe aussi [en anglais](/en/blog/agentic-checkout-shopify-google-guide-2026).*

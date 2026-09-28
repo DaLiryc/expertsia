@@ -1,0 +1,58 @@
+---
+title: "Agentic checkout on Shopify and Google: is your store affected? (2026 guide)"
+description: "Shopify and Google enabled AI-agent checkout on hundreds of thousands of stores, by default. What actually changed, who is liable when a purchase gets disputed, and the settings to check this week."
+date: "2026-09-28"
+category: "E-commerce"
+readingTime: "7 min"
+locale: "en"
+author: "Cyril Marchand"
+---
+
+## A setting changed while you were working
+
+On September 21, 2026, Shopify turned on AI-agent payments for eligible stores. In practice: Meta's Muse agent can search the Shopify catalog, propose a product to its user, and complete the purchase through Shop Pay without that user ever opening your site. The setting is on by default. To turn it off, you have to go into Shopify Admin, Sales channels, Agentic, and switch the channel off yourself.
+
+Three days later, Google did the same. Affected merchants received a Merchant Center email on September 22: eligible products are automatically included in Google's native checkout, available in AI Mode and Gemini. One line of that email deserves a second read: "there's nothing for you to set up". Google is telling you there is nothing to configure. That is precisely the problem: the decision was made for you, and it binds your liability.
+
+If you run an online store on Shopify, [AI automation no longer stops at customer support](/en/blog/ai-agent-vps-24-7-2026): it now reaches the checkout itself. This guide covers what changed, who pays when it goes wrong, and what to check this week.
+
+## How agentic checkout actually works
+
+The journey looks like this. A user asks their AI agent (Meta's Muse, Google's Gemini) to find them a product. The agent queries the merchant catalog through a standardized protocol (UCP on Google's side, Shopify Catalog on Shopify's), compares options, and presents a recommendation. When the user confirms, the agent triggers payment with stored credentials (Shop Pay, Google Pay). The order lands in your Shopify admin like any other order, tagged with its origin channel.
+
+Two levels of exposure exist, and they should not be confused:
+
+- **Discovery.** Your products appear in AI agent answers. The customer is redirected to your site to buy. You keep the relationship, the up-sell, the tracking.
+- **Native checkout.** The purchase completes inside the agent's interface (Gemini, AI Mode, Muse). The customer never sees your site. You lose the browsing session, but you are still the seller.
+
+Discovery is mostly an opportunity: AI-driven traffic to Shopify stores grew 8x year over year, and orders from AI searches grew 13x. Native checkout is a heavier decision, because it changes who owns the buying experience without changing who carries the risk.
+
+## The part nobody covers: the dispute
+
+When a human customer buys and later disputes the payment, you defend the chargeback with evidence: session history, geolocation, device fingerprint, email threads. In an agentic journey, that evidence mostly stops existing. The device that placed the order is the agent's server, not your customer's phone. The browsing happened in a conversation, not on your site. And the payment authorization rests on a prompt the customer typed earlier that day, of which you hold no copy.
+
+The legal framework has not caught up. A Darwinium survey of 500 fraud and risk professionals in the US and UK found no consensus on who pays when an agent gets it wrong: 39% name the AI provider, 20% the customer, 14% the merchant, 11% the bank. No card network had published an agent-specific dispute rule as of mid-2026. The US CFPB confirmed in January that these purchases fall under the existing dispute regime, which in plain terms means: the merchant stays merchant of record, and the first loser of a disagreement is the merchant.
+
+In Europe, PSD3 passed but explicitly defers agentic payments to a later review. The vacuum will last. The only protections in place are private and partial: Amex has covered registered-agent errors since April, and Visa and Mastercard are building their token frameworks. Good news for US cardholders, nothing binding for merchants.
+
+Add a quieter problem on top: visibility. According to the PYMNTS/Visa survey of 1,185 merchants, only 23% can tell AI traffic from human traffic in their analytics. If an agent buys from you and you cannot see it, you can neither measure the channel nor prepare the defense of a dispute that will arrive with evidence your procedures do not expect. And only 11% of small merchants are ready for this channel today, while 68% expect it to bring at least 5% of their sales within two years.
+
+## What to check this week
+
+Three checks, in order, take under an hour.
+
+**1. Know where you stand.** In Shopify Admin, open Sales channels, then Agentic. Look at which channels are active, and for each one whether direct checkout is on or discovery only. On Google's side, search your inbox for the September 22 Merchant Center email: it lists what got matched.
+
+**2. Decide channel by channel.** The question is not "switch it all off or leave it all on". Discovery captures fast-growing traffic and redirects to your site: for most stores, keep it. Native checkout requires that your dispute procedures, your terms, and your analytics know how to handle an order with no browsing session. Until they do, switching native checkout off on the affected channels is the reasonable position, with discovery left on.
+
+**3. Build what is missing.** Three workstreams make native checkout defensible: clauses in your terms covering purchases made through an agent, a dispute playbook adapted to agentic orders (which evidence to request from Shopify, Google, and your PSP, and in what form), and agent-traffic segregation in your analytics so these orders stand out the moment they arrive.
+
+If you want to move faster, [our agentic governance audit](/en/agentic-commerce) covers these three workstreams in 5 days, with a channel-by-channel action plan. The full service grid is on [our pricing page](/en/pricing), and the [free 15-minute diagnostic](https://cal.com/expertsia/audit) tells you whether your store is affected before any commitment.
+
+## Should you panic? No. Should you act? Yes.
+
+Agentic commerce is good news dressed up as an administrative problem. Brands that structure their governance now will capture a sales channel growing 8 to 13x a year, with procedures ready when the first disputes land. Everyone else will do it after their first lost chargeback, in a hurry, with the evidence missing.
+
+Big platforms and Big-Four firms will productize this kind of audit within 6 to 18 months. Until then, it is a governance project like any other: settings to check, procedures to write, analytics to separate. One week of serious work, and the topic is closed for good.
+
+*This post is also available [in French](/fr/blog/checkout-agentique-shopify-google-guide-2026).*
