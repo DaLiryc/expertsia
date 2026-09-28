@@ -29,6 +29,7 @@ export default function SiteFooter({ locale = 'fr' }: { locale?: string }) {
               <li><a href="/fr/tarifs" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">Tarifs</a></li>
               <li><a href="/fr/consultant-ia-bordeaux" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">Consultant IA Bordeaux</a></li>
               <li><a href="/fr/financer-son-projet-ia" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">{fr ? 'Financer son projet IA' : 'Funding'}</a></li>
+              <li><a href="/fr/commerce-agentique" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">{fr ? 'Commerce agentique' : 'Agentic commerce'}</a></li>
               <li><a href="/fr/livre" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">{fr ? 'Notre livre' : 'Our book'}</a></li>
             </ul>
           </div>

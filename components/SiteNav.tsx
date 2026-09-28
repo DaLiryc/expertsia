@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { href: '/fr/blog', labelFr: 'Blog', labelEn: 'Blog', raw: true },
   { href: '/fr/tarifs', labelFr: 'Tarifs', labelEn: 'Pricing', raw: true },
   { href: '/fr/financer-son-projet-ia', labelFr: 'Financement IA', labelEn: 'Funding', raw: true },
+  { href: '/fr/commerce-agentique', labelFr: 'Commerce agentique', labelEn: 'Agentic commerce', raw: true },
 ];
 
 export default function SiteNav({ locale = 'fr' }: { locale?: string }) {

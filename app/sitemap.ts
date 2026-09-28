@@ -80,6 +80,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // Agentic commerce governance landing page (FR+EN — new offer, high commercial priority)
+  const agenticRoutes = locales.map((locale) => ({
+    url: `${BASE_URL}/${locale}/commerce-agentique`,
+    lastModified,
+    changeFrequency: 'monthly' as const,
+    priority: 0.9,
+    alternates: {
+      languages: {
+        fr: `${BASE_URL}/fr/commerce-agentique`,
+        en: `${BASE_URL}/en/commerce-agentique`,
+      },
+    },
+  }));
+
   // Blog posts
   const allPosts = getAllPosts();
   const blogPostRoutes = allPosts.map((post) => ({
@@ -89,5 +103,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...aboutRoutes, ...fundingRoutes, ...bookRoutes, ...bookingRoutes, ...pricingRoutes, ...localRoutes, ...blogHubRoutes, ...blogPostRoutes];
+  return [...staticRoutes, ...aboutRoutes, ...fundingRoutes, ...bookRoutes, ...bookingRoutes, ...pricingRoutes, ...localRoutes, ...agenticRoutes, ...blogHubRoutes, ...blogPostRoutes];
 }
