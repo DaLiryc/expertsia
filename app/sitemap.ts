@@ -60,13 +60,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // Pricing page (FR only — top commercial page, was missing from sitemap)
+  // Pricing page (FR top commercial page + EN pricing page)
   const pricingRoutes = [
     {
       url: `${BASE_URL}/fr/tarifs`,
       lastModified,
       changeFrequency: 'monthly' as const,
       priority: 0.9,
+      alternates: {
+        languages: {
+          fr: `${BASE_URL}/fr/tarifs`,
+          en: `${BASE_URL}/en/pricing`,
+        },
+      },
+    },
+    {
+      url: `${BASE_URL}/en/pricing`,
+      lastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+      alternates: {
+        languages: {
+          fr: `${BASE_URL}/fr/tarifs`,
+          en: `${BASE_URL}/en/pricing`,
+        },
+      },
     },
   ];
 

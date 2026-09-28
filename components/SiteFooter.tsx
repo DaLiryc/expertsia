@@ -26,7 +26,7 @@ export default function SiteFooter({ locale = 'fr' }: { locale?: string }) {
               {fr ? 'Services' : 'Services'}
             </h3>
             <ul className="flex list-none flex-col gap-3 text-sm">
-              <li><a href="/fr/tarifs" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">Tarifs</a></li>
+              <li><a href={fr ? '/fr/tarifs' : '/en/pricing'} className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">{fr ? 'Tarifs' : 'Pricing'}</a></li>
               <li><a href="/fr/consultant-ia-bordeaux" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">Consultant IA Bordeaux</a></li>
               <li><a href="/fr/financer-son-projet-ia" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">{fr ? 'Financer son projet IA' : 'Funding'}</a></li>
               <li><a href="/fr/commerce-agentique" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">{fr ? 'Commerce agentique' : 'Agentic commerce'}</a></li>
@@ -40,7 +40,7 @@ export default function SiteFooter({ locale = 'fr' }: { locale?: string }) {
             <ul className="flex list-none flex-col gap-3 text-sm">
               <li><a href="/fr/blog" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">Blog</a></li>
               <li><a href="/fr/about" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">{fr ? 'À propos' : 'About'}</a></li>
-              <li><a href="/fr/book" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">{fr ? 'Audit gratuit' : 'Free audit'}</a></li>
+              <li><a href={fr ? '/fr/book' : '/en/book'} className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors">{fr ? 'Audit gratuit' : 'Free audit'}</a></li>
               <li>
                 <a href="https://www.linkedin.com/in/marchandcyril/" className="text-[#b8b3ab] hover:text-[#e07b39] transition-colors" rel="me noopener">
                   LinkedIn

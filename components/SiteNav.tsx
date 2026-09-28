@@ -1,11 +1,19 @@
 import Link from 'next/link';
 import Logo from './Logo';
 
-const NAV_LINKS = [
+type NavLink = {
+  href: string;
+  labelFr: string;
+  labelEn: string;
+  raw?: boolean;
+  enHref?: string;
+};
+
+const NAV_LINKS: NavLink[] = [
   { href: '/#approach', labelFr: 'Approche', labelEn: 'Approach' },
   { href: '/#services', labelFr: 'Services', labelEn: 'Services' },
   { href: '/fr/blog', labelFr: 'Blog', labelEn: 'Blog', raw: true },
-  { href: '/fr/tarifs', labelFr: 'Tarifs', labelEn: 'Pricing', raw: true },
+  { href: '/fr/tarifs', labelFr: 'Tarifs', labelEn: 'Pricing', raw: true, enHref: '/en/pricing' },
   { href: '/fr/financer-son-projet-ia', labelFr: 'Financement IA', labelEn: 'Funding', raw: true },
   { href: '/fr/commerce-agentique', labelFr: 'Commerce agentique', labelEn: 'Agentic commerce', raw: true },
 ];
@@ -26,7 +34,7 @@ export default function SiteNav({ locale = 'fr' }: { locale?: string }) {
           {NAV_LINKS.map((l) => (
             <a
               key={l.href}
-              href={l.href}
+              href={fr ? l.href : (l.enHref ?? l.href)}
               className="text-sm text-[#b8b3ab] hover:text-[#e07b39] transition-colors"
             >
               {fr ? l.labelFr : l.labelEn}
@@ -35,7 +43,7 @@ export default function SiteNav({ locale = 'fr' }: { locale?: string }) {
         </div>
         <div className="flex items-center gap-3">
           <a
-            href="/fr/book"
+            href={fr ? '/fr/book' : '/en/book'}
             className="rounded-lg bg-[#e07b39] px-5 py-2 text-sm font-semibold text-[#0a0f0a] hover:-translate-y-0.5 transition-transform"
           >
             {fr ? 'Audit gratuit' : 'Free audit'}
