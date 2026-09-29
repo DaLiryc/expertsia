@@ -90,11 +90,11 @@ const events = [
 const risks = [
   {
     title: 'Responsabilité à blanc',
-    body: 'Aucune règle de dispute spécifique aux achats agentiques côté réseaux bancaires à la mi-2026. Une étude Darwinium auprès de 500 professionnels du risque ne trouve aucun consensus sur qui doit payer quand l\'agent se trompe.',
+    body: 'À mi-2026, les réseaux bancaires n\'avaient publié aucune règle de dispute pour les achats agentiques. En attendant, le résultat par défaut ne change pas : en tant que marchand d\'enregistrement, la vente, la fraude et le chargeback restent de votre côté de la table.',
   },
   {
     title: 'Chargebacks indéfendables',
-    body: 'Dans un parcours agentique, pas d\'historique de clics, pas de données comportementales, et l\'empreinte d\'appareil est celle de l\'agent, pas de votre client. Sans préparation, un chargeback agentique se perd par défaut.',
+    body: 'Visa et Mastercard confirment que vos droits de dispute s\'appliquent toujours. Le problème est ailleurs : vos preuves de défense (historique de clics, données comportementales) pointent vers le serveur de l\'agent, pas vers votre client. Droits intacts, preuves disparues.',
   },
   {
     title: 'Trafic invisible',

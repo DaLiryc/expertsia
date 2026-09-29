@@ -89,11 +89,11 @@ const events = [
 const risks = [
   {
     title: 'Blank-slate liability',
-    body: 'No card network had an agent-specific dispute rule as of mid-2026. A Darwinium survey of 500 risk professionals found no consensus on who pays when the agent gets it wrong.',
+    body: 'Card networks had published no agent-specific dispute rules as of mid-2026. Until they do, the default outcome is unchanged: as merchant of record, the sale, the fraud and the chargeback stay on your side of the table.',
   },
   {
     title: 'Undefendable chargebacks',
-    body: 'In an agentic journey there is no click trail, no behavioral data, and the device fingerprint belongs to the agent, not your customer. Without preparation, an agentic chargeback is lost by default.',
+    body: 'Visa and Mastercard confirm your dispute rights still apply. The problem sits elsewhere: your defense evidence (click trail, behavioral data) points at the agent\'s server, not at your customer. Rights intact, proof gone.',
   },
   {
     title: 'Invisible traffic',
