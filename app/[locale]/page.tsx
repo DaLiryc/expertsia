@@ -45,6 +45,7 @@ export default async function Home({
           {locale === 'fr' && (
             <li><a href="/fr/financer-son-projet-ia" className="nav-link text-[#e07b39]">Financement IA</a></li>
           )}
+          <li><a href={locale === 'fr' ? '/fr/commerce-agentique' : '/en/agentic-commerce'} className="nav-link">{locale === 'fr' ? 'Commerce agentique' : 'Agentic commerce'}</a></li>
           <li><a href="#contact" className="nav-link">{t.nav.contact}</a></li>
           <li>
             <a
