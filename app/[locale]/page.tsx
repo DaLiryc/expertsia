@@ -18,6 +18,47 @@ const trustBadges = [
   { icon: MapPin, fr: '100% distanciel ou sur-place', en: '100% remote or on-site' },
 ];
 
+// FAQ de la home (Microsoft AEO/GEO pilier 1+2) : visible en page ET exposee
+// en FAQPage schema. Les reponses reprennent les faits des pages tarifs.
+const homeFaq = {
+  fr: [
+    {
+      q: 'Quels services propose ExpertsIA ?',
+      a: 'ExpertsIA couvre la chaîne complète : audit IA de vos processus, automatisation clé en main (n8n, MCP, agents LLM), RAG sur vos données métier, et formation de vos équipes.',
+    },
+    {
+      q: 'Combien coûte une mission ExpertsIA ?',
+      a: "L'audit IA démarre à 1 200 € HT, l'automatisation Starter à 2 500 € HT, le Pack Growth à 6 000 € HT. La formation est à partir de 1 500 € HT par jour. Tous les tarifs sont publics sur la page tarifs.",
+    },
+    {
+      q: 'Où intervient ExpertsIA ?',
+      a: 'Basée à Bordeaux, ExpertsIA intervient partout en France. 80% des missions se font à distance, avec des ateliers sur site quand le projet le justifie.',
+    },
+    {
+      q: "Faut-il changer d'outils pour travailler avec ExpertsIA ?",
+      a: 'Non. ExpertsIA travaille dans vos outils existants : Microsoft 365, Google Workspace, Notion, n8n, Make, HubSpot, votre CRM ou ERP. On augmente ce qui existe, on ne remplace pas.',
+    },
+  ],
+  en: [
+    {
+      q: 'What services does ExpertsIA offer?',
+      a: 'ExpertsIA covers the full chain: AI audit of your processes, turnkey automation (n8n, MCP, LLM agents), RAG on your business data, and team training.',
+    },
+    {
+      q: 'How much does an ExpertsIA engagement cost?',
+      a: 'AI audits start at €1,200 ex-VAT, Starter automation at €2,500, the Growth Pack at €6,000. Training starts at €1,500 per day. All pricing is public on the pricing page.',
+    },
+    {
+      q: 'Where does ExpertsIA operate?',
+      a: 'Based in Bordeaux, ExpertsIA works with clients across France. 80% of engagements run remotely, with on-site workshops when the project justifies it.',
+    },
+    {
+      q: 'Do we need to change our tools to work with ExpertsIA?',
+      a: 'No. ExpertsIA works inside your existing tools: Microsoft 365, Google Workspace, Notion, n8n, Make, HubSpot, your CRM or ERP. We extend what you have, we do not replace it.',
+    },
+  ],
+};
+
 export default async function Home({
   params,
 }: {
@@ -25,9 +66,26 @@ export default async function Home({
 }) {
   const { locale } = await params;
   const t = dictionaries[locale as Locale] || dictionaries.en;
+  const faqItems = homeFaq[locale as 'fr' | 'en'] || homeFaq.en;
+
+  // FAQPage schema (Microsoft AEO/GEO pilier 1): miroir exact de la section
+  // FAQ visible ci-dessous.
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
 
   return (
     <div className="min-h-screen relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Noise texture overlay */}
       <div className="noise-overlay" aria-hidden="true" />
 
@@ -214,6 +272,25 @@ export default async function Home({
               </div>
             );
           })}
+        </div>
+      </section>
+
+      <div className="section-divider" aria-hidden="true" />
+
+      {/* FAQ */}
+      <section id="faq" className="py-16 md:py-20 px-6 md:px-10 max-w-3xl mx-auto">
+        <div className="text-center mb-10">
+          <h2 className="heading-2 mb-4">{locale === 'fr' ? 'Questions fréquentes' : 'Frequently asked questions'}</h2>
+        </div>
+        <div className="space-y-4">
+          {faqItems.map((f) => (
+            <details key={f.q} className="rounded-xl border border-[#2a3a2a] bg-[#111a11]/60 p-6">
+              <summary className="cursor-pointer font-semibold text-[#f5f0e8] list-none [&::-webkit-details-marker]:hidden">
+                <span className="text-[#e07b39] mr-2">→</span>{f.q}
+              </summary>
+              <p className="mt-3 text-[#b8b3ab]">{f.a}</p>
+            </details>
+          ))}
         </div>
       </section>
 

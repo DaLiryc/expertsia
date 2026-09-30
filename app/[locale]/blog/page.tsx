@@ -47,8 +47,32 @@ export default async function BlogPage({
   const posts = getAllPosts(locale);
   const categories = getCategories(locale);
 
+  // ItemList + Article schema (Microsoft AEO/GEO pilier 1): le sommaire du
+  // blog expose chaque post en entite citable par Copilot.
+  const blogItemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: locale === 'fr' ? 'Articles du blog ExpertsIA' : 'ExpertsIA blog posts',
+    itemListElement: posts.map((post, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${BASE_URL}/${locale}/blog/${post.slug}`,
+      item: {
+        '@type': 'Article',
+        headline: post.title,
+        description: post.description,
+        datePublished: post.date,
+        url: `${BASE_URL}/${locale}/blog/${post.slug}`,
+      },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0f0a]">
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogItemListSchema) }}
+      />
       <SiteNav locale={locale} />
 
       <div className="max-w-4xl mx-auto px-10 py-20">

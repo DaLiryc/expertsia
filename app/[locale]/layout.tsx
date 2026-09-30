@@ -98,6 +98,17 @@ export default async function LocaleLayout({
     inLanguage: locale,
   };
 
+  // Brand schema (Microsoft AEO/GEO pilier 1) — entite brand separee.
+  const brandSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Brand',
+    name: 'ExpertsIA',
+    url: BASE_URL,
+    logo: `${BASE_URL}/logo.png`,
+    description:
+      'ExpertsIA is an AI consulting agency based in Bordeaux, France, helping SMBs audit processes, deploy agentic automations, and train their teams.',
+  };
+
   return (
     <html lang={locale}>
       <head>
@@ -113,6 +124,10 @@ export default async function LocaleLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(brandSchema) }}
         />
       </head>
       <body>{children}</body>
