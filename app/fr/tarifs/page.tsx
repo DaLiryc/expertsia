@@ -145,12 +145,28 @@ const FAQ = [
   },
 ];
 
+// JSON-LD: FAQPage (Microsoft AEO/GEO pilier 1) — les questions pricing
+// existantes exposees en structured data, citables par Copilot.
+const tarifsFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
 export default function TarifsPage() {
   return (
     <>
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(tarifsJsonLd) }}
+      />
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tarifsFaqJsonLd) }}
       />
       <SiteNav locale="fr" />
     <div className="min-h-screen bg-[#0a0f0a] text-[#f5f0e8]">
