@@ -75,7 +75,13 @@ export default function ContactForm({ locale, labels }: ContactFormProps) {
   }
 
   return (
-    <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
+    <form
+      className="max-w-md mx-auto"
+      onSubmit={handleSubmit}
+      data-mcp-action="request-ai-consultation"
+      data-mcp-description="Contact ExpertsIA, an AI consulting agency in France. Send a project inquiry; response within 24 business hours. No account required."
+      data-mcp-params='{"required": ["name", "email", "message"], "optional": ["company"], "note": "The hidden website field must stay empty."}'
+    >
       {/* Honeypot */}
       <input
         type="text"
@@ -97,6 +103,8 @@ export default function ContactForm({ locale, labels }: ContactFormProps) {
               type="text"
               name="name"
               required
+              data-mcp-param="name"
+              data-mcp-description="Your full name"
               className="form-input"
             />
           </div>
@@ -108,6 +116,8 @@ export default function ContactForm({ locale, labels }: ContactFormProps) {
               id="company"
               type="text"
               name="company"
+              data-mcp-param="company"
+              data-mcp-description="Your company or organization name (optional)"
               className="form-input"
             />
           </div>
@@ -122,6 +132,8 @@ export default function ContactForm({ locale, labels }: ContactFormProps) {
             type="email"
             name="email"
             required
+            data-mcp-param="email"
+            data-mcp-description="Your email address, used to reply to your inquiry"
             className="form-input"
           />
         </div>
@@ -135,6 +147,8 @@ export default function ContactForm({ locale, labels }: ContactFormProps) {
             name="message"
             required
             rows={5}
+            data-mcp-param="message"
+            data-mcp-description="Your project or question: what you want to automate, audit, or build with AI"
             className="form-input resize-y min-h-[120px]"
           />
         </div>

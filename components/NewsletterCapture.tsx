@@ -41,10 +41,19 @@ export default function NewsletterCapture({ locale }: NewsletterCaptureProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 w-full">
+    <form
+      onSubmit={handleSubmit}
+      className="flex gap-2 w-full"
+      data-mcp-action="subscribe-newsletter"
+      data-mcp-description="Subscribe to the ExpertsIA newsletter on AI automation for business. Occasional emails, unsubscribe anytime. No account required."
+      data-mcp-params='{"required": ["email"], "optional": []}'
+    >
       <input
         type="email"
         name="email"
+        aria-label={isFr ? 'Votre email professionnel' : 'Your work email'}
+        data-mcp-param="email"
+        data-mcp-description="Your email address"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder={isFr ? 'Votre email professionnel' : 'Your work email'}

@@ -1,0 +1,76 @@
+{
+  "version": "1.0",
+  "updated": "2026-10-08",
+  "site": {
+    "name": "ExpertsIA",
+    "url": "https://www.expertsia.dev",
+    "description": "AI consulting agency for startups, SMEs and corporations. AI strategy, agentic workflows, RAG systems, data science, training. Based in Bordeaux, France, working with clients across France and remotely.",
+    "locales": ["fr", "en"]
+  },
+  "actions": [
+    {
+      "id": "request-ai-consultation",
+      "name": "Request an AI consultation",
+      "description": "Send a project inquiry to ExpertsIA: AI audit, agentic automation, RAG systems, data science, or team training. Response within 24 business hours. No account required.",
+      "method": "POST",
+      "url": "https://www.expertsia.dev/#contact",
+      "api": {
+        "endpoint": "https://www.expertsia.dev/api/contact",
+        "contentType": "application/json"
+      },
+      "parameters": [
+        { "name": "name", "type": "string", "required": true, "description": "Your full name" },
+        { "name": "email", "type": "string", "format": "email", "required": true, "description": "Email address used to reply" },
+        { "name": "message", "type": "string", "required": true, "description": "Project or question: what to automate, audit, or build with AI" },
+        { "name": "company", "type": "string", "required": false, "description": "Company or organization name" },
+        { "name": "locale", "type": "string", "enum": ["fr", "en"], "required": false, "description": "Language of the reply" }
+      ],
+      "notes": "The hidden website field must stay empty (anti-spam honeypot)."
+    },
+    {
+      "id": "subscribe-newsletter",
+      "name": "Subscribe to the newsletter",
+      "description": "Subscribe to the ExpertsIA newsletter on AI automation for business. Occasional emails, unsubscribe anytime. No account required.",
+      "method": "POST",
+      "url": "https://www.expertsia.dev/#newsletter",
+      "api": {
+        "endpoint": "https://www.expertsia.dev/api/newsletter",
+        "contentType": "application/json"
+      },
+      "parameters": [
+        { "name": "email", "type": "string", "format": "email", "required": true, "description": "Your email address" },
+        { "name": "locale", "type": "string", "enum": ["fr", "en"], "required": false, "description": "Preferred language" }
+      ]
+    },
+    {
+      "id": "book-audit-call",
+      "name": "Book a free 15-minute AI audit call",
+      "description": "Book the free diagnostic call with Cyril Marchand via Cal.com to discuss an AI project before engaging.",
+      "method": "GET",
+      "url": "https://cal.com/expertsia/audit",
+      "external": true,
+      "parameters": []
+    },
+    {
+      "id": "request-site-teardown",
+      "name": "Request a paid AI site teardown",
+      "description": "Agent-callable API: structured 7-pass teardown of any website (clarity, pricing, SEO/GEO, CRO, differentiation, monetization, action plan). Paid via the x402 protocol (USDC on Base) or with an API key.",
+      "method": "POST",
+      "url": "https://www.expertsia.dev/api/teardown",
+      "api": {
+        "endpoint": "https://www.expertsia.dev/api/teardown",
+        "contentType": "application/json"
+      },
+      "payment": {
+        "protocol": "x402",
+        "price": "$0.05 per call",
+        "network": "base",
+        "fallback": "Authorization: Bearer <API key> for non-x402 integrations"
+      },
+      "parameters": [
+        { "name": "url", "type": "string", "format": "uri", "required": true, "description": "Full URL of the site to tear down, max 2048 chars" }
+      ],
+      "notes": "First call without payment returns HTTP 402 with payment terms. Retry with the X-PAYMENT header after settling."
+    }
+  ]
+}

@@ -29,3 +29,9 @@ Typical engagements: AI audit, agentic workflow builds, RAG systems, team traini
 - [Home EN](https://www.expertsia.dev/en) — English version
 - [Blog FR](https://www.expertsia.dev/fr/blog) — AI guides and case studies
 - [Tarifs FR](https://www.expertsia.dev/fr/tarifs) — pricing page
+
+## Machine-readable actions (WebMCP)
+- Action catalog: https://www.expertsia.dev/mcp-actions.json (declared in `<link rel="mcp-actions">`)
+- Declarative forms: contact (request-ai-consultation), newsletter (subscribe-newsletter) on the home page
+- Agent-callable API: POST https://www.expertsia.dev/api/teardown {"url": "https://example.com"} — structured 7-pass site teardown, paid via x402 (USDC on Base) or API key; first unpaid call returns HTTP 402 with terms
+- Booking: https://cal.com/expertsia/audit — free 15-minute AI audit call

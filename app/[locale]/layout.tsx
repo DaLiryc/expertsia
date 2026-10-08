@@ -116,6 +116,8 @@ export default async function LocaleLayout({
             Manual <link> tags removed Sep 2 — they duplicated the metadata
             ones (every hreflang appeared 2x per page, seo report finding). */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* WebMCP discovery: machine-readable list of agent-completable actions */}
+        <link rel="mcp-actions" href="/mcp-actions.json" />
         {/* Structured data */}
         <script
           type="application/ld+json"
