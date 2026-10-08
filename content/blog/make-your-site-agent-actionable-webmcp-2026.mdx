@@ -1,0 +1,74 @@
+---
+title: "WebMCP: make your website actionable by AI agents (2026 guide)"
+description: "The third wave of AI acquisition doesn't just read your site, it operates it. WebMCP, declarative forms, the mcp-actions.json file: what changes, what we measured on our own site, and the checks to run this week."
+date: "2026-10-08"
+category: "AI Agents"
+readingTime: "8 min"
+locale: "en"
+author: "Cyril Marchand"
+---
+
+## The third wave no longer sends you visitors
+
+Three waves have followed one another over twenty-five years. The first was SEO: getting found on Google. The second arrived with ChatGPT and Perplexity: getting cited in assistant answers, known as AEO or GEO. We covered both in other articles, including [our agentic checkout guide](/en/blog/agentic-checkout-shopify-google-guide-2026). The third is happening now and it changes the nature of the problem: AI agents no longer stop at reading your site, they operate it. They fill in your forms, create accounts, book slots, request quotes.
+
+For a B2B website, the question is no longer just "can an AI read me?" but "can an agent complete a task on my site without failing halfway through the form?" That is exactly what the WebMCP draft published by the W3C addresses, and it is the work we just ran on our own site. Here is what to know and what to put in place.
+
+## What WebMCP actually is
+
+WebMCP is a draft standard from the W3C (Web Machine Learning Community Group), co-edited by Microsoft and Google. The first public draft landed in February 2026, with regular revisions since, the latest in September. The status matters: it is a community draft, not a standard. But implementations are moving fast. Chrome opened an origin trial from version 149, Edge did the same with version 150, and Brave is experimenting with support in Leo. Mozilla is neutral, WebKit opposes it. In short: the work is real on Chrome and Edge, which together hold most of the market, but nothing is settled.
+
+The idea fits in one sentence: the site declares the actions it offers in a machine-readable format, instead of leaving the agent to guess by clicking around the DOM. Three mechanisms exist.
+
+The first is declarative. You add attributes to your existing HTML forms: an action name, a description, the parameter list. The browser compiles the form into a tool the agent can call cleanly. Zero JavaScript, zero regression risk for your human visitors, who see exactly the same form as before.
+
+The second is imperative. For dynamic actions that don't fit a static form, the site registers functions in JavaScript through an API (`document.modelContext.registerTool`). More powerful, but only worth it when the declarative path genuinely falls short.
+
+The third is discovery. The site publishes a file listing its actions (ours lives at `/mcp-actions.json`) and declares it in the `<head>` with a `<link rel="mcp-actions">`. An agent landing on the site knows what is possible without parsing the whole page.
+
+The right order for an SMB: declarative first, discovery next, imperative only when a real use case demands it.
+
+## What it changes for a business website
+
+A contact form becomes a named, typed action. An agent helping an executive find an AI consultancy can then send the inquiry in one call, with the right fields, instead of simulating thirty clicks and risking failure on a misidentified selector. The same logic applies to an audit request, a trial signup, a booking.
+
+And there is a corollary almost nobody addresses: making a site actionable forces you to make it clean. A form whose label only exists as a gray placeholder, a flow that forces account creation before any task, an uncrossable CAPTCHA, a custom JavaScript calendar with no native equivalent: a human copes, an agent fails. Those defects were already costing conversions. In the agentic wave, they cost you customers nobody sees, because the agent left before showing anything to anyone.
+
+## What we measured on our own site
+
+We ran the full audit on expertsia.dev before selling it to anyone. Here are the results from two days ago, in full transparency.
+
+On wave 2, we were already in good shape: a robots.txt explicitly allowing GPTBot, ClaudeBot, PerplexityBot and the other AI crawlers, an up-to-date llms.txt, a clean sitemap, server-rendered static pages with a proper heading hierarchy. Nothing to do.
+
+On wave 3, the picture was blunt: zero declarative attributes on the contact form, no action catalog, and a `/mcp-actions.json` that returned a soft-404 HTML page with a 200 status code, exactly the kind of response that misleads an agent. The contact form itself was well built (native labels on every field, an anti-spam honeypot), so the foundation was sound.
+
+The fixes we shipped the same day:
+
+- declarative attributes on the contact form (`request-ai-consultation`) and the newsletter capture (`subscribe-newsletter`), with a description for every parameter;
+- a published `mcp-actions.json` documenting both forms, the booking link, and our website teardown API, paid through the x402 protocol, already agent-callable;
+- a `<link rel="mcp-actions">` in the `<head>` of every page;
+- a "Machine-readable actions" section added to llms.txt, for agents that read the file rather than the head.
+
+One hour of work in total, one commit, zero visual impact. It is the kind of project that looks expensive from the outside and isn't.
+
+## The checks to run on your site this week
+
+Five checks, in order, take an hour.
+
+**1. Are you readable?** Load your home page and contact page with JavaScript disabled. If the main content and the forms disappear, an agent that doesn't render JavaScript sees nothing.
+
+**2. Do your forms have real labels?** Every field needs a `<label>` wired through `for`/`id`, not just a placeholder. Check contrast too: a light gray label on a dark background passes the human audit and fails the machine read.
+
+**3. Do you have a no-account flow?** The main task of your site (quote request, audit, booking) must be doable without creating an account. If signup comes before value, the agent drops off, and so does your prospect.
+
+**4. Do you publish your actions?** Create a root `mcp-actions.json` listing what an agent can do on your site, with the real endpoints. Add the matching `<link rel="mcp-actions">`. The format is still moving, but building the structure now will cost you a file update when it stabilizes, not a redesign.
+
+**5. Do your anti-bot traps hit legitimate agents?** A hidden honeypot (a field that must stay empty) bothers no one. A CAPTCHA on first interaction blocks every agent, including one acting for your prospect. If you run one, keep it for risky submissions, not for discovery.
+
+## Why not wait
+
+No artificial urgency here: agents that can exploit the declarative layer are still a minority in most sites' analytics. But three signals deserve weight. Agentic checkout switched on by default at Shopify and Google in September, as covered in [our checkout guide](/en/blog/agentic-checkout-shopify-google-guide-2026), and in many B2B journeys the purchase lands shortly before the first contact. Chrome and Edge have opened their origin trials. And the sites that lay the foundations now will have a clean track record when volumes take off, while the others debug an eight-year-old form in a panic.
+
+It is now a standard part of [our AI audit](/en/agentic-commerce): machine readability, parseability, and now actionability. The full pricing grid is on [the pricing page](/en/pricing), and the [free 15-minute diagnostic call](https://cal.com/expertsia/audit) exists to establish where your site stands before you commit to anything.
+
+*This article also exists [in French](/fr/blog/site-actionnable-agents-ia-webmcp-2026).*

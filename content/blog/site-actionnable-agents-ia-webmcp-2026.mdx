@@ -1,0 +1,74 @@
+---
+title: "WebMCP : rendre votre site actionnable par les agents IA (guide 2026)"
+description: "La vague 3 de l'acquisition IA ne lit plus votre site, elle le pilote. WebMCP, formulaires déclaratifs, fichier mcp-actions.json : ce qui change, ce que nous avons mesuré sur notre propre site, et les vérifications à faire cette semaine."
+date: "2026-10-08"
+category: "Agents IA"
+readingTime: "8 min"
+locale: "fr"
+author: "Cyril Marchand"
+---
+
+## La troisième vague ne vous envoie plus de visiteurs
+
+Trois vagues se sont succédé en vingt-cinq ans. La première, le SEO : être trouvé sur Google. La deuxième, arrivée avec ChatGPT et Perplexity : être cité dans les réponses des assistants, ce qu'on appelle l'AEO ou le GEO. Nous avons traité ces deux vagues dans d'autres articles, dont [celui sur le checkout agentique](/fr/blog/checkout-agentique-shopify-google-guide-2026). La troisième est en cours et elle change la nature du problème : les agents IA ne se contentent plus de lire votre site, ils le pilotent. Ils remplissent vos formulaires, créent des comptes, réservent des créneaux, demandent vos devis.
+
+Pour un site vitrine de B2B, la question n'est donc plus seulement « suis-je lisible par une IA ? » mais « un agent peut-il terminer une tâche chez moi sans échouer au milieu du formulaire ? ». C'est exactement le sujet du draft WebMCP publié par le W3C, et c'est le chantier que nous venons de faire tourner sur notre propre site. Voici ce qu'il faut savoir et ce qu'il faut poser.
+
+## WebMCP, c'est quoi exactement
+
+WebMCP est un projet de standard du W3C (Web Machine Learning Community Group), co-édité par Microsoft et Google. La première ébauche publique date de février 2026, avec des révisions régulières depuis, la dernière en septembre. Le statut est important à comprendre : c'est un draft communautaire, pas une norme. Mais les implémentations avancent vite. Chrome a ouvert une origin trial à partir de la version 149, Edge a fait de même avec sa version 150, et Brave expérimente le support dans Leo. Mozilla reste neutre, WebKit s'y oppose. En clair : le chantier est réel côté Chrome et Edge, qui représentent l'essentiel du marché, mais rien n'est figé.
+
+L'idée tient en une phrase : le site déclare lui-même les actions qu'il offre, dans un format que la machine peut lire, au lieu de laisser l'agent deviner en cliquant dans le DOM. Trois mécanismes existent.
+
+Le premier est déclaratif. Vous ajoutez des attributs sur vos formulaires HTML existants : un nom d'action, une description, la liste des paramètres. Le navigateur compile le formulaire en un outil que l'agent peut appeler proprement. Zéro JavaScript, zéro régression possible pour vos visiteurs humains, qui voient exactement le même formulaire qu'avant.
+
+Le deuxième est impératif. Pour les actions dynamiques qui ne tiennent pas dans un formulaire statique, le site enregistre des fonctions en JavaScript via une API (`document.modelContext.registerTool`). C'est plus puissant, mais ça se justifie seulement quand le déclaratif ne suffit pas.
+
+Le troisième est la découverte. Le site publie un fichier qui liste ses actions (chez nous : `/mcp-actions.json`) et le déclare dans le `<head>` avec un `<link rel="mcp-actions">`. L'agent sait en arrivant ce qui est possible, sans avoir à parser toute la page.
+
+Le bon ordre d'attaque pour une PME : le déclaratif d'abord, la découverte ensuite, l'impératif seulement si un cas réel l'exige.
+
+## Ce que ça change pour un site vitrine
+
+Un formulaire de contact devient une action nommée et typée. Un agent qui aide un dirigeant à trouver un cabinet IA peut alors envoyer la demande en un appel, avec les bons champs, au lieu de simuler trente clics et de risquer d'échouer sur un sélecteur mal identifié. La même logique vaut pour une demande d'audit, une inscription à un essai, une réservation.
+
+Et il y a un corollaire que presque personne ne traite : rendre un site actionnable oblige à le rendre propre. Un formulaire où le label n'existe que sous forme de placeholder gris, un flux qui force la création de compte avant la moindre tâche, un CAPTCHA impossible à franchir, un calendrier en JavaScript custom sans équivalent natif : un humain s'en sort, un agent échoue. Ces défauts coûtaient déjà des conversions. Avec la vague agentique, ils coûtent des clients invisibles, parce que l'agent est parti avant d'avoir affiché quoi que ce soit à personne.
+
+## Ce que nous avons mesuré sur notre propre site
+
+Nous avons fait tourner l'audit complet sur expertsia.dev avant de le vendre à qui que ce soit. Les résultats d'avant-hier, en toute transparence.
+
+Sur la vague 2, nous étions déjà bien placés : robots.txt qui autorise explicitement GPTBot, ClaudeBot, PerplexityBot et les autres crawlers IA, fichier llms.txt à jour, sitemap propre, pages statiques server-rendered avec une hiérarchie de titres correcte. Rien à faire.
+
+Sur la vague 3, le constat était sans appel : zéro attribut déclaratif sur le formulaire de contact, pas de catalogue d'actions, et un `/mcp-actions.json` qui renvoyait une page HTML de soft-404 avec un code 200, le genre de réponse qui induit un agent en erreur. Le formulaire de contact était par ailleurs bien construit (labels natifs sur chaque champ, honeypot anti-spam), donc la base était saine.
+
+Les corrections posées le jour même :
+
+- attributs déclaratifs sur le formulaire de contact (`request-ai-consultation`) et sur la capture newsletter (`subscribe-newsletter`), avec description de chaque paramètre ;
+- publication de `mcp-actions.json` qui documente nos deux formulaires, le lien de réservation et notre API de teardown de site, payée via le protocole x402, déjà agent-callable ;
+- `<link rel="mcp-actions">` dans le `<head>` de toutes les pages ;
+- section « Machine-readable actions » ajoutée au llms.txt, pour les agents qui lisent ce fichier plutôt que le head.
+
+Une heure de travail au total, un commit, zéro impact visuel. C'est typiquement le genre de chantier qui paraît coûteux de l'extérieur et qui ne l'est pas.
+
+## Les vérifications à faire sur votre site cette semaine
+
+Cinq vérifications, dans l'ordre, prennent une heure.
+
+**1. Êtes-vous lisible ?** Chargez votre page d'accueil et votre page de contact en désactivant JavaScript. Si le contenu principal et les formulaires disparaissent, un agent qui ne rend pas le JavaScript ne voit rien.
+
+**2. Vos formulaires ont-ils de vrais labels ?** Chaque champ doit avoir un `<label>` relié par `for`/`id`, pas seulement un placeholder. Vérifiez aussi le contraste : un label gris clair sur fond sombre passe l'audit humain et échoue à la lecture machine.
+
+**3. Avez-vous un flux sans compte ?** La tâche principale de votre site (demande de devis, audit, réservation) doit être faisable sans créer de compte. Si la création de compte précède la valeur, l'agent abandonne, et votre prospect aussi.
+
+**4. Publiez-vous vos actions ?** Créez un `mcp-actions.json` à la racine qui liste ce qu'un agent peut faire chez vous, avec les endpoints réels. Ajoutez le `<link rel="mcp-actions">` correspondant. Le format évolue encore, mais poser la structure maintenant vous coûtera une mise à jour de fichier quand il se stabilisera, pas une refonte.
+
+**5. Vos pièges anti-bots touchent-ils les agents légitimes ?** Un honeypot caché (champ qui doit rester vide) ne gêne personne. Un CAPTCHA sur la première interaction bloque tout agent, y compris celui mandaté par votre prospect. Si vous en avez un, gardez-le pour les soumissions à risque, pas pour la découverte.
+
+## Pourquoi ne pas attendre
+
+Aucune urgence artificielle ici : les agents capables d'exploiter le déclaratif sont encore minoritaires dans les analytics de la plupart des sites. Mais trois signaux méritent d'être pesés. Le checkout agentique s'active par défaut chez Shopify et Google depuis septembre, comme on l'a vu dans [notre guide checkout](/fr/blog/checkout-agentique-shopify-google-guide-2026), et l'achat précède de peu la prise de contact B2B dans beaucoup de parcours. Chrome et Edge ont ouvert leurs origin trials. Et les sites qui poseront les fondations maintenant auront un historique propre quand les volumes décolleront, pendant que les autres devront déboguer un formulaire vieux de huit ans dans l'urgence.
+
+C'est devenu un volet standard de [notre audit IA](/fr/commerce-agentique) : lisibilité machine, parsabilité, et désormais actionnabilité. La grille tarifaire complète est sur [la page tarifs](/fr/tarifs), et le [diagnostic gratuit de 15 minutes](https://cal.com/expertsia/audit) sert à savoir où en est votre site avant d'engager quoi que ce soit.
+
+*Cet article existe aussi [en anglais](/en/blog/make-your-site-agent-actionable-webmcp-2026).*
