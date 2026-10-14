@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import posthog from 'posthog-js';
 
 interface ContactFormProps {
   locale: string;
@@ -42,6 +43,20 @@ export default function ContactForm({ locale, labels }: ContactFormProps) {
       if (!res.ok) {
         const err = await res.json();
         throw new Error(err.error || 'Server error');
+      }
+
+      // Conversion trackee + lead identifie (person_profiles: identified_only, host EU)
+      posthog.capture('contact_form_submitted', {
+        locale,
+        page: window.location.pathname,
+        has_company: Boolean(data.company),
+      });
+      if (data.email) {
+        posthog.identify(data.email as string, {
+          name: data.name,
+          company: data.company,
+          locale,
+        });
       }
 
       setStatus('success');

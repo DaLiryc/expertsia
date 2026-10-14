@@ -21,6 +21,16 @@ export function PostHogWrapper({ children }: { children: React.ReactNode }) {
     // Track key events on page load
     const handleCTAClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
+      const anchor = target.closest('a');
+      // Outbound booking links (cal.com): track before the tab navigates away
+      if (anchor && anchor.hostname.includes('cal.com')) {
+        posthog.capture('booking_clicked', {
+          locale: window.location.pathname.startsWith('/fr') ? 'fr' : 'en',
+          page: window.location.pathname,
+          booking_url: anchor.href,
+        });
+        return;
+      }
       if (target.closest('a[href="#contact"]') || target.closest('button[type="submit"]')) {
         const isFrench = window.location.pathname.startsWith('/fr');
         posthog.capture('cta_clicked', {
