@@ -1,0 +1,95 @@
+---
+title: "Conseil RAG : bâtir la base de connaissances de votre entreprise"
+description: "Ce que contient une mission de conseil RAG pour une base de connaissances d'entreprise : documents à préparer, livrables semaine par semaine, prix 2026 et pièges à éviter. Guide concret par ExpertsIA."
+date: "2026-10-17"
+category: "Data Science"
+readingTime: "9 min"
+locale: "fr"
+author: "Cyril Marchand"
+---
+
+## La démo était bonne, l'assistant est déjà abandonné
+
+Le scénario revient depuis deux ans. Quelqu'un branche ChatGPT sur les documents de l'entreprise, la démo impressionne la direction, on annonce l'outil en réunion d'équipe. Trois semaines plus tard, l'assistant cite un tarif de 2023, décrit une procédure interne qui n'existe pas, et le service concerné retourne à ses dossiers partagés. Le projet n'est officiellement arrêté par personne, mais plus personne ne l'ouvre. Entre la démo et l'outil quotidien, il manque une pièce : une vraie base de connaissances, construite pour que l'IA réponde à partir de vos documents à vous. Le conseil RAG, c'est cette pièce. Une mission d'accompagnement qui transforme vos documents dispersés en base de connaissances d'entreprise exploitable par un assistant, avec les choix techniques faits pour de bon : découpage des documents, indexation, prompt système, mesure de la qualité des réponses. Cet article détaille ce qu'une mission de conseil RAG contient, semaine par semaine, ce qu'elle coûte en 2026, et les pièges qui font abandonner ces projets au troisième mois.
+
+Avant d'entrer dans la méthode, deux lectures utiles. [Comment le RAG fait répondre une IA à partir de vos documents](/fr/blog/rag-decideurs-entreprise) explique le fonctionnement technique en termes de dirigeant, sans mathématiques. Et si votre question est d'abord « faut-il financer ce projet ? », [l'audit IA à 1 200 €](/fr/blog/audit-ia-entreprise-prix-2026) sert à le valider sur vos chiffres avant tout développement.
+
+## Ce que l'absence de base coûte chaque semaine
+
+Une entreprise sans base de connaissances ne l'affiche nulle part dans sa compta, et pourtant la facture tombe chaque semaine. Elle prend deux formes.
+
+La première, ce sont les heures de recherche. Nous avons décrit dans notre article sur le RAG le cas d'un cabinet de 80 consultants où chacun perdait 3 à 5 heures par semaine à chercher une information qui existait quelque part, dans l'un des 12 outils de l'entreprise. À 60 € de coût horaire chargé, ce temps représentait plus de 600 000 € par an. Le chiffre surprend toujours, et il ne sort d'aucun modèle : il vient du décompte fait avec les personnes concernées.
+
+La seconde, ce sont les projets abandonnés. Un assistant monté en quelques jours sur des documents non triés donne des réponses plausibles et fausses. Les équipes le constatent une ou deux fois, perdent confiance, et reviennent à leurs habitudes. L'investissement de départ est perdu, mais le coût réel est ailleurs : le prochain projet d'IA, même meilleur, sera jugé sur l'échec du précédent. C'est ce que le conseil RAG évite, en cadrant les données et le périmètre avant d'écrire la première ligne d'indexation.
+
+## Ce qu'une mission de conseil RAG contient, semaine par semaine
+
+Voici le déroulé d'une mission type chez ExpertsIA. Notre base est à Bordeaux, nous intervenons partout en France et la plupart des missions démarrent en visio.
+
+**J0. Journée de cadrage (ou audit si vous partez de zéro).** Nous passons la journée avec les équipes concernées : qui cherche quoi, où, et combien de temps. On repart avec les cas d'usage classés, les sources documentaires candidates, et le périmètre du premier assistant. Cette journée est déduite du déploiement si vous enchaînez.
+
+**S1. Cartographie des sources.** Inventaire écrit des documents : FAQ, fiches produit, contrats types, tickets support, procédures internes. Pour chaque source, trois questions : à jour ? complet ? utilisé ? Les documents obsolètes sont écartés ou signalés, les trous sont listés. C'est le livrable le moins spectaculaire et celui qui décide de la qualité finale.
+
+**S2 à S3. Premier assistant sur un périmètre étroit.** Nous construisons l'assistant sur une source unique et nous collectons 50 questions réelles posées par vos équipes. Le jeu de questions devient l'outil de mesure : chaque réponse est vérifiée, les échecs sont tracés, le prompt système est ajusté.
+
+**S4 à S6. Montée en périmètre et mise en production.** Ajout des sources suivantes, réglage de l'indexation, intégration à vos outils (Microsoft 365, votre intranet, votre CRM), tests d'accès si la base contient des documents sensibles. Livraison avec documentation écrite.
+
+**Livraison.** Formation des équipes (2 à 4 heures suffisent pour l'usage courant), procédure de mise à jour des documents, jeu de test documenté pour vérifier la qualité après chaque évolution. Si la base doit alimenter des [agents IA en production](/fr/blog/agents-ia-production-2026) qui travaillent sans humain, c'est aussi à cette étape que les garde-fous sont posés.
+
+## Les prix d'un accompagnement RAG en 2026
+
+La grille que nous appliquons, détaillée sur [nos tarifs publics, formule par formule](/fr/tarifs) :
+
+| Formule | Prix | Contenu type RAG |
+|---|---|---|
+| Cadrage / audit | 1 200 € HT | Cartographie des sources, cas d'usage classés, plan de projet chiffré |
+| Starter | 2 500 € HT | Assistant sur une source unique (FAQ, catalogue), livré en 2 semaines, formation incluse |
+| Growth | 6 000 € HT | Base multi-sources (contrats, tickets, procédures), intégration à vos outils, 4 semaines |
+| Formation IA | 1 500 € HT/jour | Prise en main par vos équipes, procédures de mise à jour documentées |
+| Retainer maintenance | 1 200 € HT/mois | Nouveaux documents indexés, ajustements, suivi de la qualité des réponses |
+
+Deux repères pour vous situer. Un assistant mono-source tient dans le périmètre Starter. Une base de connaissances d'entreprise multi-sources avec contrôle d'accès correspond au périmètre Growth. L'audit à 1 200 € est déduit si vous enchaînez sur un déploiement, et le retainer reste optionnel au démarrage : il prend son sens quand la base vit, c'est-à-dire quand des documents changent chaque semaine.
+
+Le financement public peut couvrir une partie du chantier : le programme « Osez l'IA » de Bpifrance finance jusqu'à 50 % du projet pour les PME éligibles. Le détail des dispositifs est dans notre article sur [les aides publiques mobilisables sur un projet RAG](/fr/financer-son-projet-ia).
+
+## Les pièges qui coulent un projet de base de connaissances
+
+Trois causes d'échec reviennent, et aucune n'est technique.
+
+1. **Indexer des documents périmés.** Un RAG propulse une réponse fausse avec la même assurance qu'une réponse juste. Si la FAQ date de deux ans et que les tarifs ont changé depuis, l'assistant instruira vos clients avec l'ancienne grille. Le tri préalable des sources fait la moitié du travail.
+2. **Vouloir tout indexer d'un coup.** La base de toute l'entreprise, tous les outils, tous les services : le projet démarre large, ne converge jamais, et l'assistant moyen reste en test éternel. Le premier assistant doit couvrir un cas d'usage précis pour une équipe précise. On étend ensuite sur les résultats mesurés.
+3. **Oublier la vie de la base.** Les documents changent : nouveaux tarifs, procédures révisées, produits retirés. Sans procédure de mise à jour, la base dérive en quelques mois et redevient trompeuse, silencieusement. C'est le risque que couvre la formation et, ensuite, le retainer.
+
+À ces trois-là s'ajoute une quatrième cause d'abandon, plus sournoise : l'absence de mesure. Sans jeu de test, personne ne peut dire si l'assistant s'améliore ou se dégrade après chaque modification, et les décisions se prennent au ressenti.
+
+## Ce qui se mesure en fin de mission
+
+Une mission de conseil RAG se termine avec des chiffres, pas avec une impression. Trois indicateurs, mesurés sur le jeu de 50 questions collecté auprès de vos équipes :
+
+- Le taux de réponses justes et complètes, vérifiées par les personnes qui connaissent le sujet.
+- La liste des questions sans réponse documentaire. Elle ne mesure pas l'assistant : elle cartographie les trous de votre documentation interne, ce qui vaut parfois plus que l'outil lui-même.
+- Le fait que chaque réponse cite sa source. L'utilisateur peut vérifier, et votre équipe peut corriger le document fautif plutôt que deviner où l'erreur s'est glissée.
+
+Ces chiffres sont mesurés sur vos données, avec vos questions. Aucun prestataire sérieux ne peut vous les annoncer à l'avance, et ceux qui le font partent d'un template, pas de vos documents.
+
+## Par quoi commencer lundi matin
+
+Trois actions, une heure au total. Listez les 10 documents les plus consultés dans votre entreprise et leur dernière date de mise à jour. Demandez à deux personnes combien de temps elles ont passé la semaine dernière à chercher une information qui existait quelque part. Multipliez ces heures par le coût horaire chargé, puis par 52. Si le total dépasse le prix d'un audit, le dossier tient la route. Sinon, vous aurez passé une heure utile à éviter un projet inutile, et vous saurez exactement quel document remettre à jour en priorité.
+
+## FAQ
+
+### Faut-il tout nettoyer avant de lancer le projet ?
+
+Non, et ce serait une erreur de le vouloir. Le tri se fait sur le périmètre du premier assistant uniquement : si le premier cas d'usage est le support client, seules la FAQ, les politiques de retour et les fiches produit doivent être à jour. Le reste de la documentation se remet en état plus tard, en parallèle, sans bloquer la mission. C'est justement le rôle de la cartographie de la première semaine : distinguer ce qui doit être propre maintenant de ce qui peut attendre.
+
+### Pourquoi ne pas monter la base de connaissances en interne ?
+
+Vos équipes le peuvent, et certaines y arrivent. Ce qu'un projet interne paye en général, c'est le temps d'essais et d'erreurs sur les choix qui décident de tout : découpage des documents, choix de la base vectorielle, prompt système, hébergement des données. Un mois d'expérimentation à trois personnes coûte souvent plus qu'une mission cadrée, et se termine rarement par un jeu de test mesuré. L'autre limite est le transfert : un outil monté par un salarié part avec lui. Notre poste est de livrer dans vos comptes, documenté, avec vos équipes formées pour faire évoluer la base sans nous.
+
+### Combien de temps avant une base utilisable ?
+
+Comptez 2 semaines entre le lancement et un premier assistant mono-source en production (formule Starter), et 6 semaines pour une base multi-sources avec intégration à vos outils (formule Growth), audit inclus. Le premier mois qui suit sert à vérifier l'usage réel : si les questions que les équipes posent à l'assistant sont bien celles du jeu de test, la base tient. Sinon, on ajuste le périmètre, ce qui prend quelques jours plutôt que quelques semaines.
+
+---
+
+*Une base de connaissances à monter et besoin d'un cadrage sur vos documents réels ? [Réservez un créneau de 30 minutes](https://cal.com/expertsia/audit) ou consultez [nos formules et leurs prix](/fr/tarifs). Réponse sous 24h.*
