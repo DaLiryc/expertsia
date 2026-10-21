@@ -1,0 +1,79 @@
+---
+title: "Cas d'usage du RAG en entreprise : 7 exemples concrets par service"
+description: "Que fait concrètement un RAG dans une entreprise ? 7 cas d'usage par service : support, base de connaissances interne, commercial, RH, juridique, comptabilité, documentation technique. Délais, budget 2026, méthode pour choisir le premier."
+date: "2026-10-21"
+category: "Data Science"
+readingTime: "8 min"
+locale: "fr"
+author: "Cyril Marchand"
+---
+
+## Les cas d'usage du RAG en entreprise, service par service
+
+Vous avez sûrement entendu dire que le RAG permettait à une IA de répondre à partir de vos documents. La phrase est juste, mais elle ne dit rien de concret. Ce qui manque, c'est la liste : quels services en profitent, sur quelles tâches, avec quel budget. Voici sept cas d'usage du RAG en entreprise, décrits tels que nous les déployons chez nos clients. Pour chacun : la source documentaire branchée, la tâche allégée, le délai de mise en place, et ce qui se mesure en fin de mission.
+
+Deux lectures pour poser le socle avant la liste. [Le fonctionnement du RAG expliqué aux dirigeants](/fr/blog/rag-decideurs-entreprise) montre pourquoi un assistant branché sur vos documents cesse d'inventer. Et si vous vous demandez comment se passe une mission en pratique, [le déroulé d'une mission de conseil RAG semaine par semaine](/fr/blog/conseil-rag-base-de-connaissances-entreprise-2026) donne les livrables et les prix. Le reste de cet article suppose ces bases posées.
+
+### Support client : répondre juste, en première ligne
+
+La FAQ, les politiques de retour et les fiches produit alimentent un assistant qui traite les questions répétitives sur le chat du site et par email. Chez un client e-commerce de 45 salariés, ce montage a pris en charge 62 % des tickets dès le troisième mois, avec un temps de réponse passé de 4 heures à 2 minutes. Le décompte complet figure dans notre article de fonctionnement. Ce qui se mesurera chez vous : la part de tickets clos sans intervention humaine, sur un jeu de questions réelles.
+
+### Base de connaissances interne
+
+Procédures, méthodes, comptes-rendus de mission éparpillés dans une dizaine d'outils : l'assistant les rend interrogeables en langage naturel. Dans un cabinet de 80 consultants, chaque consultant regagnait 2,5 heures par semaine, soit plus de 600 000 € de temps récupéré par an à 60 € de coût horaire chargé. Ce chiffre vient d'un décompte fait avec les équipes concernées, pas d'une projection. C'est le cas d'usage le moins visible et souvent le plus rentable, parce qu'il s'attaque à un coût qui n'apparaît sur aucune ligne comptable.
+
+### Réponses commerciales et appels d'offres
+
+Fiches techniques, normes, historique des projets : l'assistant répond aux questions des commerciaux sans mobiliser l'équipe d'ingénieurs. Sur un industriel de 12 techniciens, 70 % des questions techniques étaient traitées par l'assistant, et le délai de réponse aux appels d'offres baissait de deux jours. Les ingénieurs ne gardent que les cas complexes. Ces résultats proviennent de missions réelles, décrites dans le même article.
+
+### RH et onboarding
+
+Questions de paie, soldes de congés, procédure d'embauche, parcours d'intégration : les mêmes demandes arrivent chaque semaine chez la personne en charge des RH. Un assistant alimenté par la convention collective, les accords internes et les procédures couvre ces demandes en première ligne, avec la source citée. Pour les sujets sensibles (rupture conventionnelle, maladie, contentieux), la réponse renvoie systématiquement à un humain. Ce filtre se règle dans le prompt système, pas à la main après coup. Ce qui se mesure : le nombre de questions RH traitées sans sollicitation, et le temps que votre service RH ne passe plus à répéter les mêmes réponses.
+
+### Juridique et contrats
+
+Contrats types, conditions générales, clauses de confidentialité : la recherche par le sens retrouve un passage même quand le mot exact n'apparaît pas dans la question. Un juriste demande quel est le délai de préavis du contrat de prestation avec un client donné, et obtient le passage pertinent avec le contrat en source. Le RAG ne rédige pas d'avis juridique et ne remplace pas votre conseil. Il supprime la phase de recherche documentaire, celle qui prend une bonne partie du temps sur ces dossiers.
+
+### Devis, factures et comptabilité
+
+Sur ce terrain, le RAG travaille rarement seul : il se combine avec des automatisations (n8n, Make) branchées sur votre CRM (HubSpot) et vos fichiers partagés (Microsoft 365). L'assistant retrouve le tarif applicable, les conditions du client et le dernier devis envoyé, puis l'automatisation génère le document. Nous détaillons les montants dans [notre article chiffré sur l'automatisation des devis et factures en PME](/fr/blog/ia-devis-factures-automatique-pme-2026). C'est aussi le cas d'usage où l'audit préalable rapporte le plus, parce que le périmètre touche directement la trésorerie.
+
+### Documentation technique et maintenance
+
+Manuels machines, procédures d'intervention, historiques de pannes : l'assistant rend ces documents consultables par une équipe de maintenance sur le terrain, depuis un téléphone. La réponse arrive avec la page du manuel en source, ce qui compte quand on intervient sur une machine à l'arrêt. Point de vigilance : les PDF scannés doivent passer par une étape d'OCR avant indexation. Cette étape ajoute des jours au planning, pas des semaines, mais elle se prévoit avant de promettre une date.
+
+## Comment choisir le premier cas d'usage
+
+Le bon premier cas d'usage remplit deux conditions : il coûte des heures identifiables chaque semaine, et ses sources documentaires existent déjà, même imparfaites. Le support client et la base de connaissances interne l'emportent le plus souvent, parce que les questions s'y répètent et que les documents existent.
+
+Ensuite, le calendrier. Il démarre par une journée de cadrage : l'audit à 1 200 € HT sert d'ordinaire de point de départ, et il est déduit du déploiement si vous enchaînez. La première semaine cartographie les sources. Deux semaines après le lancement, un premier assistant sur une source unique tourne en production : c'est le périmètre de la formule Starter, à 2 500 € HT. À six semaines, une base multi-sources intégrée à vos outils correspond à la formule Growth, 6 000 € HT. La formation (1 500 € HT par jour) prend le relais pour rendre la base autonome, et le retainer de maintenance (1 200 € HT par mois) devient utile quand des documents changent chaque semaine. Le détail se trouve sur [les prix publics de chaque formule](/fr/tarifs). Le financement public peut couvrir une partie du chantier : le programme « Osez l'IA » de Bpifrance prend en charge jusqu'à 50 % du projet pour les PME éligibles. Le dossier se monte plus vite qu'on ne l'imagine, et [le montage du financement public d'un projet RAG](/fr/financer-son-projet-ia) se lit en une soirée.
+
+Notre base est à Bordeaux, nous intervenons partout en France, le plus souvent à distance, avec des déplacements quand le périmètre le justifie.
+
+## Les résultats mesurés, et ceux qu'on refuse d'annoncer
+
+Un déploiement RAG se juge sur un jeu de 50 questions réelles, collectées auprès de vos équipes avant le développement. Trois chiffres sortent de la mission : le taux de réponses justes et complètes, la liste des questions restées sans réponse documentaire (elle cartographie les trous de votre documentation), et la présence systématique de la source citée.
+
+Ce que personne ne peut vous promettre à l'avance, c'est un taux de réussite. Il dépend de vos documents, pas du modèle. Un prestataire qui annonce 95 % de réponses justes avant d'avoir vu vos fichiers vend une démo, pas une mission.
+
+## Par quoi commencer lundi matin
+
+Une heure, trois actions. Listez les dix questions que vos équipes posent le plus souvent et notez où se trouve la réponse documentaire, si elle existe. Chronométrez deux personnes pendant qu'elles cherchent une de ces réponses dans vos outils. Multipliez les heures hebdomadaires perdues par le coût horaire chargé, puis par 52. Si le total dépasse 1 200 €, l'audit se rembourse par les heures récupérées avant même le premier assistant. Sinon, vous aurez passé une heure à le savoir, et vous aurez votre liste de documents à mettre à jour en priorité.
+
+## FAQ
+
+### Peut-on lancer deux cas d'usage en même temps ?
+
+Déconseillé. Chaque cas d'usage apporte ses sources, son jeu de questions et ses réglages. Deux chantiers parallèles diluent la mesure : quand un assistant répond mal, vous ne saurez plus quel périmètre faut. La séquence qui marche : un premier assistant sur une source, des résultats mesurés, puis l'extension. Une extension se joue en jours plutôt qu'en semaines quand la base est bien construite.
+
+### Quel cas d'usage réussit le plus souvent ?
+
+Le support client et la base de connaissances interne. Les questions s'y répètent, les documents existent déjà, et les utilisateurs sont internes, donc tolérants aux premières imperfections. Les cas d'usage à fort enjeu réglementaire (juridique, conformité) réussissent aussi, mais en second : une fois que l'équipe maîtrise l'outil sur un périmètre sans risque.
+
+### Faut-il des données parfaites pour démarrer ?
+
+Non. Le tri se limite au périmètre du premier assistant. Si vous démarrez sur le support client, seules la FAQ et les fiches produit doivent être à jour le jour du lancement. Le reste de la documentation se remet en ordre ensuite, sans bloquer la mission. C'est d'ailleurs l'un des livrables de la première semaine : la liste des documents à corriger, classée par urgence.
+
+---
+
+*Un de ces cas d'usage correspond à votre situation ? [Planifiez un échange de 30 minutes](https://cal.com/expertsia/audit) ou consultez [la grille tarifaire de nos formules](/fr/tarifs). Réponse sous 24h.*
