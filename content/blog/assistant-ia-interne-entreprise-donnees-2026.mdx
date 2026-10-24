@@ -1,0 +1,107 @@
+---
+title: "Assistant IA interne : le déployer sur les données de votre entreprise"
+description: "Quelles données connecter à un assistant IA interne, quels droits d'accès, quel budget en 2026 et comment mesurer l'adoption par vos équipes. Le guide concret, avec calendrier et prix, par ExpertsIA."
+date: "2026-10-24"
+category: "Data Science"
+readingTime: "9 min"
+locale: "fr"
+author: "Cyril Marchand"
+---
+
+## L'assistant que vos équipes ont fini par abandonner
+
+La scène se répote dans beaucoup de PME. Quelqu'un branche ChatGPT sur quelques PDF, la démo impressionne la direction, on annonce l'outil en réunion. Un mois plus tard, l'assistant cite une procédure de 2023, invente un tarif, et les équipes retournent à leurs dossiers partagés et à leurs messages « tu sais où est le doc sur... ? ». Rien n'est officiellement arrêté. L'outil est simplement mort, et le prochain projet d'IA héritera de cette méfiance.
+
+Un assistant IA interne est censé faire autre chose : répondre aux questions de vos salariés à partir des données de l'entreprise, et uniquement de celles-là. Les procédures, la FAQ RH, les fiches produit, les tickets passés, les contrats types. Quand la question porte sur le solde de congés ou le process de validation d'une remise, la réponse sort de vos documents, avec la source citée. Quand la réponse n'existe nulle part, l'assistant le dit au lieu d'improviser.
+
+La différence entre la démo abandonnée et l'outil quotidien tient à cinq décisions, à prendre avant d'écrire la première ligne de configuration. Cet article les passe en revue, avec le calendrier d'une mission, le budget 2026 et la méthode pour savoir si vos équipes adoptent l'outil.
+
+Si vous voulez d'abord comprendre la mécanique, [le RAG sans jargon, côté dirigeant](/fr/blog/rag-decideurs-entreprise) explique comment un assistant lit vos documents avant de répondre. Pour situer ce besoin parmi les autres usages, [notre comparatif des cas d'usage du RAG équipe par équipe](/fr/blog/cas-usage-rag-entreprise-exemples-2026) montre ce que chaque déploiement remplace et ce qu'il coûte.
+
+## Ce que l'absence d'assistant interne coûte chaque semaine
+
+Prenez une PME de 40 salariés. Chacun passe chaque semaine un temps variable à chercher une information qui existe quelque part : la dernière version d'un process, les conditions d'une prime, le contact chez le transporteur. En entretien, les gens annoncent 30 minutes. Le décompte réel, fait poste par poste avec les personnes concernées, tourne plutôt entre 1 et 3 heures par semaine. À 35 € de coût horaire chargé, 2 heures par semaine sur 40 salariés représentent près de 145 000 € par an. Ce chiffre n'apparaît dans aucune compta.
+
+La deuxième facture est silencieuse. Ce sont les mauvaises réponses qui circulent : le process que quelqu'un réinvente faute de trouver le bon document, la réponse RH approximative répétée d'un manager à l'autre, la fiche produit contredite par le devis. Un assistant interne bien construit donne un endroit unique où la question reçoit la réponse à jour, avec le document source sous les yeux, et cartographie les questions restées sans réponse documentaire.
+
+## Déployer un assistant IA interne : les cinq décisions qui décident de tout
+
+### 1. Le périmètre des documents du premier assistant
+
+Un seul domaine de documents pour commencer. La FAQ RH avec les congés et le télétravail, ou les procédures support, ou les fiches produit. Deux cents documents tenus à jour valent mieux que dix mille éparpillés dans douze outils. La méthode que nous appliquons : collecter 50 questions réelles posées par vos équipes, puis vérifier que les documents du périmètre y répondent.
+
+### 2. Les droits d'accès aux données
+
+C'est le point qui bloque le plus de projets internes. Tout le monde ne doit pas tout voir : grilles de salaires, évaluations, données clients. Deux réglages suffisent dans la plupart des cas. Le filtrage par source : l'assistant RH ne cherche que dans les documents RH destinés à tous. Le filtrage par rôle : l'assistant connaît le service de la personne qui pose la question, via votre annuaire (Microsoft 365, Entra ID). Côté conformité, le projet entre au registre RGPD, avec un contrat de traitement chez le fournisseur d'API et un hébergement européen pour les données sensibles.
+
+### 3. L'endroit où les réponses arrivent
+
+La règle est simple : l'assistant vit là où vos équipes posent déjà la question. Dans une PME équipée en Microsoft 365, le canal Teams fait le travail. Une page web séparée que personne ne met en favori est un assistant mort au deuxième mois. Les sources qui changent souvent (tickets, catalogue, stock) se synchronisent avec n8n ou Make, sans intervention manuelle.
+
+### 4. Ce que l'assistant ne fait pas
+
+Le premier assistant interne lit et répond. Il n'écrit pas dans le SIRH, ne valide pas de congés, n'envoie rien aux clients. Ces automatismes relèvent d'un agent avec garde-fous humains, un projet différent : [notre guide des agents IA en production](/fr/blog/agents-ia-production-2026) détaille les niveaux d'autonomie et les validations à prévoir. Séparer les deux sujets évite l'erreur classique : vouloir un assistant qui « fait » avant d'avoir un assistant qui « dit juste ».
+
+### 5. La mesure de la qualité
+
+Sans jeu de test, personne ne peut dire si l'assistant s'améliore après chaque modification. Les 50 questions collectées au cadrage servent de référence : chaque réponse est vérifiée par quelqu'un qui connaît le sujet, les échecs sont tracés, le prompt système est ajusté. C'est ce jeu de questions qui distingue un outil tenu d'un gadget démo.
+
+## Le calendrier d'une mission, semaine par semaine
+
+**J0. Journée de cadrage.** Qui cherche quoi, où, et combien de temps. On repart avec les cas d'usage classés, les sources candidates et le périmètre du premier assistant. Cette journée est déduite du déploiement si vous enchaînez.
+
+**S1. Cartographie des sources.** Inventaire écrit : à jour ? complet ? utilisé ? Les documents périmés sont écartés, les trous sont listés. C'est le livrable qui décide de la qualité finale.
+
+**S2 à S3. Premier assistant et collecte des questions.** L'assistant tourne sur une source unique, les 50 questions réelles alimentent le jeu de test.
+
+**S4 à S6. Montée en périmètre et intégration.** Ajout des sources suivantes, connexion à Teams ou à votre intranet, tests d'accès par rôle, documentation écrite. Livraison avec formation des équipes : 2 à 4 heures suffisent pour l'usage courant.
+
+Nous sommes basés à Bordeaux et intervenons partout en France, le plus souvent en visio : un assistant interne ne demande pas de présence quotidienne sur site. Pour la partie base de connaissances, [le déroulé complet d'une mission de conseil RAG](/fr/blog/conseil-rag-base-de-connaissances-entreprise-2026) détaille les livrables document par document. Le financement public peut couvrir une partie du chantier : [les aides publiques mobilisables sur un projet d'assistant interne](/fr/financer-son-projet-ia) se lisent en une soirée, et le programme « Osez l'IA » de Bpifrance prend en charge jusqu'à 50 % du projet pour les PME éligibles.
+
+## Le budget d'un assistant IA interne en 2026
+
+La grille que nous appliquons, avec le détail de chaque formule et son prix sur [notre grille tarifaire à jour](/fr/tarifs) :
+
+| Formule | Prix | Contenu pour un assistant interne |
+|---|---|---|
+| Audit / cadrage | 1 200 € HT | Cartographie des données, cas d'usage classés, plan chiffré |
+| Starter | 2 500 € HT | Assistant sur une famille de documents (FAQ RH, procédures), livré en 2 semaines, formation incluse |
+| Growth | 6 000 € HT | Multi-sources avec droits d'accès par rôle, intégration Teams ou Microsoft 365, 4 semaines |
+| Formation IA | 1 500 € HT/jour | Référents internes formés à faire vivre les documents et le jeu de test |
+| Retainer maintenance | 1 200 € HT/mois | Nouveaux documents indexés, ajustements, suivi de la qualité des réponses |
+
+Deux repères pour vous situer. FAQ RH et procédures internes pour une équipe : périmètre Starter. Plusieurs sources, filtrage par rôle, intégration à l'annuaire : périmètre Growth. L'audit à 1 200 € est déduit du déploiement si vous enchaînez. S'ajoutent les coûts d'infrastructure, modestes pour un usage interne : quelques dizaines à quelques centaines d'euros par mois d'hébergement et d'appels API selon le volume de questions.
+
+## L'adoption, le vrai chantier du deuxième mois
+
+Un assistant livré n'est pas un assistant utilisé. Deux décisions font la différence, et aucune n'est technique.
+
+Un référent désigné, dont le métier touche les documents concernés. Pas nécessairement le service informatique : quelqu'un qui sait quand la FAQ change et qui peut la faire changer. La formation d'une journée (1 500 € HT) forme ces référents à maintenir les documents et le jeu de test sans nous.
+
+La mesure d'usage, dès la première semaine : combien de questions posées, combien restées sans réponse, quels documents corrigés à cause de l'assistant. Le premier mois, corriger les trous de documentation que cette liste révèle est ce qui installe la confiance dans l'assistant.
+
+## Ce qui se mesure en fin de mission
+
+Une mission se termine avec des chiffres, pas avec une impression. Le taux de réponses justes et complètes, vérifié sur le jeu de 50 questions par les personnes qui connaissent le sujet. La liste des questions sans réponse documentaire, qui cartographie les trous de votre documentation interne. Le fait que chaque réponse cite sa source, pour que l'utilisateur puisse vérifier et que l'équipe puisse corriger le document fautif. Nous n'annonçons pas de pourcentage d'adoption à l'avance : ce chiffre se mesure chez vous, avec vos questions, et ceux qui le promettent avant le cadrage partent d'un template.
+
+## Par quoi commencer lundi matin
+
+Une heure, trois actions. Listez les 10 questions posées le plus souvent en interne, en demandant à deux ou trois personnes ce qu'elles ont cherché la semaine dernière. Pour chacune, notez où se trouve la réponse et sa date de mise à jour. Puis comptez les heures hebdomadaires passées à chercher, multipliez par le coût horaire chargé, puis par 52. Si le total dépasse 1 200 €, l'audit se rembourse tout seul. Sinon, vous aurez passé une heure à prioriser la remise à jour de vos documents, ce qui reste un bon placement.
+
+## FAQ
+
+### Peut-on connecter l'assistant à Microsoft 365 sans dupliquer les documents ?
+
+Oui, par deux chemins. Les connecteurs interrogent SharePoint et OneDrive à la volée : les documents restent en place, les droits d'accès s'appliquent, rien n'est copié. L'autre approche construit un index dans une base vectorielle, synchronisé périodiquement avec n8n ou Make : réponses plus rapides, mais une copie à gouverner. Le cadrage tranche selon vos contraintes de sécurité.
+
+### Les données sensibles, salaires ou évaluations, peuvent-elles entrer dans le périmètre ?
+
+Pas dans le premier assistant. On démarre sur les documents destinés à tous, et les périmètres sensibles passent ensuite avec un filtrage par rôle branché sur l'annuaire, un registre RGPD à jour et un hébergement européen. Le cadrage tranche document par document, avec votre DPO si vous en avez un.
+
+### Copilot ou assistant sur mesure : quoi choisir ?
+
+Copilot répond bien sur les documents Microsoft 365 courants, avec les droits de chaque utilisateur, pour un coût par siège. Un assistant sur mesure gagne quand il faut fédérer des sources hors Microsoft (ERP, tickets, ancien intranet), garantir que chaque réponse cite sa source, ou brancher l'assistant sur un processus métier précis. Beaucoup d'entreprises gardent Copilot pour la bureautique et font déployer l'assistant métier à part.
+
+---
+
+*Un assistant interne à lancer sur vos documents réels ? [Réservez un créneau de 30 minutes](https://cal.com/expertsia/audit) ou consultez [le détail de chaque formule et son prix](/fr/tarifs). Réponse sous 24h.*
