@@ -3,7 +3,7 @@ import Logo from '@/components/Logo';
 import { dictionaries, type Locale } from '@/lib/dictionaries';
 
 const BASE_URL = 'https://www.expertsia.dev';
-const BOOKING_URL = 'https://cal.com/expertsia/audit';
+const BOOKING_URL = 'https://cal.com/expertsia-audit';
 
 export async function generateMetadata({
   params,
@@ -131,7 +131,7 @@ export default async function BookingPage({
             {isFr ? 'Réserver mon audit gratuit' : 'Book my free audit'}
           </a>
           <p className="text-xs text-[#6f6a62] mt-4">
-            cal.com/expertsia/audit
+            cal.com/expertsia-audit
           </p>
         </div>
       </section>

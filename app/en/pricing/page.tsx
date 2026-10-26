@@ -163,7 +163,7 @@ export default function PricingPage() {
         </h1>
         <p className='mt-4 text-lg text-[#b8b3ab] max-w-3xl'>
           Based in Bordeaux, France, we work across France and remotely. On-site workshops remain possible when the project justifies it. Every engagement starts with a{' '}
-          <a href='https://cal.com/expertsia/audit' className='text-[#e07b39] underline underline-offset-4'>
+          <a href='https://cal.com/expertsia-audit' className='text-[#e07b39] underline underline-offset-4'>
             free 15-minute diagnostic
           </a>
           .
@@ -197,7 +197,7 @@ export default function PricingPage() {
                 ))}
               </ul>
               <a
-                href='https://cal.com/expertsia/audit'
+                href='https://cal.com/expertsia-audit'
                 className='mt-6 inline-block rounded-lg bg-[#e07b39] px-5 py-3 text-center font-semibold text-[#0a0f0a] hover:-translate-y-0.5 transition-transform'
               >
                 Book the free diagnostic
@@ -226,7 +226,7 @@ export default function PricingPage() {
             15 minutes, free, no jargon. You leave with 2-3 concrete leads, even if you never work with us afterwards.
           </p>
           <a
-            href='https://cal.com/expertsia/audit'
+            href='https://cal.com/expertsia-audit'
             className='mt-6 inline-block rounded-lg bg-[#e07b39] px-6 py-3 font-semibold text-[#0a0f0a] hover:-translate-y-0.5 transition-transform'
           >
             Book my free diagnostic

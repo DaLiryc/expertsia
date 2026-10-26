@@ -152,7 +152,7 @@ export default function ConsultantIaBordeauxPage() {
           </h1>
           <p className="mt-5 text-lg text-[#b8b3ab]">
             ExpertsIA accompagne les PME de Bordeaux et de Nouvelle-Aquitaine dans l'adoption concrète de l'IA : audit, automatisation de processus, agents IA et formation. Fondé par Cyril Marchand, data scientist et ancien opérateur e-commerce. Le premier pas coûte 15 minutes : un{' '}
-            <a href="https://cal.com/expertsia/audit" className="text-[#e07b39] underline underline-offset-4">
+            <a href="https://cal.com/expertsia-audit" className="text-[#e07b39] underline underline-offset-4">
               diagnostic gratuit
             </a>{' '}
             pour identifier vos chantiers à plus fort impact.
@@ -221,7 +221,7 @@ export default function ConsultantIaBordeauxPage() {
               15 minutes pour identifier vos automatisations à plus fort impact. Gratuit, sans engagement.
             </p>
             <a
-              href="https://cal.com/expertsia/audit"
+              href="https://cal.com/expertsia-audit"
               className="mt-6 inline-block rounded-lg bg-[#e07b39] px-8 py-3 font-semibold text-[#0a0f0a] hover:-translate-y-0.5 transition-transform"
             >
               Réserver un diagnostic gratuit

@@ -47,7 +47,7 @@
       "name": "Book a free 15-minute AI audit call",
       "description": "Book the free diagnostic call with Cyril Marchand via Cal.com to discuss an AI project before engaging.",
       "method": "GET",
-      "url": "https://cal.com/expertsia/audit",
+      "url": "https://cal.com/expertsia-audit",
       "external": true,
       "parameters": []
     },

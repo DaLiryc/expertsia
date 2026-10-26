@@ -3,7 +3,7 @@ import Logo from '@/components/Logo';
 import { dictionaries, type Locale } from '@/lib/dictionaries';
 
 const BASE_URL = 'https://www.expertsia.dev';
-const BOOKING_URL = 'https://cal.com/expertsia/audit?utm_source=livre&utm_medium=book&utm_campaign=kdp';
+const BOOKING_URL = 'https://cal.com/expertsia-audit?utm_source=livre&utm_medium=book&utm_campaign=kdp';
 
 export async function generateMetadata({
   params,

@@ -177,7 +177,7 @@ export default function TarifsPage() {
         </h1>
         <p className="mt-4 text-lg text-[#b8b3ab] max-w-3xl">
           Basés à Bordeaux, nous intervenons partout en France et à distance — le présentiel reste possible quand le projet le justifie. Chaque mission commence par un{' '}
-          <a href="https://cal.com/expertsia/audit" className="text-[#e07b39] underline underline-offset-4">
+          <a href="https://cal.com/expertsia-audit" className="text-[#e07b39] underline underline-offset-4">
             diagnostic gratuit de 15 minutes
           </a>
           .
@@ -211,7 +211,7 @@ export default function TarifsPage() {
                 ))}
               </ul>
               <a
-                href="https://cal.com/expertsia/audit"
+                href="https://cal.com/expertsia-audit"
                 className="mt-6 inline-block rounded-lg bg-[#e07b39] px-5 py-3 text-center font-semibold text-[#0a0f0a] hover:-translate-y-0.5 transition-transform"
               >
                 Réserver le diagnostic gratuit
@@ -240,7 +240,7 @@ export default function TarifsPage() {
             15 minutes, gratuit, sans jargon. Vous repartez avec 2-3 pistes concrètes, même si vous ne travaillez pas avec nous ensuite.
           </p>
           <a
-            href="https://cal.com/expertsia/audit"
+            href="https://cal.com/expertsia-audit"
             className="mt-6 inline-block rounded-lg bg-[#e07b39] px-6 py-3 font-semibold text-[#0a0f0a] hover:-translate-y-0.5 transition-transform"
           >
             Réserver mon diagnostic gratuit

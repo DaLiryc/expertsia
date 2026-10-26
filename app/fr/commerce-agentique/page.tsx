@@ -190,7 +190,7 @@ export default function CommerceAgentiquePage() {
             </p>
             <div className='mt-8 flex flex-wrap items-center gap-6'>
               <a
-                href='https://cal.com/expertsia/audit'
+                href='https://cal.com/expertsia-audit'
                 className='inline-block rounded-lg bg-[#e07b39] px-6 py-3 font-semibold text-[#0a0f0a] hover:-translate-y-0.5 transition-transform'
               >
                 Réserver mon diagnostic →
@@ -306,7 +306,7 @@ export default function CommerceAgentiquePage() {
               Diagnostic livré en 5 jours. Réponse sous 24h. Sans engagement.
             </p>
             <a
-              href='https://cal.com/expertsia/audit'
+              href='https://cal.com/expertsia-audit'
               className='inline-block bg-[#e07b39] text-[#0a0f0a] px-8 py-[14px] rounded-lg font-semibold hover:-translate-y-0.5 transition-transform'
             >
               Réserver mon diagnostic
