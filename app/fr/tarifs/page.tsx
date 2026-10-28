@@ -56,6 +56,26 @@ export const tarifsJsonLd = {
         offers: { '@type': 'Offer', price: '2500', priceCurrency: 'EUR' },
       },
     },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      item: {
+        '@type': 'Service',
+        name: 'Suivi & maintenance',
+        description: 'Monitoring, corrections, petites évolutions et support des automatisations livrées.',
+        offers: { '@type': 'Offer', price: '490', priceCurrency: 'EUR' },
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 4,
+      item: {
+        '@type': 'Service',
+        name: 'Retainer évolution',
+        description: 'Suivi complet + 1 nouvelle automatisation par mois + support illimité prioritaire.',
+        offers: { '@type': 'Offer', price: '1200', priceCurrency: 'EUR' },
+      },
+    },
   ],
 };
 
@@ -83,7 +103,7 @@ const PACKS = [
       '1 automatisation clé en main déployée dans vos outils',
       'Documentation complète',
       'Formation de l\'équipe (2h)',
-      'Support 30 jours inclus',
+      'Corrections incluses pendant 3 mois après mise en service',
     ],
   },
   {
@@ -97,7 +117,7 @@ const PACKS = [
       'Agent IA interne personnalisé',
       'RAG sur vos connaissances métier',
       'Dashboard de pilotage',
-      'Formation équipe + support 60 jours',
+      'Formation équipe + corrections incluses pendant 3 mois',
     ],
   },
   {
@@ -113,14 +133,26 @@ const PACKS = [
     ],
   },
   {
+    id: 'suivi',
+    name: 'Suivi & maintenance',
+    price: '490 € HT / mois',
+    delay: 'Sans engagement',
+    items: [
+      'Monitoring et corrections de vos automatisations et agents',
+      'Petites évolutions incluses (environ 2h par mois)',
+      'Support email / Slack sous 24h ouvrées',
+      'Rapport mensuel des gains réalisés',
+    ],
+  },
+  {
     id: 'retainer',
-    name: 'Retainer',
+    name: 'Retainer évolution',
     price: 'à partir de 1 200 € HT / mois',
     delay: 'Sans engagement minimum',
     items: [
-      'Maintenance de vos automatisations et agents',
+      'Tout le palier Suivi & maintenance',
       '1 nouvelle automatisation par mois',
-      'Support illimité (email / Slack)',
+      'Support illimité (email / Slack), demandes prioritaires',
       'Rapport mensuel des gains réalisés',
     ],
   },
@@ -142,6 +174,10 @@ const FAQ = [
   {
     q: 'Mes données sont-elles en sécurité ?',
     a: 'Oui. Pour les projets sensibles, nous déployons des RAG et agents sur vos serveurs ou chez un hébergeur européen. Vos données ne quittent jamais votre périmètre sans validation écrite.',
+  },
+  {
+    q: 'Que se passe-t-il après la livraison ?',
+    a: 'Chaque projet livré inclut 3 mois de corrections après mise en service. Ensuite, deux formules sans engagement prennent le relais : Suivi & maintenance (490 € HT/mois, monitoring et corrections) ou Retainer évolution (à partir de 1 200 € HT/mois, avec une nouvelle automatisation chaque mois). Les interventions hors forfait sont facturées 150 € HT par heure, sur un temps estimé et validé avant exécution.',
   },
 ];
 

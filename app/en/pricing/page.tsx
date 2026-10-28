@@ -85,7 +85,7 @@ const PACKS = [
       '1 end-to-end automation deployed in your tools',
       'Full documentation',
       'Team training (2h)',
-      '30 days of support included',
+      'Bug fixes included for 3 months after go-live',
     ],
   },
   {
@@ -99,7 +99,7 @@ const PACKS = [
       'Custom internal AI agent',
       'RAG on your business knowledge',
       'Steering dashboard',
-      'Team training + 60 days of support',
+      'Team training + bug fixes included for 3 months',
     ],
   },
   {
@@ -115,14 +115,26 @@ const PACKS = [
     ],
   },
   {
+    id: 'suivi',
+    name: 'Care & Maintenance',
+    price: '€490 excl. VAT / month',
+    delay: 'No commitment',
+    items: [
+      'Monitoring and fixes for your automations and agents',
+      'Small improvements included (about 2h per month)',
+      'Email / Slack support within one business day',
+      'Monthly report of measured gains',
+    ],
+  },
+  {
     id: 'retainer',
-    name: 'Retainer',
+    name: 'Evolution Retainer',
     price: 'from €1,200 excl. VAT / month',
     delay: 'No minimum commitment',
     items: [
-      'Maintenance of your automations and agents',
+      'Everything in Care & Maintenance',
       '1 new automation per month',
-      'Unlimited support (email / Slack)',
+      'Unlimited support (email / Slack), priority handling',
       'Monthly report of measured gains',
     ],
   },
