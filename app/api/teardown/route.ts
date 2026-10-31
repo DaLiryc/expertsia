@@ -14,9 +14,9 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { withX402, x402ResourceServer } from "@x402/next";
-import { HTTPFacilitatorClient } from "@x402/core/server";
+import { HTTPFacilitatorClient, x402ResourceServer } from "@x402/next";
 import { ExactEvmScheme } from "@x402/evm/exact/server";
+import { createCdpFacilitatorClient } from "@coinbase/cdp-sdk/x402";
 import { runTeardown } from "@/lib/teardown/run";
 
 export const runtime = "nodejs";
@@ -32,19 +32,15 @@ const CDP_KEY = process.env.X402_CDP_KEY || process.env.CDP_API_KEY_ID || "";
 const CDP_SECRET =
   process.env.X402_CDP_SECRET || process.env.CDP_API_KEY_SECRET || "";
 
-const facilitatorClient = new HTTPFacilitatorClient({
-  url: process.env.X402_FACILITATOR_URL || "https://api.cdp.coinbase.com/platform/v2/x402",
-  ...(CDP_KEY && CDP_SECRET
-    ? {
-        createAuthHeaders: async () => {
-          const auth =
-            "Basic " + Buffer.from(`${CDP_KEY}:${CDP_SECRET}`).toString("base64");
-          const headers = { Authorization: auth };
-          return { verify: headers, settle: headers, supported: headers };
-        },
-      }
-    : {}),
-});
+const facilitatorClient =
+  CDP_KEY && CDP_SECRET
+    ? createCdpFacilitatorClient({
+        apiKeyId: CDP_KEY,
+        apiKeySecret: CDP_SECRET,
+      })
+    : new HTTPFacilitatorClient({
+        url: "https://x402.org/facilitator", // testnet dev fallback
+      });
 const resourceServer = new x402ResourceServer(facilitatorClient).register(
   NETWORK,
   new ExactEvmScheme()
