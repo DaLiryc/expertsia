@@ -26,8 +26,24 @@ const PRICE = process.env.TEARDOWN_PRICE || "$4.90";
 const PAY_TO = process.env.TEARDOWN_PAYTO_ADDRESS || "";
 const NETWORK = "eip155:8453"; // Base mainnet (USDC)
 
+// CDP facilitator (Base mainnet) — x402.org public facilitator is testnet-only.
+// Reads both naming generations to survive env var renames.
+const CDP_KEY = process.env.X402_CDP_KEY || process.env.CDP_API_KEY_ID || "";
+const CDP_SECRET =
+  process.env.X402_CDP_SECRET || process.env.CDP_API_KEY_SECRET || "";
+
 const facilitatorClient = new HTTPFacilitatorClient({
-  url: process.env.X402_FACILITATOR_URL || "https://x402.org/facilitator",
+  url: process.env.X402_FACILITATOR_URL || "https://api.cdp.coinbase.com/platform/v2/x402",
+  ...(CDP_KEY && CDP_SECRET
+    ? {
+        createAuthHeaders: async () => {
+          const auth =
+            "Basic " + Buffer.from(`${CDP_KEY}:${CDP_SECRET}`).toString("base64");
+          const headers = { Authorization: auth };
+          return { verify: headers, settle: headers, supported: headers };
+        },
+      }
+    : {}),
 });
 const resourceServer = new x402ResourceServer(facilitatorClient).register(
   NETWORK,
