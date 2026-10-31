@@ -23,10 +23,10 @@ export async function callGLM(system: string, user: string): Promise<string> {
         { role: "user", content: user },
       ],
       temperature: 0.2,
-      max_tokens: 8000,
+      max_tokens: 6000,
       response_format: { type: "json_object" },
     }),
-    signal: AbortSignal.timeout(120_000),
+    signal: AbortSignal.timeout(180_000),
   });
 
   if (!res.ok) {
