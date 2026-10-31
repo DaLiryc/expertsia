@@ -14,7 +14,8 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { HTTPFacilitatorClient, x402ResourceServer } from "@x402/next";
+import { withX402, x402ResourceServer } from "@x402/next";
+import { HTTPFacilitatorClient } from "@x402/core/server";
 import { ExactEvmScheme } from "@x402/evm/exact/server";
 import { createCdpFacilitatorClient } from "@coinbase/cdp-sdk/x402";
 import { runTeardown } from "@/lib/teardown/run";
