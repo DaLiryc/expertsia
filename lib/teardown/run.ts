@@ -62,16 +62,27 @@ export async function runTeardown(rawUrl: string): Promise<TeardownResult> {
     notes: crawl.notes,
   });
 
-  // 3. LLM 7 passes
-  const raw = await callGLM(system, user);
+  // 3. LLM 7 passes (1 retry on invalid JSON — flash models occasionally drift)
+  let raw = await callGLM(system, user);
 
   // 4. parse JSON (strip fences if the model added them anyway)
-  const cleaned = raw.replace(/^```(?:json)?\s*/i, "").replace(/```\s*$/i, "").trim();
+  const parseAudit = (txt: string): Record<string, unknown> => {
+    const cleaned = txt
+      .replace(/^```(?:json)?\s*/i, "")
+      .replace(/```\s*$/i, "")
+      .trim();
+    return JSON.parse(cleaned);
+  };
   let audit: Record<string, unknown>;
   try {
-    audit = JSON.parse(cleaned);
+    audit = parseAudit(raw);
   } catch {
-    throw new Error("LLM returned invalid JSON — retry or lower temperature");
+    raw = await callGLM(
+      system,
+      user +
+        "\n\nIMPORTANT: your previous answer was not valid JSON. Return ONLY a single valid JSON object, nothing else."
+    );
+    audit = parseAudit(raw);
   }
 
   return {

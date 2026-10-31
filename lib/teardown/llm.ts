@@ -23,7 +23,7 @@ export async function callGLM(system: string, user: string): Promise<string> {
         { role: "user", content: user },
       ],
       temperature: 0.2,
-      max_tokens: 4000,
+      max_tokens: 8000,
       response_format: { type: "json_object" },
     }),
     signal: AbortSignal.timeout(120_000),
@@ -33,5 +33,9 @@ export async function callGLM(system: string, user: string): Promise<string> {
     throw new Error(`Z.AI error ${res.status}: ${await res.text()}`);
   }
   const json = await res.json();
-  return json.choices?.[0]?.message?.content || "";
+  const choice = json.choices?.[0];
+  if (choice?.finish_reason === "length") {
+    throw new Error("LLM output truncated (finish_reason=length) — raise max_tokens");
+  }
+  return choice?.message?.content || "";
 }
