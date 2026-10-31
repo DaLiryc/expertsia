@@ -22,9 +22,9 @@ import { runTeardown } from "@/lib/teardown/run";
 export const runtime = "nodejs";
 export const maxDuration = 300; // crawl + LLM can take a while
 
-const PRICE = process.env.TEARDOWN_PRICE || "$0.05";
+const PRICE = process.env.TEARDOWN_PRICE || "$4.90";
 const PAY_TO = process.env.TEARDOWN_PAYTO_ADDRESS || "";
-const NETWORK = "eip155:84532"; // Base mainnet
+const NETWORK = "eip155:8453"; // Base mainnet (USDC)
 
 const facilitatorClient = new HTTPFacilitatorClient({
   url: process.env.X402_FACILITATOR_URL || "https://x402.org/facilitator",
