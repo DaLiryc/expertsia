@@ -25,6 +25,7 @@ export const maxDuration = 300; // crawl + LLM can take a while
 
 const PRICE = process.env.TEARDOWN_PRICE || "$4.90";
 const PAY_TO = process.env.TEARDOWN_PAYTO_ADDRESS || "";
+const TEARDOWN_API_KEY = process.env.TEARDOWN_API_KEY || "";
 const NETWORK = "eip155:8453"; // Base mainnet (USDC)
 
 // CDP facilitator (Base mainnet) — x402.org public facilitator is testnet-only.
@@ -88,8 +89,13 @@ async function handler(req: NextRequest): Promise<NextResponse> {
 }
 
 // x402 wrapper active only when a pay-to address is configured.
-// Without it (dev / API-key mode), the bare handler is exposed.
+// The API-key fallback bypasses the payment gate BEFORE the x402 wrapper:
+// withX402 intercepts every request, so the check must live here, not in the handler.
 function exportedHandler(req: NextRequest) {
+  const auth = req.headers.get("authorization") || "";
+  if (TEARDOWN_API_KEY && auth === `Bearer ${TEARDOWN_API_KEY}`) {
+    return handler(req);
+  }
   if (PAY_TO) {
     return withX402(
       handler,
