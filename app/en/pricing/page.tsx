@@ -5,7 +5,7 @@ import SiteFooter from '@/components/SiteFooter';
 const BASE_URL = 'https://www.expertsia.dev';
 
 export const metadata: Metadata = {
-  title: 'Pricing — AI audit, automation, RAG, training | ExpertsIA',
+  title: 'Pricing · AI audit, automation, RAG, training | ExpertsIA',
   description:
     'Our packages: AI audit of one process (from €1,200 excl. VAT), end-to-end automation, RAG on your knowledge base, team AI training. Delivered in 2 to 4 weeks. Based in France, working across Europe.',
   alternates: {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'ExpertsIA pricing — AI audit, automation, RAG, training',
+    title: 'ExpertsIA pricing · AI audit, automation, RAG, training',
     description:
       'AI audit from €1,200 excl. VAT, end-to-end automation from €2,500, RAG and training. Delivered in 2 to 4 weeks.',
     url: `${BASE_URL}/en/pricing`,
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ExpertsIA pricing — AI audit, automation, RAG, training',
+    title: 'ExpertsIA pricing · AI audit, automation, RAG, training',
     description: 'AI audit from €1,200 excl. VAT, automation from €2,500. Delivered in 2 to 4 weeks.',
   },
 };

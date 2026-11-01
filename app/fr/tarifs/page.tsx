@@ -3,7 +3,7 @@ import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 
 export const metadata: Metadata = {
-  title: 'Tarifs — Audit IA, automatisation, RAG, formation | ExpertsIA',
+  title: 'Tarifs · Audit IA, automatisation, RAG, formation | ExpertsIA',
   description:
     'Nos formules : audit IA d\'un processus (à partir de 1 200 € HT), automatisation clé en main, RAG sur vos connaissances, formation IA pour équipes. Livraison en 2 à 4 semaines. Bordeaux et toute la France.',
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Tarifs ExpertsIA — Audit IA, automatisation, RAG, formation',
+    title: 'Tarifs ExpertsIA · Audit IA, automatisation, RAG, formation',
     description:
       'Audit IA dès 1 200 € HT, automatisation clé en main dès 2 500 € HT, RAG et formation. Livraison 2 à 4 semaines.',
     url: 'https://www.expertsia.dev/fr/tarifs',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tarifs ExpertsIA — Audit IA, automatisation, RAG, formation',
+    title: 'Tarifs ExpertsIA · Audit IA, automatisation, RAG, formation',
     description: 'Audit IA dès 1 200 € HT, automatisation dès 2 500 € HT. Livraison 2 à 4 semaines.',
   },
 };
@@ -181,7 +181,7 @@ const FAQ = [
   },
 ];
 
-// JSON-LD: FAQPage (Microsoft AEO/GEO pilier 1) — les questions pricing
+// JSON-LD: FAQPage (Microsoft AEO/GEO pilier 1) · les questions pricing
 // existantes exposees en structured data, citables par Copilot.
 const tarifsFaqJsonLd = {
   '@context': 'https://schema.org',
@@ -212,7 +212,7 @@ export default function TarifsPage() {
           Des missions à durée définie, des livrables clairs, des résultats mesurables.
         </h1>
         <p className="mt-4 text-lg text-[#b8b3ab] max-w-3xl">
-          Basés à Bordeaux, nous intervenons partout en France et à distance — le présentiel reste possible quand le projet le justifie. Chaque mission commence par un{' '}
+          Basés à Bordeaux, nous intervenons partout en France et à distance · le présentiel reste possible quand le projet le justifie. Chaque mission commence par un{' '}
           <a href="https://cal.com/expertsia-audit" className="text-[#e07b39] underline underline-offset-4">
             diagnostic gratuit de 15 minutes
           </a>
