@@ -27,7 +27,7 @@ export default function SiteNav({ locale = 'fr' }: { locale?: string }) {
       aria-label="Main navigation"
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
-        <Link href={homeHref} className="flex items-center gap-2" aria-label="ExpertsIA — accueil">
+        <Link href={homeHref} className="flex items-center gap-2" aria-label="ExpertsIA · accueil">
           <Logo />
         </Link>
         <div className="hidden md:flex items-center gap-7">
