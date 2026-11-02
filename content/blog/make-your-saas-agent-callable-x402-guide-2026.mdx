@@ -1,0 +1,86 @@
+---
+title: 'Make your SaaS agent-callable: the complete x402 guide (2026)'
+description: 'The complete pattern we run in production on two SaaS products: paid x402 endpoint, entry tier, security, registry discovery, pricing. Including the real pitfalls we hit along the way.'
+date: '2026-11-02'
+category: 'Agentic commerce'
+readingTime: '9 min'
+locale: 'en'
+author: 'Cyril Marchand'
+---
+
+AI agents have started buying API services. Not in a demo: in production, with real money. The x402 protocol standardizes this payment, Google adopted it in AP2, its agent payment protocol, and the x402scan registry already lists hundreds of services.
+
+We made two of our SaaS products agent-callable and paid in one working day. This guide documents the complete pattern we run in production: the architecture, pricing, security, discovery through registries. And above all the real pitfalls we hit, because that is the part nobody publishes.
+
+## The pattern in one sentence
+
+A URL that takes one simple input (often a site URL to analyze), returns structured JSON output, and gets paid per call in USDC on Base. No account, no API key, no human in the loop.
+
+The agent's first call: our server answers HTTP 402 with the price and payment terms. The agent pays in USDC, retries with signed proof of payment, and receives its result. The whole commercial relationship fits in three HTTP requests.
+
+## Building block 1: the endpoint
+
+A good agent-callable endpoint follows three rules. One unique, simple input (a URL, a question, an identifier). Structured, predictable output (JSON with stable fields, not prose). Work that is worth money on its own (an analysis, a verification, an extraction that saves the receiver time).
+
+Our two production examples: a merchant site URL in, a chargeback-risk audit out (score, payment signals, Visa and Mastercard reason-code exposure, top 5 risks with fixes). And a site URL in, a 7-pass growth teardown out (clarity, pricing, SEO, CRO, differentiation, monetization, action plan).
+
+## Building block 2: per-call payment
+
+The x402 server-side flow is short with the official libraries. What matters:
+
+- The price is announced in the 402 response, in USDC on Base (network eip155:8453)
+- Payment verification goes through a facilitator. The public x402.org facilitator only covers testnet: for mainnet you need an authenticated facilitator (we use Coinbase Developer Platform)
+- Always provide an API-key fallback for clients that do not speak x402. Key comparison happens in constant time, never a plain equality check
+
+## Building block 3: security
+
+Three non-negotiable guardrails, tested before going live:
+
+1. **SSRF protection**: the endpoint takes a URL as input, so someone will try to make it call 169.254.169.254 (your server metadata) or an internal host. Resolve the hostname and reject any private, loopback or link-local address before any fetch.
+2. **Constant-time key comparison**: Bearer fallback validation happens through hashing and constant-time comparison.
+3. **The paid path is never free**: until the payment address is configured, the endpoint answers 503. A costly analysis endpoint running for free because an environment variable is missing is the most classic and most expensive failure.
+
+## Building block 4: two-tier pricing
+
+This is the most counter-intuitive block. The x402scan registry shows a median price around $0.01. Publishing only a $9.90 premium service means vanishing from the radar of a price-shopping agent.
+
+Our answer: two tiers on the same product. A $0.49 snapshot (light crawl, risk score, top three risks, one priority fix) that demonstrates quality in seconds. And the full $9.90 teardown for deep analysis. The entry tier is a demo the buyer pays for, which filters better than a free demo and proves value before the decision.
+
+## Building block 5: discovery
+
+A perfect endpoint nobody finds earns nothing. Three discovery elements:
+
+- **Public openapi.json** with payment metadata (exact scheme, network, address, price). Registries automatically index resources that expose one
+- **Registries**: x402scan is the main one, with both a URL submission and a full origin submission. Facilitator catalogs (Coinbase, agentic.market) list services as soon as real transactions start
+- **llms.txt and a developers page**: agents read these files the way search engines read sitemaps. Every endpoint documented with its price and response format
+
+## Building block 6: the economics
+
+Cost per call is controlled by model choice. Our full audit runs on a flash model through BYOK: cents of infrastructure for a call sold for several dollars. The limiting factor is not cost, it is volume. And volume comes from discovery, not from the product.
+
+## The real pitfalls we hit
+
+1. **Testnet facilitator on a mainnet endpoint**: the public facilitator rejects the exact payment scheme on Base mainnet. Result: the wrapper crashes at initialization, including for API-key clients. Fix: authenticated mainnet facilitator from day one.
+2. **The payment wrapper intercepting everything**: if the API-key fallback is handled in the handler after the x402 wrapper, it will never be reached. The check belongs in the dispatcher, before the wrapper.
+3. **Truncated LLM responses**: a structured audit far exceeds default token limits. Truncated response = invalid JSON = 500 error. Plan a high limit, truncation detection, and a retry with corrective instructions.
+4. **Timeouts**: a full analysis takes 90 to 150 seconds; plan the server timeout accordingly (300 seconds on serverless hosting).
+5. **The accidental free endpoint**: the window between deployment and environment variable configuration. The 503 guard closes that window.
+6. **Pricing decided too late**: we shipped the premium tier first. The entry tier came after reading market data. In the ideal order, both ship together.
+
+## The checklist to reproduce
+
+- A structured JSON output you would pay $5 to receive
+- One unique, simple input
+- x402 payment on Base mainnet with an authenticated facilitator, plus an API-key fallback
+- SSRF guard, constant-time key comparison, 503 until configured
+- Two tiers: entry under one dollar, premium priced like the expertise it is
+- Public openapi.json with payment metadata, registry submissions, llms.txt
+- A security review before launch
+
+## What we get out of it
+
+The endpoints run in production on both our products, with public specifications and verified payment tests. Per-call revenue starts small: the bet is that the agent channel grows while our infrastructure is already in place, and every entry tier becomes a first commercial contact.
+
+If you would rather not build it yourself, that is exactly our offer: an agent-compatibility audit in 48 hours, then full delivery in 2 to 4 weeks.
+
+**[See the agentic-ready offer](/en/agentic-ready)** · **[Example public specification](https://www.trychargeguard.com/openapi.json)**
