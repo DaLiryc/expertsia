@@ -90,7 +90,11 @@ function extractPage(url: string, status: number, body: string): CrawledPage {
   };
 }
 
-export async function crawlSite(startUrl: string): Promise<CrawlResult> {
+export async function crawlSite(
+  startUrl: string,
+  opts?: { maxPages?: number }
+): Promise<CrawlResult> {
+  const maxPages = opts?.maxPages ?? MAX_PAGES;
   const notes: string[] = [];
   const origin = new URL(startUrl).origin;
 
@@ -120,7 +124,7 @@ export async function crawlSite(startUrl: string): Promise<CrawlResult> {
   const chosen: string[] = [];
   for (const kw of priority) {
     const hit = internal.find((l) => l.toLowerCase().includes(kw));
-    if (hit && chosen.length < MAX_PAGES - 1) chosen.push(`${origin}${hit}`);
+    if (hit && chosen.length < maxPages - 1) chosen.push(`${origin}${hit}`);
   }
 
   // fetch subpages in parallel
@@ -145,7 +149,7 @@ export async function crawlSite(startUrl: string): Promise<CrawlResult> {
     }
   }
 
-  if (pages.length < MAX_PAGES) notes.push(`only ${pages.length} pages crawled (few internal links found)`);
+  if (pages.length < maxPages) notes.push(`only ${pages.length} pages crawled (few internal links found)`);
   const thin = pages.filter((p) => p.text.length < 500);
   if (thin.length) notes.push(`${thin.length} page(s) with <500 chars of text (JS-rendered or empty)`);
 
