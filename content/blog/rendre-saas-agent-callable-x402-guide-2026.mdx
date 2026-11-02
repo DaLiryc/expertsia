@@ -1,0 +1,86 @@
+---
+title: 'Rendre son SaaS agent-callable : le guide x402 complet (2026)'
+description: 'Le pattern complet que nous utilisons en production sur deux SaaS : endpoint payant x402, tier d''entrée, sécurité, découverte par les registres, pricing. Avec les pièges réels que nous avons rencontrés.'
+date: '2026-11-02'
+category: 'Agentic commerce'
+readingTime: '9 min'
+locale: 'fr'
+author: 'Cyril Marchand'
+---
+
+Les agents IA ont commencé à acheter des services API. Pas dans une démo : en production, avec de l'argent réel. Le protocole x402 standardise ce paiement, Google l'a adopté dans AP2, son protocole de paiement agent, et le registre x402scan référence déjà plusieurs centaines de services.
+
+Nous avons rendu deux de nos SaaS agent-callables et payants en une journée de travail. Ce guide documente le pattern complet que nous utilisons en production : l'architecture, le pricing, la sécurité, la découverte par les registres. Et surtout les pièges réels que nous avons rencontrés, parce que c'est la partie que personne ne publie.
+
+## Le pattern en une phrase
+
+Une URL qui reçoit un input simple (souvent une URL de site à analyser), renvoie un output structuré en JSON, et se fait payer à l'appel en USDC sur Base. Sans compte, sans clé API, sans contact humain.
+
+Premier appel de l'agent : notre serveur répond HTTP 402 avec le prix et les conditions de paiement. L'agent paie en USDC, renvoie sa requête avec la preuve de paiement signée, et reçoit son résultat. La relation commerciale tient en trois requêtes HTTP.
+
+## Brique 1 : l'endpoint
+
+Un bon endpoint agent-callable respecte trois règles. Un input unique et simple (une URL, une question, un identifiant). Un output structuré et prévisible (JSON avec des champs stables, pas de prose). Un travail qui vaut de l'argent isolé (une analyse, une vérification, une extraction qui fait gagner du temps à celui qui la reçoit).
+
+Nos deux exemples en production : une URL de site marchand en entrée, un audit de risque de chargeback en sortie (score, signaux de paiement, exposition aux reason codes Visa et Mastercard, top 5 des risques avec corrections). Et une URL de site en entrée, un teardown de croissance en 7 passes en sortie (clarté, pricing, SEO, CRO, différenciation, monétisation, plan d'action).
+
+## Brique 2 : le paiement per-call
+
+Le flux x402 côté serveur tient en peu de lignes avec les bibliothèques officielles. Les points qui comptent :
+
+- Le prix est annoncé dans la réponse 402, en USDC sur Base (réseau eip155:8453)
+- La vérification du paiement passe par un facilitator. Le facilitator public x402.org ne couvre que le testnet : pour le mainnet, il faut un facilitator authentifié (nous utilisons celui de Coinbase Developer Platform)
+- Toujours prévoir un fallback clé API pour les clients qui ne parlent pas x402. La comparaison de clé se fait en temps constant, jamais avec un simple égal
+
+## Brique 3 : la sécurité
+
+Trois garde-fous non négociables, testés avant la mise en ligne :
+
+1. **Protection SSRF** : l'endpoint accepte une URL en entrée, donc quelqu'un essaiera de faire appeler 169.254.169.254 (les métadonnées de votre serveur) ou un host interne. Résoudre le hostname et rejeter toute IP privée, loopback ou link-local avant tout fetch.
+2. **Comparaison de clé en temps constant** : la validation du fallback Bearer se fait par hash et comparaison en temps constant.
+3. **Le chemin payant jamais gratuit** : tant que l'adresse de paiement n'est pas configurée, l'endpoint répond 503. Un endpoint d'analyse coûteux qui tourne gratuitement parce qu'une variable d'environnement manque, c'est la panne la plus classique et la plus coûteuse.
+
+## Brique 4 : le pricing à deux tiers
+
+C'est la brique la plus contre-intuitive. Le registre x402scan affiche un prix médian autour de 0,01 dollar. Publier uniquement un service premium à 9,90 dollars, c'est disparaître du radar d'un agent qui compare les prix.
+
+Notre réponse : deux tiers sur le même produit. Un snapshot à 0,49 dollar (crawl léger, score de risque, trois risques principaux, une correction prioritaire) qui démontre la qualité en quelques secondes. Et le teardown complet à 9,90 dollars pour l'analyse approfondie. Le tier d'entrée est la démo que l'acheteur paie, ce qui filtre mieux qu'une démo gratuite et prouve la valeur avant la décision.
+
+## Brique 5 : la découverte
+
+Un endpoint parfait que personne ne trouve ne rapporte rien. Trois éléments de découverte :
+
+- **openapi.json public** avec les métadonnées de paiement (schéma exact, réseau, adresse, prix). Les registres indexent automatiquement les ressources qui en exposent un
+- **Registres** : x402scan est le principal, avec une soumission d'URL et de l'origine complète. Les catalogues du facilitator (Coinbase, agentic.market) référencent les services dès les premières transactions réelles
+- **llms.txt et page développeurs** : les agents lisent ces fichiers comme les moteurs lisent les sitemaps. Chaque endpoint documenté avec son prix et son format de réponse
+
+## Brique 6 : le modèle économique
+
+Le coût par appel se pilote par le choix du modèle. Notre audit complet tourne sur un modèle flash branché en BYOK : quelques centimes d'infrastructure pour un appel vendu plusieurs dollars. Le facteur limitant n'est pas le coût, c'est le volume. Et le volume vient de la découverte, pas du produit.
+
+## Les pièges réels que nous avons rencontrés
+
+1. **Le facilitator testnet sur un endpoint mainnet** : le facilitator public refuse le schéma de paiement exact sur Base mainnet. Résultat : le wrapper plante à l'initialisation, y compris pour les clients en clé API. Solution : facilitator authentifié mainnet dès le premier jour.
+2. **Le wrapper de paiement qui intercepte tout** : si le fallback clé API est géré dans le handler après le wrapper x402, il ne sera jamais atteint. Le contrôle doit se faire dans le dispatcher, avant le wrapper.
+3. **Les réponses LLM tronquées** : un audit structuré dépasse largement les limites de tokens par défaut. Réponse tronquée = JSON invalide = erreur 500. Prévoir la limite haute, la détection de troncature et un retry avec instruction corrective.
+4. **Le délai d'attente** : analyse complète en 90 à 150 secondes, timeout serveur à prévoir en conséquence (300 secondes côté hébergement serverless).
+5. **L'endpoint gratuit par accident** : la fenêtre entre le déploiement et la configuration des variables d'environnement. Le garde-fou 503 ferme cette fenêtre.
+6. **Le pricing pensé trop tard** : nous avons publié le premium d'abord. Le tier d'entrée est arrivé après avoir lu les données du marché. Dans l'ordre idéal, il part en même temps.
+
+## La checklist pour reproduire
+
+- Un output JSON structuré que tu serais prêt à payer 5 dollars à recevoir
+- Un input unique et simple
+- Paiement x402 sur Base mainnet avec facilitator authentifié, plus un fallback clé API
+- SSRF guard, comparaison de clé en temps constant, 503 tant que non configuré
+- Deux tiers : entrée à moins d'un dollar, premium au prix de l'expertise
+- openapi.json public avec métadonnées de paiement, inscriptions aux registres, llms.txt
+- Un plan de security review avant la mise en ligne
+
+## Ce que nous en tirons
+
+Les endpoints tournent en production sur nos deux produits, avec les spécifications publiques et les tests de paiement vérifiés. Le revenu per-call démarre petit : le pari est que le canal agents grandit pendant que notre infra est déjà en place, et que chaque tier d'entrée devient un premier contact commercial.
+
+Si tu préfères ne pas monter ça toi-même, c'est exactement notre offre : audit de compatibilité agents en 48 heures, puis mise en service complète en 2 à 4 semaines.
+
+**[Voir l'offre agentic-ready](/fr/agentic-ready)** · **[Exemple de spécification publique](https://www.trychargeguard.com/openapi.json)**
