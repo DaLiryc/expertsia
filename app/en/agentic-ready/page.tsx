@@ -143,6 +143,48 @@ export default function AgenticReadyPage() {
                 expertsia.dev/openapi.json
               </a>
             </p>
+            <div className='mt-8 border-t border-[#2a3a2a] pt-6'>
+              <h3 className='font-semibold text-[#f5f0e8]'>What this delivery includes, verifiable in one click</h3>
+              <ul className='mt-4 grid gap-2 text-sm text-[#d8d3c8] md:grid-cols-2'>
+                <li className='flex gap-2'>
+                  <span className='text-[#e07b39]'>✓</span>
+                  <span>
+                    4 paid x402 endpoints in production (2 full teardowns, 2 entry snapshots) —{' '}
+                    <a href='https://www.trychargeguard.com/api/teardown' className='text-[#e07b39] underline underline-offset-4'>402 verifiable here</a>
+                  </span>
+                </li>
+                <li className='flex gap-2'>
+                  <span className='text-[#e07b39]'>✓</span>
+                  <span>Two streamable HTTP MCP servers (4 reason-code and deadline tools on ChargeGuard)</span>
+                </li>
+                <li className='flex gap-2'>
+                  <span className='text-[#e07b39]'>✓</span>
+                  <span>
+                    A public npm CLI —{' '}
+                    <a href='https://www.npmjs.com/package/chargeguard' className='text-[#e07b39] underline underline-offset-4'>npmjs.com/package/chargeguard</a>
+                  </span>
+                </li>
+                <li className='flex gap-2'>
+                  <span className='text-[#e07b39]'>✓</span>
+                  <span>A public read-only API with no account required (reason codes, deadlines), 24h cache</span>
+                </li>
+                <li className='flex gap-2'>
+                  <span className='text-[#e07b39]'>✓</span>
+                  <span>Full security review: 50+ vulnerabilities closed, SSRF protection, constant-time key comparison, rate limiting</span>
+                </li>
+                <li className='flex gap-2'>
+                  <span className='text-[#e07b39]'>✓</span>
+                  <span>
+                    The pattern guide, open with no email gate —{' '}
+                    <a href='/en/blog/make-your-saas-agent-callable-x402-guide-2026' className='text-[#e07b39] underline underline-offset-4'>read the guide</a>
+                  </span>
+                </li>
+              </ul>
+              <p className='mt-4 text-xs text-[#8a8a8a]'>
+                ChargeGuard is our own product, not a client engagement: we show what we would apply to your
+                product, with the same security and documentation standards.
+              </p>
+            </div>
           </section>
 
           <div className='mt-14 grid gap-6 lg:grid-cols-2'>
