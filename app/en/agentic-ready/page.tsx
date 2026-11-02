@@ -149,7 +149,7 @@ export default function AgenticReadyPage() {
                 <li className='flex gap-2'>
                   <span className='text-[#e07b39]'>✓</span>
                   <span>
-                    4 paid x402 endpoints in production (2 full teardowns, 2 entry snapshots) —{' '}
+                    4 paid x402 endpoints in production (2 full teardowns, 2 entry snapshots) :{' '}
                     <a href='https://www.trychargeguard.com/api/teardown' className='text-[#e07b39] underline underline-offset-4'>402 verifiable here</a>
                   </span>
                 </li>
@@ -160,7 +160,7 @@ export default function AgenticReadyPage() {
                 <li className='flex gap-2'>
                   <span className='text-[#e07b39]'>✓</span>
                   <span>
-                    A public npm CLI —{' '}
+                    A public npm CLI :{' '}
                     <a href='https://www.npmjs.com/package/chargeguard' className='text-[#e07b39] underline underline-offset-4'>npmjs.com/package/chargeguard</a>
                   </span>
                 </li>
@@ -175,7 +175,7 @@ export default function AgenticReadyPage() {
                 <li className='flex gap-2'>
                   <span className='text-[#e07b39]'>✓</span>
                   <span>
-                    The pattern guide, open with no email gate —{' '}
+                    The pattern guide, open with no email gate :{' '}
                     <a href='/en/blog/make-your-saas-agent-callable-x402-guide-2026' className='text-[#e07b39] underline underline-offset-4'>read the guide</a>
                   </span>
                 </li>

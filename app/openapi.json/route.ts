@@ -83,6 +83,39 @@ export async function GET(): Promise<Response> {
           },
         },
       },
+      "/api/teardown-snapshot": {
+        post: {
+          operationId: "growth_snapshot",
+          summary: "Growth snapshot (entry tier)",
+          description:
+            "Light crawl (home + 2 key pages), then a compact audit: clarity score, top 3 opportunities with fixes. Entry tier of the full 7-pass teardown. Payment: x402 USDC on Base, or Bearer API key.",
+          "x-402": {
+            scheme: "exact",
+            network: "eip155:8453",
+            payTo: "0x2bc3d96262392241498c6f568828ad69df6f6192",
+            price: "$0.25",
+            version: "2",
+          },
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  required: ["url"],
+                  properties: { url: { type: "string", format: "uri" } },
+                },
+              },
+            },
+          },
+          responses: {
+            "200": { description: "Snapshot (structured JSON)." },
+            "400": { description: "Invalid input or URL blocked (SSRF guard)." },
+            "402": { description: "Payment required — x402 terms." },
+            "429": { description: "Rate limit exceeded." },
+          },
+        },
+      },
     },
   };
 
