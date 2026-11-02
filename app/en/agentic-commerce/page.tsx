@@ -312,6 +312,11 @@ export default function AgenticCommercePage() {
             </a>
           </div>
 
+          {/* Sister offer */}
+          <p className='text-sm text-[#b8b3ab] mt-10'>
+            Running a SaaS rather than an online store? Our <a href='/en/agentic-ready' className='text-[#e07b39] underline underline-offset-4'>agent-ready offer</a> makes your product callable and payable by AI agents.
+          </p>
+
           {/* Disclaimer */}
           <p className='text-xs text-[#b8b3ab]/70 mt-10 leading-relaxed'>
             ExpertsIA provides operational governance services and does not provide legal advice. Contract documents produced during our engagements are meant to be reviewed and approved by the client\'s legal counsel. Information verified September 28, 2026.

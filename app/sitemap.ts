@@ -88,6 +88,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // Agentic-ready offer pages (money pages for the agent-callable offer)
+  const agenticRoutes = [
+    {
+      url: `${BASE_URL}/fr/agentic-ready`,
+      lastModified,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+      alternates: {
+        languages: {
+          fr: `${BASE_URL}/fr/agentic-ready`,
+          en: `${BASE_URL}/en/agentic-ready`,
+        },
+      },
+    },
+    {
+      url: `${BASE_URL}/en/agentic-ready`,
+      lastModified,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+      alternates: {
+        languages: {
+          fr: `${BASE_URL}/fr/agentic-ready`,
+          en: `${BASE_URL}/en/agentic-ready`,
+        },
+      },
+    },
+  ];
+
   // Local landing page (Bordeaux — map pack + local keyword target)
   const localRoutes = [
     {
@@ -99,7 +127,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Agentic commerce governance landing pages (separate slugs per locale, SEO-native)
-  const agenticRoutes = [
+  const commerceRoutes = [
     {
       url: `${BASE_URL}/fr/commerce-agentique`,
       lastModified,
@@ -135,5 +163,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...aboutRoutes, ...fundingRoutes, ...bookRoutes, ...bookingRoutes, ...pricingRoutes, ...localRoutes, ...agenticRoutes, ...blogHubRoutes, ...blogPostRoutes];
+  return [...staticRoutes, ...aboutRoutes, ...fundingRoutes, ...bookRoutes, ...bookingRoutes, ...pricingRoutes, ...agenticRoutes, ...localRoutes, ...commerceRoutes, ...blogHubRoutes, ...blogPostRoutes];
 }

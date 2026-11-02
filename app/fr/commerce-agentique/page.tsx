@@ -313,6 +313,11 @@ export default function CommerceAgentiquePage() {
             </a>
           </div>
 
+          {/* Offre sœur */}
+          <p className='text-sm text-[#b8b3ab] mt-10'>
+            Vous éditez un SaaS plutôt qu'une boutique en ligne ? Notre offre <a href='/fr/agentic-ready' className='text-[#e07b39] underline underline-offset-4'>agentic-ready</a> rend votre produit appelable et payable par les agents IA.
+          </p>
+
           {/* Disclaimer */}
           <p className='text-xs text-[#b8b3ab]/70 mt-10 leading-relaxed'>
             ExpertsIA fournit des services de gouvernance opérationnelle et ne délivre pas de conseil juridique. Les documents contractuels produits dans le cadre de nos missions sont destinés à être revus et validés par le conseil juridique du client. Informations vérifiées le 28 septembre 2026.
