@@ -14,16 +14,16 @@
     "@x402/evm": "^2.29.0",
     "@x402/next": "^2.29.0",
     "gray-matter": "^4.0.3",
-    "lucide-react": "^1.28.0",
+    "lucide-react": "^1.65.0",
     "next": "^16.4.3",
     "next-mdx-remote": "^6.0.0",
-    "posthog-js": "^1.409.5",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
+    "posthog-js": "^1.444.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
-    "resend": "^6.18.1"
+    "resend": "^6.36.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -31,7 +31,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.1.7",
+    "eslint-config-next": "16.4.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
