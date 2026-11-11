@@ -1,0 +1,99 @@
+---
+title: "Assistant IA intranet pour cabinet comptable : le guide 2026"
+description: "Votre cabinet perd des heures à retrouver les pièces et la bonne version des procédures ? Un assistant IA branché à l'intranet répond aux collaborateurs à partir de vos mémos, source citée. Calendrier, budget et décisions pour un cabinet comptable en 2026."
+date: "2026-11-11"
+category: "Conseil"
+readingTime: "8 min"
+locale: "fr"
+author: "Cyril Marchand"
+---
+
+## Le collaborateur qui cherche, puis qui redemande
+
+La scène se répète dans la plupart des cabinets, et un assistant IA intranet pour cabinet comptable la corrige à la racine. Une collaboratrice cherche le traitement d'une note de frais sans justificatif. Un mémo existe, écrit par un associé il y a un an et demi. Elle ouvre le serveur de fichiers, tape « note de frais », obtient quatorze versions. Elle demande au collègue du bureau d'à côté, qui répond de mémoire. Sa réponse est juste à 80 %, et la part manquante concerne justement la facture en devise.
+
+Le second scénario répète le premier côté client. Le client appelle pour savoir quelles pièces manquent encore à son dossier de clôture. Le collaborateur ouvre le dossier, déroule la liste, rappelle une heure plus tard. Deux appels de ce type par jour dans un cabinet de dix personnes, et la semaine se termine avec des heures passées à confirmer ce qu'un document à jour aurait dit en dix secondes.
+
+Un assistant IA branché à l'intranet attaque ces deux scénarios par le même bout. Le collaborateur pose sa question en français : « quel est le traitement d'un acompte versé en décembre sur un exercice clos en janvier ». L'assistant cherche dans les documents du cabinet, les mémos méthodologiques et les procédures internes, puis répond avec le passage source sous les yeux. Quand le document n'existe pas, il le dit. Cette liste de questions sans réponse devient votre plan de rédaction des mémos manquants.
+
+La mécanique derrière ce fonctionnement s'appelle le RAG : [comment un assistant retrouve la bonne information dans vos documents](/fr/blog/rag-decideurs-entreprise) l'explique sans jargon. Cet article reste sur le cas du cabinet : quoi brancher, dans quel ordre, et à quel prix.
+
+## Ce que coûte la recherche manuelle dans un cabinet de dix collaborateurs
+
+Le calcul se fait avec vos propres chiffres, mais voici l'ordre de grandeur que nous relevons le plus souvent. Un collaborateur passe 30 minutes par jour à chercher une pièce, une procédure ou la bonne version d'un courrier type. À 35 € de coût horaire chargé, ces 2,5 heures hebdomadaires représentent 115 heures par an, soit environ 4 000 € par collaborateur. Dans un cabinet de dix collaborateurs, le poste annuel tourne autour de 40 000 €.
+
+Ce montant ne figure sur aucune ligne comptable. Il se paie en heures qui auraient pu être facturées au client, ou consacrées à la production des liasses plutôt qu'à la recherche des pièces qui les composent. À cela s'ajoute la facture silencieuse des réponses approximatives : le courrier envoyé avec la version périmée d'un modèle, la procédure de relance appliquée différemment d'une équipe à l'autre, la question client traitée deux fois parce que la première réponse ne s'appuyait pas sur le document à jour.
+
+## Ce qu'un assistant IA intranet apporte à un cabinet comptable
+
+Trois changements concrets, observés sur les déploiements :
+
+La réponse arrive avec sa source. Le collaborateur voit le passage du mémo qui fonde la réponse, donc peut vérifier avant d'agir. L'associé corrige le document fautif une fois, au lieu de corriger dix réponses données de mémoire.
+
+Les documents restent en place. Le serveur de fichiers, SharePoint ou l'espace documentaire du logiciel du cabinet conservent tout. L'assistant lit au moment de la question, avec les droits de la personne qui demande. Aucune migration, aucun double classement.
+
+Les trous de documentation deviennent visibles. Un intranet classique ne dit jamais ce que les équipes n'ont pas trouvé. L'assistant, si. Chaque question restée sans réponse documentaire pointe un mémo à rédiger ou une procédure à mettre à jour.
+
+Un point de vocabulaire évite une déconvenue : un assistant qui répond n'est pas un agent qui saisit. Le lettrage automatique, la relance des pièces manquantes ou la préparation des déclarations sont des tâches d'agent, avec des validations humaines aux bons endroits, comme le décrit [notre article sur les agents IA en production](/fr/blog/agents-ia-production-2026). Commencez par l'assistant : il répond juste, et l'agent vient en deuxième vague sur des bases fiables.
+
+## Les décisions à prendre avant de lancer le chantier
+
+### Par où commencer : les procédures du cabinet, pas les dossiers clients
+
+Le premier assistant porte sur les mémos méthodologiques, les procédures internes, les modèles de courriers et la FAQ du cabinet. Ces documents sont partagés par nature, et leur qualité décide de tout le reste. Les dossiers clients viennent en deuxième vague, équipe par équipe, parce qu'ils demandent un cloisonnement strict et un tri préalable des pièces périmées. C'est aussi la configuration qui rassure : la confidentialité n'est pas en jeu au premier mois.
+
+### La confidentialité et les droits d'accès
+
+Deux réglages couvrent l'essentiel. Le cloisonnement d'abord : un collaborateur n'interroge que les documents de son périmètre, et les dossiers clients d'une équipe restent invisibles pour les autres équipes. La conformité ensuite : hébergement européen des données, contrat de traitement chez le fournisseur d'API, inscription au registre RGPD. Une précision que nous donnons systématiquement en rendez-vous : les documents du cabinet ne servent pas à entraîner les modèles, ils sont lus au moment de la question, puis rien n'est conservé côté modèle.
+
+Le cadre technique complet, filtrage par rôle inclus, figure dans [notre guide de l'assistant IA interne sur les données de l'entreprise](/fr/blog/assistant-ia-interne-entreprise-donnees-2026).
+
+### Le logiciel comptable reste l'outil de production
+
+Un assistant IA ne remplace ni Pennylane, ni Sage, ni Cegid. Le logiciel garde la saisie, la production des liasses et les télédéclarations. L'assistant répond sur la documentation : mémos, procédures, courriers types, puis en phase 2 les pièces justificatives des dossiers. Les sources qui changent souvent, comme les notes de l'administration ou les modèles de courriers mis à jour, se synchronisent avec n8n ou Make sans intervention manuelle.
+
+### Qui tient les documents à jour
+
+Un référent par famille de documents, choisi dans l'équipe métier plutôt qu'au service informatique. C'est cette personne que la formation prépare à maintenir les mémos et le jeu de questions de test, sans dépendre d'un prestataire à chaque modification.
+
+## Le calendrier d'une mission, semaine par semaine
+
+**J0. Journée de cadrage.** Qui cherche quoi, où, et combien de temps, relevé poste par poste. Cette journée produit les cas d'usage classés, les sources candidates et le périmètre du premier assistant. 1 200 € HT, déduits du déploiement si vous enchaînez.
+
+**S1. Cartographie des sources.** Inventaire écrit des mémos, procédures et modèles : à jour ? complet ? utilisé ? Les documents périmés sortent du périmètre, les trous sont listés. C'est le livrable qui décide de la qualité des réponses.
+
+**S2 à S3. Premier assistant en test.** L'assistant tourne sur les mémos méthodologiques et les courriers types, avec un groupe pilote de cinq collaborateurs. Leurs questions réelles alimentent le jeu de test. Fin de la formule Starter : 2 500 € HT, assistant livré, référent formé, documentation écrite.
+
+**S4 à S6. Montée en périmètre et intégration.** Connexion au canal Teams et à la page d'accueil SharePoint, ajout de la première famille de dossiers clients avec cloisonnement par équipe, tests d'accès. C'est la formule Growth : 6 000 € HT.
+
+Basés à Bordeaux, nous intervenons dans toute la France, le plus souvent à distance : un assistant intranet ne demande pas de présence quotidienne sur site. La formation des référents compte une journée à 1 500 € HT, et l'accompagnement continu se prend en retainer à 1 200 € HT par mois. Les montants figurent sur [la grille tarifaire 2026, formule par formule](/fr/tarifs).
+
+Le financement public peut couvrir une partie du chantier : [les aides publiques mobilisables par un cabinet comptable](/fr/financer-son-projet-ia) se lisent en une soirée, et le programme « Osez l'IA » de Bpifrance peut prendre en charge jusqu'à 50 % du projet pour les structures éligibles.
+
+## Ce qui se mesure en fin de mission
+
+Une mission se termine avec des chiffres. Le temps de recherche mesuré avant et après sur le groupe pilote, en heures par semaine, parce que c'est ce chiffre qui confronte la facture du chantier à la facture du statu quo. Le taux de réponses justes et complètes, vérifié sur le jeu de questions par les collaborateurs qui connaissent le sujet. La liste des questions restées sans réponse documentaire, qui cartographie les mémos à rédiger.
+
+Nous n'annonçons pas de taux d'adoption à l'avance. Ce chiffre se mesure chez vous, sur vos dossiers, au bout de deux mois d'usage réel.
+
+## Par quoi commencer lundi matin
+
+Une heure suffit pour savoir si le chantier vaut le coup. Demandez à trois collaborateurs de services différents ce qu'ils ont cherché la semaine dernière, et notez pour chaque réponse où se trouve le document qui aurait dû y répondre. Comptez ensuite le temps hebdomadaire passé à chercher sur ces exemples, multipliez par votre coût horaire chargé, puis par 46 semaines : si le total dépasse 1 200 €, la journée de cadrage se rembourse toute seule. Vérifiez enfin la date de mise à jour des dix mémos les plus consultés. Plus d'un an de retard, et le tri documentaire passe avant l'assistant.
+
+## FAQ
+
+### Nos dossiers clients sont confidentiels. Que garantit un assistant IA ?
+
+La première garantie est technique : l'assistant lit vos documents au moment de la question et n'entraîne aucun modèle avec. La deuxième porte sur les droits d'accès, calqués sur vos équipes : un collaborateur n'interroge que les dossiers de son portefeuille. La troisième est l'hébergement européen, avec contrat de traitement et inscription au registre RGPD. Et rien n'interdit de commencer sans aucune donnée client : le premier assistant porte sur les procédures internes, qui ne contiennent rien de confidentiel.
+
+### Est-ce que l'assistant remplace Pennylane, Sage ou Cegid ?
+
+Non. Le logiciel de comptabilité reste l'outil de saisie et de production. L'assistant répond sur la documentation du cabinet : mémos méthodologiques, procédures, modèles de courriers, puis les pièces des dossiers en deuxième phase. Beaucoup de cabinets finissent avec les deux : le logiciel pour produire, l'assistant pour que chacun retrouve la règle applicable sans déranger l'associé.
+
+### En combien de temps les collaborateurs utilisent-ils l'assistant ?
+
+Le premier mois décide de la suite, et deux conditions font la différence, aucune n'est technique. Un référent identifié, que les équipes savent solliciter. Et la correction rapide des trous de documentation révélés par les questions sans réponse. Avec ces deux conditions réunies, l'usage s'installe au deuxième mois, et les statistiques d'usage permettent de le vérifier plutôt que de l'estimer.
+
+---
+
+*Une question sur l'intranet de votre cabinet ? [Réservez un créneau de 30 minutes](https://cal.com/expertsia-audit) ou consultez [le prix de chaque formule](/fr/tarifs). Réponse sous 24h.*
