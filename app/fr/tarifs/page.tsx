@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
+import McpActionsLink from '@/components/McpActionsLink';
 
 export const metadata: Metadata = {
   title: 'Tarifs · Audit IA, automatisation, RAG, formation | ExpertsIA',
@@ -196,6 +197,7 @@ const tarifsFaqJsonLd = {
 export default function TarifsPage() {
   return (
     <>
+      <McpActionsLink />
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(tarifsJsonLd) }}

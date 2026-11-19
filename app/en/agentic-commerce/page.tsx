@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
+import McpActionsLink from '@/components/McpActionsLink';
 
 const BASE_URL = 'https://www.expertsia.dev';
 
@@ -168,6 +169,7 @@ const faqs = [
 export default function AgenticCommercePage() {
   return (
     <>
+      <McpActionsLink />
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

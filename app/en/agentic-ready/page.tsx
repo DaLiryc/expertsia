@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
+import McpActionsLink from '@/components/McpActionsLink';
 
 export const metadata: Metadata = {
   title: 'Make your SaaS agent-callable: x402, MCP, WebMCP | ExpertsIA',
@@ -102,6 +103,7 @@ const FAQ = [
 export default function AgenticReadyPage() {
   return (
     <>
+      <McpActionsLink />
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(agenticJsonLd) }}

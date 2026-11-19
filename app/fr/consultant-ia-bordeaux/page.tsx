@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import SiteNav from '@/components/SiteNav';
+import McpActionsLink from '@/components/McpActionsLink';
 
 export const metadata: Metadata = {
   title: 'Consultant IA à Bordeaux — PME et ETI | ExpertsIA',
@@ -135,6 +136,7 @@ const SERVICES = [
 export default function ConsultantIaBordeauxPage() {
   return (
     <>
+      <McpActionsLink />
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceJsonLd) }}

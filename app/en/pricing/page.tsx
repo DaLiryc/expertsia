@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
+import McpActionsLink from '@/components/McpActionsLink';
 
 const BASE_URL = 'https://www.expertsia.dev';
 
@@ -162,6 +163,7 @@ const FAQ = [
 export default function PricingPage() {
   return (
     <>
+      <McpActionsLink />
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingJsonLd) }}
