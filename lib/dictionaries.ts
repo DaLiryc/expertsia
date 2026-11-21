@@ -82,12 +82,16 @@ export const dictionaries = {
       submit: "Send Message",
       linkedin: "Connect on LinkedIn",
     },
+    blogCta: {
+      agenticReadyLabel: "Agentic-ready",
+      agenticReadyText: "Make your website readable by AI agents: see the offer",
+    },
     footer: "© 2026 ExpertsIA. AI Business Transformation for Startups & Corporations.",
   },
 
   fr: {
     meta: {
-      title: "ExpertsIA — Automatisation IA & Conseil pour PME",
+      title: "ExpertsIA : Automatisation IA & Conseil pour PME",
       description: "ExpertsIA aide les PME françaises à automatiser leurs processus et déployer l'intelligence artificielle. Audit, automatisation, formation. Éligible aides BPI et Osez l'IA.",
       keywords: "automatisation ia entreprise, agence ia france, conseil ia pme, audit ia gratuit, formation ia entreprise, agents ia, automatisation processus, aide ia bpi, osez l'ia",
     },
@@ -102,7 +106,7 @@ export const dictionaries = {
     },
     hero: {
       title: "Automatisez votre Entreprise avec l'IA",
-      subtitle: "Nous aidons les PME à gagner du temps et réduire leurs coûts grâce à l'automatisation intelligente et l'IA. Concret, mesurable, déployé en semaines — pas en mois. Éligible aides BPI et programme Osez l'IA.",
+      subtitle: "Nous aidons les PME à gagner du temps et réduire leurs coûts grâce à l'automatisation intelligente et l'IA. Concret, mesurable, déployé en semaines, pas en mois. Éligible aides BPI et programme Osez l'IA.",
       cta: "Audit Gratuit",
     },
     process: {
@@ -136,7 +140,7 @@ export const dictionaries = {
       items: [
         { icon: "⚡", title: "Audit & Stratégie IA", description: "Évaluer votre maturité IA, identifier les automatisations à fort ROI et construire une roadmap claire, alignée sur vos objectifs business." },
         { icon: "🔄", title: "Automatisation des Processus", description: "Éliminer les tâches répétitives avec des outils comme n8n, Make ou des scripts sur mesure. Vos équipes se concentrent sur ce qui compte vraiment." },
-        { icon: "🤖", title: "Assistants IA sur Mesure", description: "Des chatbots et assistants qui répondent à vos clients, traitent vos documents et prennent des décisions — formés sur VOS données, pas des hallucinations." },
+        { icon: "🤖", title: "Assistants IA sur Mesure", description: "Des chatbots et assistants qui répondent à vos clients, traitent vos documents et prennent des décisions : formés sur VOS données, pas des hallucinations." },
         { icon: "📊", title: "Data Science & Analytics", description: "Modèles prédictifs, segmentation client, tableaux de bord intelligents. Transformez vos données en décisions actionnables." },
         { icon: "🎓", title: "Formation IA", description: "Ateliers pratiques pour vos équipes : prompt engineering, ChatGPT/Claude avancé, bonnes pratiques. Certifié et éligible OPCO." },
         { icon: "📈", title: "Conduite du Changement", description: "Accompagner vos équipes dans l'adoption de l'IA : ateliers, support, mesure d'impact. L'outil ne sert à rien si personne ne l'utilise." },
@@ -167,6 +171,10 @@ export const dictionaries = {
       messagePlaceholder: "Parlez-nous de votre projet ou de votre défi...",
       submit: "Envoyer",
       linkedin: "Connectons-nous sur LinkedIn",
+    },
+    blogCta: {
+      agenticReadyLabel: "Agentic-ready",
+      agenticReadyText: "Rendre votre site lisible par les agents IA : voir l'offre",
     },
     footer: "© 2026 ExpertsIA. Automatisation IA pour PME et grandes entreprises. Éligible aides BPI et Osez l'IA.",
   },

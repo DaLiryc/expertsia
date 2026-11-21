@@ -140,7 +140,7 @@ export default async function BlogPostPage({
           />
         </div>
 
-        {/* Related posts — internal linking / mesh */}
+        {/* Related posts: internal linking mesh */}
         {relatedPosts.length > 0 && (
           <div className="mt-16">
             <h2 className="text-2xl font-bold mb-6 text-[#f5f0e8]">
@@ -159,7 +159,7 @@ export default async function BlogPostPage({
                 </Link>
               ))}
               <Link
-                href="/fr/tarifs"
+                href={locale === 'fr' ? '/fr/tarifs' : '/en/pricing'}
                 className="block p-6 bg-gradient-to-r from-[#e07b39]/10 to-transparent border border-[#e07b39]/30 rounded-xl hover:border-[#e07b39] transition-colors"
               >
                 <span className="text-[#e07b39] text-sm font-semibold">
@@ -167,8 +167,19 @@ export default async function BlogPostPage({
                 </span>
                 <p className="text-lg font-semibold mt-1 text-[#f5f0e8]">
                   {locale === 'fr'
-                    ? 'Audit IA dès 1 200 € HT — voir les formules'
-                    : 'AI audits from €1,200 — see pricing'}
+                    ? 'Audit IA dès 1 200 € HT : voir les formules'
+                    : 'AI audits from €1,200: see pricing'}
+                </p>
+              </Link>
+              <Link
+                href={`/${locale}/agentic-ready`}
+                className="block p-6 bg-gradient-to-r from-[#e07b39]/10 to-transparent border border-[#e07b39]/30 rounded-xl hover:border-[#e07b39] transition-colors"
+              >
+                <span className="text-[#e07b39] text-sm font-semibold">
+                  {t.blogCta.agenticReadyLabel}
+                </span>
+                <p className="text-lg font-semibold mt-1 text-[#f5f0e8]">
+                  {t.blogCta.agenticReadyText}
                 </p>
               </Link>
             </div>
