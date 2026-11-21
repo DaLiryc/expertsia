@@ -1,0 +1,90 @@
+---
+title: "Automatiser les relances clients et les impayés avec l'IA : méthode et coûts 2026"
+description: "Relances clients et factures impayées : comment automatiser avec l'IA dans une PME. Séquences à paliers, lecture des réponses, outils existants (Outlook, n8n, HubSpot), coûts réels et résultats mesurables. Guide ExpertsIA."
+date: "2026-11-21"
+category: "Automatisation"
+readingTime: "9 min"
+locale: "fr"
+author: "Cyril Marchand"
+---
+
+## Les relances que personne n'envoie à temps
+
+Vendredi après-midi, quelqu'un ouvre le tableur des impayés. Il copie un email depuis un template vieux de deux ans, l'envoie à cinq clients, note deux promesses de paiement dans un carnet, et passe à autre chose. La semaine suivante, une facture échue n'a reçu aucune relance, et personne ne s'en est aperçu. Cette scène se répète dans la majorité des PME, non pas par négligence, mais parce que le suivi des relances n'a jamais de propriétaire attitré.
+
+Automatiser les relances clients et les factures impayées avec l'IA corrige ce problème durablement, à condition de respecter quatre règles : détecter les retards chaque matin, ne jamais relancer un client qui a déjà payé, adapter le ton au palier de retard, et garder un humain sur les cas qui sortent du cadre. Cet article détaille la méthode que nous déployons sur ce chantier, les outils utilisés, les coûts réels, et les chiffres à mesurer 30 jours après la mise en service.
+
+Avant d'entrer dans la méthode, deux renvois utiles. Si vous hésitez sur le chantier à traiter en premier, [le calcul de retour sur investissement d'un chantier IA](/fr/blog/retour-investissement-automatisation-ia-2026) donne la formule pour départager. Et si votre douleur se situe en amont, sur la production des documents, notre guide sur [l'IA pour vos devis et vos factures automatiques](/fr/blog/ia-devis-factures-automatique-pme-2026) couvre ce périmètre. Tous les montants cités ici figurent sur [les tarifs de nos formules d'automatisation](/fr/tarifs), publiés en clair.
+
+## Ce que les relances manuelles coûtent vraiment
+
+Commençons par le coût visible. Le suivi des impayés prend, dans une PME classique, entre 20 et 40 minutes par jour : repérer les factures échues, vérifier lesquelles ont été réglées, écrire les emails, relire les promesses. Prenons 30 minutes par jour ouvré, soit environ 2 h 30 par semaine. À 32 € de coût horaire chargé, cela représente 4 160 € par an. Sur une seule tâche, répétitive, et que personne n'a choisie.
+
+Le coût invisible est plus lourd. Une facture de 5 000 € réglée avec 30 jours de retard, ce sont 5 000 € de trésorerie immobilisés un mois de plus que prévu. Multipliez par le nombre de factures en retard et vous atteignez souvent un montant comparable à votre découvert autorisé. Pendant ce temps, la personne qui fait les relances ne vend pas, ne traite pas les litiges et ne rappelle pas les prospects. Dans une PME, personne n'est en sous-charge : une heure passée à courir après un paiement est une heure prise sur autre chose.
+
+## Ce que l'IA fait dans une relance, et ce qu'elle laisse à un humain
+
+Le travail se découpe en quatre mécanismes.
+
+**Détecter.** Un export quotidien de votre logiciel compta (CSV ou tableur) alimente le système. Il repère les factures échues, calcule les jours de retard, et note les paiements arrivés entre-temps pour ne jamais relancer quelqu'un qui a déjà réglé. Ce dernier point est la première source d'embarras dans les relances manuelles : relancer un client qui a payé la veille, ça se voit, et ça se pardonne rarement deux fois.
+
+**Relancer au bon palier.** À J+3 après l'échéance, un rappel courtois. À J+15, un email plus direct, avec la copie de la facture. À J+30, un email ferme et un projet d'appel téléphonique. Le ton de chaque palier est écrit avec vous au départ, dans votre langue commerciale. Les séquences partent d'Outlook, depuis votre domaine, avec votre signature.
+
+**Lire les réponses.** C'est là que le système dépasse un logiciel de relance classique. « Payé hier, désolé » : le système vérifie l'export compta et arrête la séquence. « On paie le 15 » : la séquence est replanifiée, la promesse est notée et suivie. « On conteste la ligne 3 du devis » : le dossier part dans une file humaine avec le contexte complet, et quelqu'un de votre équipe décroche son téléphone.
+
+**Tenir le suivi à jour.** Chaque action est journalisée dans un tableau, dans Notion, Excel ou HubSpot selon votre stack. Vous voyez d'un coup d'œil qui est relancé, depuis quand, quelles promesses pendent, et ce qui attend une décision humaine. Le suivi ne dépend plus de la mémoire d'une personne.
+
+Reste ce qui ne s'automatise pas : la négociation commerciale, la décision d'envoyer une mise en demeure, l'arbitrage sur un litige. Le système prépare le projet de courrier et le place dans la file de validation, votre responsable le relit et l'envoie. Sans ce garde-fou, une automatisation de relance finit tôt ou tard par envoyer le mauvais email au mauvais client, et récupérer un client fâché coûte plus cher qu'une relance bien écrite.
+
+## Les outils restent ceux que vous utilisez déjà
+
+Aucun nouveau logiciel compta, aucune migration CRM. Sur nos déploiements, le système tourne avec Microsoft 365 (les emails partent d'Outlook, de votre domaine), n8n ou Make pour l'ordonnancement, et un suivi dans Notion, Excel ou HubSpot. Votre logiciel compta continue de faire ce qu'il fait : il exporte, le reste se greffe à côté.
+
+Conséquence pratique : la mise en main ne demande pas une formation longue. Une heure ou deux suffit à l'équipe pour comprendre les paliers, ajuster un ton, et reprendre la main sur un dossier. Et si vous voulez aller plus loin, jusqu'à un agent qui téléphone aux clients et traite les litiges en première ligne, vous changez de catégorie de budget : [le budget réel d'un agent IA](/fr/blog/combien-coute-agent-ia-entreprise-2026) détaille les niveaux et les coûts annuels.
+
+## La méthode, semaine par semaine
+
+**S0. L'audit d'une journée**, à partir de 1 200 € HT. On observe votre circuit réel : où naissent les retards, qui relance aujourd'hui, avec quel ton, ce que votre logiciel compta peut exporter. On écrit les paliers et les templates avec vous, et on chiffre le ROI du scénario sur vos volumes, pas sur une moyenne de marché. Nous travaillons en distanciel partout en France, et en présentiel autour de Bordeaux, notre base.
+
+**S1 et S2. Le déploiement**, à partir de 2 500 € HT avec la formule Starter. Le workflow tourne dans votre tenant Microsoft 365 et votre instance n8n ou Make : détection quotidienne, séquences à paliers, file de validation humaine, tableau de suivi. Formation de l'équipe incluse.
+
+**J+30. Le point de mesure.** Trois chiffres, calculés sur vos données : le taux de factures relancées dans les délais, le délai moyen de paiement avant et après, et les heures réellement récupérées. Avant le déploiement, le premier de ces chiffres n'est mesuré par personne. Après, il est suivi chaque semaine, et c'est ce suivi qui transforme une dépense en décision chiffrée.
+
+Si vous voulez traiter le cycle complet (relances, devis, factures fournisseurs, reporting compta), le périmètre correspond à la formule Growth, à partir de 6 000 € HT, livrée en 4 semaines.
+
+## Les résultats qui se mesurent
+
+Nous ne promettons pas de réduire vos impayés d'un pourcentage magique. Ce qui se mesure honnêtement sur ce chantier :
+
+- **Le taux de couverture des relances**, c'est-à-dire la part de factures échues qui ont reçu une relance au bon palier. Un workflow qui tourne met ce taux à 100 %, ce qu'aucune équipe débordée ne tient à la main sur la durée.
+- **Le délai moyen de paiement**, calculé avant et après la mise en service. La mécanique est simple : une facture relancée à J+3 se règle plus tôt qu'une facture relancée à J+40, et le délai moyen suit.
+- **Les heures récupérées**, avec la formule habituelle : temps passé par semaine multiplié par le coût horaire, multiplié par 52. Trente minutes par jour à 32 € de coût horaire chargé, cela fait 4 160 € par an sur une seule tâche.
+- **La trésorerie disponible plus tôt**. Chaque jour gagné sur le délai de paiement est un jour où l'argent dort chez le client en moins. C'est souvent le chiffre qui intéresse le plus votre banquier.
+
+## Les objections qu'on nous oppose
+
+**« Nos clients vont mal le prendre. »** Un client qui reçoit un rappel courtois à J+3 ne le prend pas mal. Ce qui agace, c'est la relance agressive à J+60 sur une facture déjà réglée, ou pire, l'absence totale de relance jusqu'à la mise en demeure. Les paliers existent justement pour éviter les deux : chaque email correspond à un niveau de retard, et une promesse de paiement replanifie la séquence au lieu de laisser un humain oublier.
+
+**« On a déjà des templates de relance. »** Un template, oui. Mais qui vérifie chaque matin quelles factures ont franchi un nouveau palier ? Qui lit les réponses, arrête les séquences quand c'est payé, note les promesses ? Dans la plupart des PME, la réponse est : personne, de façon fiable. Le template n'a jamais été le problème. Le suivi l'est.
+
+**« Notre logiciel compta ne se connecte à rien. »** Alors on connecte à côté. Un export CSV quotidien ou hebdomadaire suffit : n8n le lit, structure les échéances, et pilote le reste. Votre comptable ne change rien à ses habitudes, et aucune écriture ne part en automatique.
+
+**« On va le faire en interne. »** Le prototype tient en un après-midi avec des outils grand public. Ce qui coûte cher, ce sont les cas limites : la facture partiellement réglée, le client qui annonce un virement qui n'arrive jamais, le changement de RIB signalé en pleine séquence de relance. Un prestataire qui a déjà livré ce chantier les connaît. Sinon, vous les découvrez sur vos vrais clients, au moment le moins opportun.
+
+## FAQ
+
+### L'IA peut-elle relancer un client sans dégrader la relation ?
+
+Oui, à une condition : tout ce qui sort du cadre standard passe en validation humaine. En pratique, les paliers sont écrits avec vous, la séquence s'arrête dès que le paiement apparaît dans l'export compta, et une relance sur un dossier en litige ne part jamais sans la relecture d'un membre de votre équipe. Le système relance, votre équipe garde la main sur la relation.
+
+### Combien coûte l'automatisation des relances clients et des impayés ?
+
+L'audit à partir de 1 200 € HT arbitre le scénario et chiffre le ROI sur vos volumes réels. Le déploiement à partir de 2 500 € HT (formule Starter) est livré en 2 semaines, formation incluse. Un cycle complet (relances, devis, factures, compta) correspond à la formule Growth à partir de 6 000 € HT. Prévoyez 50 € à 300 € HT par mois de licences selon les volumes. Pour la montée en compétence de votre équipe, la formation IA coûte 1 500 € HT par jour, et une seule journée suffit généralement sur ce type d'outil.
+
+### Ce chantier est-il finançable ?
+
+Les missions de conseil et les déploiements liés à l'IA sont éligibles au programme « Osez l'IA » de Bpifrance, qui peut couvrir une partie du montant selon le dossier. Nous détaillons les montages possibles sur [notre page sur le financement d'un projet IA](/fr/financer-son-projet-ia).
+
+---
+
+*Vous voulez chiffrer ce chantier sur vos volumes réels ? [Réservez un créneau de 30 minutes](https://cal.com/expertsia-audit) ou consultez [le détail de nos formules](/fr/tarifs). Réponse sous 24h.*
