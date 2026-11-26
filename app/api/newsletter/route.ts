@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { escapeHtml } from '@/lib/escape-html';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -91,7 +92,7 @@ export async function POST(request: Request) {
       from: 'ExpertsIA <onboarding@expertsia.dev>',
       to: ['cyril@expertsia.dev'],
       subject: `[Newsletter] New subscriber: ${email}`,
-      html: `<p>New newsletter subscriber:</p><p><strong>${email}</strong></p><p>Locale: ${locale || 'unknown'}</p>`,
+      html: `<p>New newsletter subscriber:</p><p><strong>${escapeHtml(String(email))}</strong></p><p>Locale: ${escapeHtml(String(locale || 'unknown'))}</p>`,
     });
 
     return NextResponse.json({ success: true });
