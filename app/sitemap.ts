@@ -154,6 +154,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // Free live workshop funnel (FR market only — no EN search intent)
+  const atelierRoutes = [
+    {
+      url: `${BASE_URL}/fr/atelier-audit-ia`,
+      lastModified,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
+  ];
+
   // Blog posts
   const allPosts = getAllPosts();
   const blogPostRoutes = allPosts.map((post) => ({
@@ -163,5 +173,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...aboutRoutes, ...fundingRoutes, ...bookRoutes, ...bookingRoutes, ...pricingRoutes, ...agenticRoutes, ...localRoutes, ...commerceRoutes, ...blogHubRoutes, ...blogPostRoutes];
+  return [...staticRoutes, ...aboutRoutes, ...fundingRoutes, ...bookRoutes, ...bookingRoutes, ...pricingRoutes, ...agenticRoutes, ...localRoutes, ...commerceRoutes, ...atelierRoutes, ...blogHubRoutes, ...blogPostRoutes];
 }
