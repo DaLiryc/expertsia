@@ -82,16 +82,16 @@ export async function POST(request: Request) {
     const { error } = await resend.emails.send({
       from: 'ExpertsIA <onboarding@expertsia.dev>',
       to: [email],
-      subject: 'Votre place est réservée : atelier du mardi 2 décembre, 12h30',
+      subject: 'Votre place est réservée : atelier du mercredi 2 décembre, 12h30',
       html: `
         <div style="font-family:sans-serif;max-width:600px;margin:0 auto;background:#0a0f0a;color:#f5f0e8;padding:40px;">
           <h1 style="color:#e07b39;font-size:22px;">Place réservée${firstName ? `, ${escapeHtml(firstName)}` : ''}</h1>
           <p style="font-size:16px;line-height:1.6;color:#d4cfc7;">
             <strong>Atelier live : trouvez votre premier cas d'usage IA rentable en 45 minutes.</strong><br>
-            Mardi 2 décembre 2026, 12h30 à 13h15, en ligne.
+            Mercredi 2 décembre 2026, 12h30 à 13h15, en ligne.
           </p>
           <p style="font-size:16px;line-height:1.6;color:#d4cfc7;">
-            Le lien de connexion : <a href="https://cal.com/expertsia/atelier" style="color:#e07b39;">votre page de confirmation cal.com</a>. Vous recevrez un rappel la veille.
+            Le lien de connexion vous sera envoyé par email la veille de la session (mardi 1er décembre). Vous recevrez aussi un rappel le jour même.
           </p>
           <p style="font-size:16px;line-height:1.6;color:#d4cfc7;">
             En attendant, voici la checklist promise : <strong>les 12 signaux qu'une PME est prête pour l'IA</strong>.

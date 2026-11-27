@@ -54,4 +54,4 @@ L'atelier lui-même attend le GO de Cyril : date confirmée + lien visio
 Vouvoiement partout, zéro emoji, zéro tiret cadratin, pas d'urgence
 artificielle, rareté réelle uniquement, le refus est une sortie propre
 (chaque email propose une sortie sans achat). Une seule CTA par email :
-cal.com/expertsia/audit.
+cal.com/expertsia-audit.

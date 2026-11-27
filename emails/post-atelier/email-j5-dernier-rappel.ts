@@ -16,7 +16,7 @@ Il reste 2 créneaux d'audit ce mois-ci. C'est le calendrier réel, pas une comp
 
 Pour rappel, l'audit : deux semaines sur vos processus, un plan d'action chiffré processus par processus, le ROI estimé avant d'engager un euro de développement. À partir de 1 200 € HT.
 
-Si votre score d'atelier est au-dessus de 8, c'est le moment : https://cal.com/expertsia/audit
+Si votre score d'atelier est au-dessus de 8, c'est le moment : https://cal.com/expertsia-audit
 
 S'il est en dessous, ou si le moment n'est pas bon : la checklist reste dans votre email d'inscription, elle fonctionne sans nous. Et vous pouvez écrire à cette adresse quand votre situation change, je réponds.
 
@@ -41,7 +41,7 @@ Vous pouvez vous désinscrire en répondant à cet email.`,
             À partir de 1 200 € HT.
           </p>
           <p style="margin:24px 0;">
-            <a href="https://cal.com/expertsia/audit"
+            <a href="https://cal.com/expertsia-audit"
                style="background:#e07b39;color:#0a0f0a;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;">
               Réserver un créneau d'audit
             </a>

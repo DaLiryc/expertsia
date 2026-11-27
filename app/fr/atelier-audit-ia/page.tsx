@@ -6,7 +6,7 @@ import AtelierForm from '@/components/AtelierForm';
 export const metadata: Metadata = {
   title: 'Atelier IA gratuit · 45 minutes live pour PME | ExpertsIA',
   description:
-    'Session live gratuite : repartez avec votre premier cas d\u2019usage IA rentable, chiffré et priorisé. 45 minutes, en ligne, pour dirigeants de PME. Mardi 2 décembre 2026, 12h30.',
+    'Session live gratuite : repartez avec votre premier cas d\u2019usage IA rentable, chiffré et priorisé. 45 minutes, en ligne, pour dirigeants de PME. Mercredi 2 décembre 2026, 12h30.',
   alternates: {
     canonical: 'https://www.expertsia.dev/fr/atelier-audit-ia',
     languages: {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Atelier IA gratuit · Votre premier cas d\u2019usage rentable en 45 minutes',
     description:
-      'Session live gratuite pour dirigeants de PME : méthode, exemples chiffrés, plan d\u2019action. Mardi 2 décembre 2026, 12h30.',
+      'Session live gratuite pour dirigeants de PME : méthode, exemples chiffrés, plan d\u2019action. Mercredi 2 décembre 2026, 12h30.',
     url: 'https://www.expertsia.dev/fr/atelier-audit-ia',
     siteName: 'ExpertsIA',
     type: 'website',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Atelier IA gratuit · 45 minutes live pour PME',
-    description: 'Votre premier cas d\u2019usage IA rentable, chiffré et priorisé. Mardi 2 décembre, 12h30.',
+    description: 'Votre premier cas d\u2019usage IA rentable, chiffré et priorisé. Mercredi 2 décembre, 12h30.',
   },
 };
 
@@ -180,7 +180,7 @@ export default function AtelierAuditIa() {
             Trouvez votre premier cas d&rsquo;usage IA rentable en 45 minutes
           </h1>
           <p className="text-[#d4cfc7] text-lg mt-5 max-w-2xl mx-auto">
-            Mardi 2 décembre 2026, 12h30 à 13h15, en ligne. Pour dirigeants de PME, commerces et artisans.
+            Mercredi 2 décembre 2026, 12h30 à 13h15, en ligne. Pour dirigeants de PME, commerces et artisans.
             Sans jargon technique : des processus, des heures gagnées et des euros.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
@@ -283,7 +283,7 @@ export default function AtelierAuditIa() {
         <section id="inscription" className="mt-16 scroll-mt-24">
           <h2 className="text-2xl font-bold text-center">Réservez votre place</h2>
           <p className="text-[#d4cfc7] text-center mt-3 max-w-xl mx-auto">
-            Mardi 2 décembre 2026, 12h30 à 13h15. Session limitée à 25 participants pour garder du temps
+            Mercredi 2 décembre 2026, 12h30 à 13h15. Session limitée à 25 participants pour garder du temps
             pour vos questions.
           </p>
           <div className="mt-8">

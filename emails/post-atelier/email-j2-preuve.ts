@@ -21,7 +21,7 @@ Sur « je peux le faire moi-même » : vous avez raison. La checklist est faite 
 
 Ce que l'audit achète n'est pas le développement. C'est le tri : choisir le bon cas, le chiffrer avant d'engager un euro, écarter les gadgets avant qu'ils coûtent des semaines. Le mauvais cas coûte plus cher que l'audit.
 
-Si vous voulez ce tri sur vos propres processus : https://cal.com/expertsia/audit
+Si vous voulez ce tri sur vos propres processus : https://cal.com/expertsia-audit
 À partir de 1 200 € HT, deux semaines, un plan d'action chiffré.
 
 Si vous préférez avancer seul, la checklist suffit. C'est une sortie propre.
@@ -58,7 +58,7 @@ Vous pouvez vous désinscrire en répondant à cet email.`,
             semaines. Le mauvais cas coûte plus cher que l'audit.
           </p>
           <p style="margin:24px 0;">
-            <a href="https://cal.com/expertsia/audit"
+            <a href="https://cal.com/expertsia-audit"
                style="background:#e07b39;color:#0a0f0a;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;">
               Réserver un créneau d'audit
             </a>

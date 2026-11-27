@@ -15,7 +15,7 @@ Premier chemin : seul. La checklist est complète, vous testez, vous mesurez.
 
 Deuxième chemin : l'audit. Deux semaines sur vos processus, un plan d'action chiffré processus par processus, le ROI estimé avant d'engager un euro de développement. À partir de 1 200 € HT.
 
-Réserver un créneau d'audit : https://cal.com/expertsia/audit
+Réserver un créneau d'audit : https://cal.com/expertsia-audit
 
 Si votre score est resté sous 8, gardez la checklist. L'audit ne sert à rien tant que les processus ne sont pas posés.
 
@@ -53,7 +53,7 @@ Vous pouvez vous désinscrire en répondant à cet email.`,
             processus, le ROI estimé avant d'engager un euro de développement. À partir de 1 200 € HT.
           </p>
           <p style="margin:24px 0;">
-            <a href="https://cal.com/expertsia/audit"
+            <a href="https://cal.com/expertsia-audit"
                style="background:#e07b39;color:#0a0f0a;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;">
               Réserver un créneau d'audit
             </a>

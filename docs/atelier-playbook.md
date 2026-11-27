@@ -23,8 +23,8 @@ Fichiers livrés :
 
 ## 2. Prérequis avant mise en prod (à faire par Cyril)
 
-- [ ] Confirmer la date : mardi 2 décembre 2026, 12h30 à 13h15 (dans la page, l'email de confirmation et le Event JSON-LD : 3 endroits à changer si autre date)
-- [ ] Créer l'événement visio : soit un type cal.com "atelier" (https://cal.com/expertsia/atelier, lien utilisé dans l'email de confirmation), soit un lien Meet/Zoom fixe à me donner
+- [x] Confirmer la date : **mercredi** 2 décembre 2026, 12h30 à 13h15 (corrigé le 27 nov — la page disait "mardi", erreur de jour de la semaine)
+- [ ] **URGENT avant le 1er décembre** : fournir le lien visio réel (Meet/Zoom) pour l'email J-1 — l'email de confirmation promet "lien envoyé par email la veille", il n'y a plus de lien cal.com "atelier" (l'ancien https://cal.com/expertsia/atelier était en 404)
 - [ ] Valider l'adresse d'envoi Resend (onboarding@expertsia.dev, déjà utilisée par la newsletter)
 - [ ] Décider la limite : 25 participants (affichée sur la page) ou autre
 - [ ] Go pour le push
@@ -63,7 +63,7 @@ La plupart des PME n'ont pas un problème d'IA. Elles ont un problème de tri.
 
 Des dizaines d'outils promettent d'automatiser votre entreprise. Trois comptent vraiment. Le reste, ce sont des abonnements qui dorment.
 
-Mardi 2 décembre, 12h30, je présente en live la méthode que j'utilise en audit : 45 minutes, votre situation, un cas d'usage rentable identifié.
+Mercredi 2 décembre, 12h30, je présente en live la méthode que j'utilise en audit : 45 minutes, votre situation, un cas d'usage rentable identifié.
 
 Au programme :
 · Les 3 filtres qui séparent un cas rentable d'un gadget
@@ -80,7 +80,7 @@ Commentez "ATELIER" et je vous envoie le lien d'inscription.
 Toutes les infos et l'inscription ici : https://www.expertsia.dev/fr/atelier-audit-ia · 25 places.
 
 **Réponse DM type** à chaque commentaire "ATELIER" :
-"Envoyé ! Inscription ici : https://www.expertsia.dev/fr/atelier-audit-ia · mardi 2 décembre 12h30, 45 min. Vous recevez la checklist des 12 signaux dès l'inscription."
+"Envoyé ! Inscription ici : https://www.expertsia.dev/fr/atelier-audit-ia · mercredi 2 décembre 12h30, 45 min. Vous recevez la checklist des 12 signaux dès l'inscription."
 
 Mécanique : les commentaires boostent la portée (algorithme), qualifient l'intérêt, et chaque réponse en DM est une notificationLinkedIn naturelle. Vouvoiement partout, zéro emoji, zéro lien dans le corps du post.
 
@@ -92,7 +92,7 @@ Corps : rappel horaire + lien + consigne : "Répondez à cet email avec votre m�
 
 **Post-atelier (offre, à envoyer le jour même 17h)** :
 Objet : "Votre cas d'usage priorisé · et si vous voulez aller plus vite"
-Corps : remercier + rappeler les 2 chemins (seul avec la checklist / audit chiffré) + lien cal.com/expertsia/audit + "2 audits pris en janvier". Pas de relance supplémentaire avant janvier.
+Corps : remercier + rappeler les 2 chemins (seul avec la checklist / audit chiffré) + lien cal.com/expertsia-audit + "2 audits pris en janvier". Pas de relance supplémentaire avant janvier.
 
 **No-show (à envoyer le soir même)** :
 Objet : "Vous n'avez pas pu venir (pas de replay, voilà pourquoi)"
